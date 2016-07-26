@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="fclefang">
 <meta property="og:description" content="JS深入浅出日记——Three
 1. FLASH存储器SRAM和DRAM都是随机读写存储器，他们的特点就是可读可写。而ROM则是只读存储器,它又分为掩模ROM和可编程ROM,其中可编程ROM学习了单片机ARM就会非常熟悉多次编程的EPROM以及E2PROM.(PROM就是一次性编程)FLASH存储器是在EPROM存储元基础上发展起来的,由单个MOS晶体管,除漏极D和源极S,还有一个控制栅和浮空栅。">
-<meta property="og:updated_time" content="2016-07-26T14:40:30.320Z">
+<meta property="og:updated_time" content="2016-07-26T14:42:23.358Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS深入浅出日记——Three">
 <meta name="twitter:description" content="JS深入浅出日记——Three
@@ -225,7 +225,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="JS深入浅出日记——Three"><a href="#JS深入浅出日记——Three" class="headerlink" title="JS深入浅出日记——Three"></a>JS深入浅出日记——Three</h1><hr>
-<h3 id="1-FLASH存储器"><a href="#1-FLASH存储器" class="headerlink" title="1. FLASH存储器"></a>1. FLASH存储器</h3><p>SRAM和DRAM都是随机读写存储器，他们的特点就是可读可写。而ROM则是只读存储器,它又分为掩模ROM和可编程ROM,其中可编程ROM学习了单片机ARM就会非常熟悉多次编程的EPROM以及E2PROM.(PROM就是一次性编程)<br><strong>FLASH</strong>存储器是在EPROM存储元基础上发展起来的,由单个MOS晶体管,除漏极D和源极S,还有一个控制栅和浮空栅。</p>
+<h3 id="1-FLASH存储器"><a href="#1-FLASH存储器" class="headerlink" title="1. FLASH存储器"></a>1. FLASH存储器</h3><p>SRAM和DRAM都是随机读写存储器，他们的特点就是可读可写。而ROM则是只读存储器,它又分为掩模ROM和可编程ROM,其中可编程ROM学习了单片机ARM就会非常熟悉多次编程的EPROM以及E2PROM.(PROM就是一次性编程)<br><strong>FLASH</strong>存储器是在EPROM存储元基础上发展起来的,由单个MOS晶体管,除漏极D和源极S,还有一个控制栅和浮空栅。<br><a id="more"></a></p>
 <ul>
 <li>编程操作：也就是写操作，因为擦除操作的时候控制栅不加正电压，所以存储元的原始状态均是’1’状态，而写操作就是使得存储元状态变为’0’即在控制栅上加正电压，为存储元的浮空栅补充电子。</li>
 <li>读取操作：写操作完成那么控制栅上就加上了正电压。而浮空栅上的负电荷量将决定是否可以开启MOS管。当MOS导通，电路检测到电流表示存储元存1,若电路检测无电流则为0，通过写操作我们知道存储元由1变为0之后，浮空栅带负电，那么控制栅上的正电压不足以克服浮动删上的负电量，所以晶体管不能导通。</li>
