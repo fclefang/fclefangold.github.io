@@ -8,23 +8,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="JS深入浅出日记——One
 
-数据类型objectnumberstringbooleannullundefined
-巧用+/-号实现类型转换for instance:var num;num-0 :将num转换成数字类型num+” :将num转换成字符串型">
+数据类型objectnumberstringbooleannullundefined">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS深入浅出日记——One">
 <meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/JS深入浅出日记——One/index.html">
 <meta property="og:site_name" content="fclefang">
 <meta property="og:description" content="JS深入浅出日记——One
 
-数据类型objectnumberstringbooleannullundefined
-巧用+/-号实现类型转换for instance:var num;num-0 :将num转换成数字类型num+” :将num转换成字符串型">
-<meta property="og:updated_time" content="2016-07-23T13:10:41.769Z">
+数据类型objectnumberstringbooleannullundefined">
+<meta property="og:updated_time" content="2016-07-26T14:50:41.869Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS深入浅出日记——One">
 <meta name="twitter:description" content="JS深入浅出日记——One
 
-数据类型objectnumberstringbooleannullundefined
-巧用+/-号实现类型转换for instance:var num;num-0 :将num转换成数字类型num+” :将num转换成字符串型">
+数据类型objectnumberstringbooleannullundefined">
   
     <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
   
@@ -82,7 +79,7 @@
 						<li>Tags</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -232,9 +229,11 @@
       
         <h1 id="JS深入浅出日记——One"><a href="#JS深入浅出日记——One" class="headerlink" title="JS深入浅出日记——One"></a>JS深入浅出日记——One</h1><hr>
 <ol>
-<li><strong>数据类型</strong><br>object<br>number<br>string<br>boolean<br>null<br>undefined</li>
-<li><strong>巧用+/-号实现类型转换</strong><br>for instance:var num;<br>num-0 :将num转换成数字类型<br>num+” :将num转换成字符串型<a id="more"></a></li>
-<li><strong>JS引擎关于基本类型当对象使用时：</strong><br>var str=”string”;<br>str.t=10;<br>这里JS引擎将基本字符串类型str转换成对象str，并给t属性赋值，然     后销毁对象str。<br><strong>问题：</strong> 这种智能化将基本类型转换成对象有什么实际意义？</li>
+<li><strong>数据类型</strong><br>object<br>number<br>string<br>boolean<br>null<br>undefined<a id="more"></a></li>
+<li><p><strong>巧用+/-号实现类型转换</strong><br>for instance:var num;<br>num-0 :将num转换成数字类型<br>num+” :将num转换成字符串型</p>
+</li>
+<li><p><strong>JS引擎关于基本类型当对象使用时：</strong><br>var str=”string”;<br>str.t=10;<br>这里JS引擎将基本字符串类型str转换成对象str，并给t属性赋值，然     后销毁对象str。<br><strong>问题：</strong> 这种智能化将基本类型转换成对象有什么实际意义？</p>
+</li>
 <li><strong>类型检测：</strong><br>typeof: 适合基本类型和函数对象，直接返回一个字符串，非常直观。<br>instanceof: 适合自定义对象，也可以用来检测原生对象，在不同的if     rame和window之间检测是无效的。因为生成的是不同的对象！<br>Object.prototype.toString<br>Constructor<br>duck type</li>
 <li><p><strong>将数组转为字符串：</strong><br>`Array.prototype.join:<br>function repeatString(n,str){</p>
 <pre><code>return new Array(n+1).join(str);
