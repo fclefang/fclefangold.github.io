@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>JS深入浅出日记——Four | fclefang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="JS深入浅出日记——Four
+从今天开始会跟着Scott老师学习Node.js的第二套课程
+1. PromisePromise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了用法，原生提供了Promise对象。所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS深入浅出日记——Four">
+<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/JS深入浅出日记——Four/index.html">
+<meta property="og:site_name" content="fclefang">
+<meta property="og:description" content="JS深入浅出日记——Four
+从今天开始会跟着Scott老师学习Node.js的第二套课程
+1. PromisePromise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了用法，原生提供了Promise对象。所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。">
+<meta property="og:updated_time" content="2016-07-28T16:47:18.565Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS深入浅出日记——Four">
+<meta name="twitter:description" content="JS深入浅出日记——Four
+从今天开始会跟着Scott老师学习Node.js的第二套课程
+1. PromisePromise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了用法，原生提供了Promise对象。所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。">
+  
+    <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fclefang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">开心自由最重要</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>A propos</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories">分类</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">CIT（2012-2016）,GuiLin Elec(2016-2019).认真做好应该做的每一件事。衣不如新，人不如旧，旧衣穿着最舒服，新人也未必不是更好的选择...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Fclefang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fclefang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">开心自由最重要</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories">分类</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-JavaScript/JS深入浅出日记——Four" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/JS深入浅出日记——Four/" class="article-date">
+  	<time datetime="2016-07-27T05:25:36.000Z" itemprop="datePublished">2016-07-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS深入浅出日记——Four
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Node-js/">Node.js</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JS深入浅出日记——Four"><a href="#JS深入浅出日记——Four" class="headerlink" title="JS深入浅出日记——Four"></a>JS深入浅出日记——Four</h1><hr>
+<p><strong>从今天开始会跟着Scott老师学习Node.js的第二套课程</strong></p>
+<h3 id="1-Promise"><a href="#1-Promise" class="headerlink" title="1. Promise"></a>1. Promise</h3><p>Promise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了用法，原生提供了Promise对象。<br>所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise是一个对象，从它可以获取异步操作的消息。Promise提供统一的API，各种异步操作都可以用同样的方法进行处理。<br><a id="more"></a></p>
+<p>ES6规定，Promise对象是一个构造函数，用来生成Promise实例。<br>下面代码创造了一个Promise实例。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">  <span class="comment">// ... some code</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span> (<span class="comment">/* 异步操作成功 */</span>)&#123;</div><div class="line">    resolve(value);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    reject(error);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>Promise构造函数接受一个函数作为参数，该函数的两个参数分别是resolve和reject。它们是两个函数，由JavaScript引擎提供，不用自己部署。</p>
+<p>resolve函数的作用是，将Promise对象的状态从“未完成”变为“成功”（即从Pending变为Resolved），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；reject函数的作用是，将Promise对象的状态从“未完成”变为“失败”（即从Pending变为Rejected），在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。</p>
+<p>Promise实例生成以后，可以用then方法分别指定Resolved状态和Reject状态的回调函数。<br>then方法使用代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">  <span class="comment">// success</span></div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</div><div class="line">  <span class="comment">// failure</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p><strong>关于更多关于Promise的用法可以去<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="external">阮一峰ES6入门</a>查看学习相关的知识。</strong><br><strong><em>学习代码示例(实现3个球体的简单动画效果)：</em></strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">&lt;!doctype&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;title&gt;Promise Animation&lt;/title&gt;</div><div class="line">	&lt;style&gt;</div><div class="line">     .ball&#123;</div><div class="line">     	width: 40px;</div><div class="line">     	height: 40px;</div><div class="line">     	border-radius: 20px;</div><div class="line">     &#125;</div><div class="line">     .ball1&#123;</div><div class="line">     	background: red;</div><div class="line">     &#125;</div><div class="line">     .ball2&#123;</div><div class="line">     	background: yellow;</div><div class="line">     &#125;</div><div class="line">     .ball3&#123;</div><div class="line">     	background: green;</div><div class="line">     &#125;</div><div class="line">	&lt;/style&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">	&lt;div class="ball ball1" style="margin-left: 0;"&gt;&lt;/div&gt;</div><div class="line">	&lt;div class="ball ball2" style="margin-left: 0;"&gt;&lt;/div&gt;</div><div class="line">	&lt;div class="ball ball3" style="margin-left: 0;"&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">	&lt;script&gt;</div><div class="line">		var ball1 = document.querySelector('.ball1')</div><div class="line">        var ball2 = document.querySelector('.ball2')</div><div class="line">        var ball3 = document.querySelector('.ball3')</div><div class="line">        var Promise = window.Promise</div><div class="line">function promiseAnimate(ball,distance)&#123;</div><div class="line">   return new Promise(function(resolve,reject)&#123;</div><div class="line">       function _animate()&#123;</div><div class="line">           setTimeout(function () &#123;</div><div class="line">               var marginLeft = parseInt(ball.style.marginLeft,10)</div><div class="line"></div><div class="line">               if(marginLeft === distance)&#123;</div><div class="line">                   resolve()</div><div class="line">               &#125;else&#123;</div><div class="line">                   if(marginLeft &lt; distance)&#123;</div><div class="line">                       marginLeft++</div><div class="line">                   &#125;else&#123;</div><div class="line">                       marginLeft--</div><div class="line">                   &#125;</div><div class="line">                   ball.style.marginLeft = marginLeft + 'px'</div><div class="line">                   _animate()</div><div class="line">               &#125;</div><div class="line">           &#125;,13)</div><div class="line">       &#125;</div><div class="line">       _animate()</div><div class="line">   &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">  promiseAnimate(ball1,100)</div><div class="line">  .then(function()&#123;</div><div class="line">  	return promiseAnimate(ball2,200);</div><div class="line">  &#125;)</div><div class="line">  .then(function()&#123;</div><div class="line">  	return promiseAnimate(ball3,300);</div><div class="line">  &#125;)</div><div class="line">  .then(function()&#123;</div><div class="line">  	return promiseAnimate(ball3,150);</div><div class="line">  &#125;)</div><div class="line">  .then(function()&#123;</div><div class="line">  	return promiseAnimate(ball2,150);</div><div class="line">  &#125;)</div><div class="line">  .then(function()&#123;</div><div class="line">  	return promiseAnimate(ball1,150);</div><div class="line">  &#125;)</div><div class="line">	&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>看到这样的实例代码可能并不能感受到promise带来的有效性，下面一段代码是在不使用promise的情况下实现的程序：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">    <span class="keyword">var</span> ball1 = <span class="built_in">document</span>.querySelector(<span class="string">'.ball1'</span>)</div><div class="line">    <span class="keyword">var</span> ball2 = <span class="built_in">document</span>.querySelector(<span class="string">'.ball2'</span>)</div><div class="line">    <span class="keyword">var</span> ball3 = <span class="built_in">document</span>.querySelector(<span class="string">'.ball3'</span>)</div><div class="line">     </div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">animate</span> (<span class="params">ball,distance,cb</span>)</span>&#123;</div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">         </div><div class="line">            <span class="keyword">var</span> marginLeft =<span class="built_in">parseInt</span>(ball.style.marginLeft,<span class="number">10</span>)</div><div class="line">             </div><div class="line">            <span class="keyword">if</span> (marginLeft === distance)&#123;</div><div class="line">                cb&amp;&amp;cb()</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span>&#123;</div><div class="line">             </div><div class="line">                <span class="keyword">if</span> (marginLeft&lt;distance)&#123;</div><div class="line">                    marginLeft++</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span>&#123;</div><div class="line">                    marginLeft--</div><div class="line">                &#125;</div><div class="line">                ball.style.marginLeft = marginLeft</div><div class="line">                animate (ball,distance,cb)</div><div class="line">                <span class="comment">//不断重复动作</span></div><div class="line">            &#125;</div><div class="line">        &#125;,<span class="number">13</span>)</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    animate(ball1,<span class="number">100</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        animate(ball2,<span class="number">200</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            animate(ball3,<span class="number">300</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                animate(ball3,<span class="number">150</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                    animate(ball2,<span class="number">150</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                        animate(ball1,<span class="number">150</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                        <span class="comment">//</span></div><div class="line">                        &#125;)</div><div class="line">                    &#125;)</div><div class="line">                &#125;)</div><div class="line">            &#125;)</div><div class="line">        &#125;)</div><div class="line">    &#125;)</div><div class="line">    &lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<p>可以发现<code>.then(function(){})</code>这种线性结构的代码更加直观，当我们需要增删或者修改回调顺序的时候，可以发现不用promise会相当麻烦.</p>
+<h3 id="2-爬虫程序之异步编程"><a href="#2-爬虫程序之异步编程" class="headerlink" title="2. 爬虫程序之异步编程"></a>2. 爬虫程序之异步编程</h3><p><strong>先上代码：</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</div><div class="line"><span class="keyword">var</span> <span class="built_in">Promise</span> = <span class="built_in">require</span>(<span class="string">'bluebird'</span>)</div><div class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>)</div><div class="line"><span class="keyword">var</span> baseurl = <span class="string">'http://www.imooc.com/learn/'</span></div><div class="line"><span class="keyword">var</span> url = <span class="string">'http://www.imooc.com/learn/348'</span></div><div class="line"><span class="keyword">var</span> videoIds = [<span class="number">348</span>,<span class="number">259</span>,<span class="number">197</span>,<span class="number">134</span>,<span class="number">75</span>]</div><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">filterChapters</span>(<span class="params">html</span>) </span>&#123;</div><div class="line"> 	<span class="keyword">var</span> $ = cheerio.load(html);</div><div class="line"> 	<span class="keyword">var</span> chapters = $(<span class="string">'.chapter'</span>);</div><div class="line"> 	<span class="comment">// var title = $('#page_header' .path span).text()</span></div><div class="line"> 	<span class="comment">// var number = parseInt($($('info_num i')[0]).text().trim(),10)</span></div><div class="line">    <span class="keyword">var</span> title = $(<span class="string">'.course-infos .path span'</span>).text()</div><div class="line"></div><div class="line">    <span class="keyword">var</span> number = <span class="built_in">parseInt</span>($($(<span class="string">'.meta-value strong'</span>)[<span class="number">3</span>]).text().trim(), <span class="number">10</span>)</div><div class="line"></div><div class="line"> 	<span class="comment">// [&#123;</span></div><div class="line"> 	<span class="comment">// 	chapterTitle: '',</span></div><div class="line"> 	<span class="comment">// 	videos: [</span></div><div class="line">  <span class="comment">//         title: '',</span></div><div class="line">  <span class="comment">//         id: ''</span></div><div class="line"> 	<span class="comment">// 	]</span></div><div class="line"> 	<span class="comment">// &#125;]</span></div><div class="line"> 	<span class="keyword">var</span> courseData = &#123;</div><div class="line"> 		title: title,</div><div class="line"> 		number: number,</div><div class="line"> 		videos:[]</div><div class="line"> 	&#125;</div><div class="line"></div><div class="line"> 	chapters.each(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</div><div class="line"> 		<span class="keyword">var</span> chapters = $(<span class="keyword">this</span>);</div><div class="line"> 		<span class="keyword">var</span> chapterTitle = chapters.find(<span class="string">'strong'</span>).text();</div><div class="line"> 		<span class="keyword">var</span> videos = chapters.find(<span class="string">'.video'</span>).children(<span class="string">'li'</span>);</div><div class="line"> 		<span class="keyword">var</span> chapterData = &#123;</div><div class="line"> 			chapterTitle: chapterTitle,</div><div class="line"> 			videos: []</div><div class="line"> 		&#125;</div><div class="line"> 		videos.each(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</div><div class="line"> 			<span class="keyword">var</span> video = $(<span class="keyword">this</span>).find(<span class="string">'.studyvideo'</span>);</div><div class="line"> 			<span class="keyword">var</span> videoTitle = video.text();</div><div class="line">            <span class="keyword">var</span> id = video.attr(<span class="string">'href'</span>).split(<span class="string">'video/'</span>)[<span class="number">1</span>]</div><div class="line"></div><div class="line"> 			chapterData.videos.push(&#123;</div><div class="line"> 				title: videoTitle,</div><div class="line"> 				id: id</div><div class="line"> 			&#125;)</div><div class="line"> 		&#125;)</div><div class="line"> 		courseData.videos.push(chapterData);</div><div class="line"> 	&#125;)</div><div class="line"> 	<span class="keyword">return</span> courseData;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">printCourseInfo</span>(<span class="params">coursesData</span>) </span>&#123;</div><div class="line">	coursesData.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">courseData</span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(courseData.number + <span class="string">'人学过'</span>+ courseData.title + <span class="string">'\n'</span>);</div><div class="line">	&#125;)</div><div class="line">	coursesData.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">courseData</span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'###'</span>+courseData.title + <span class="string">'\n'</span>);</div><div class="line">		courseData.videos.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> chapterTitle = item.chapterTitle;</div><div class="line">		<span class="built_in">console</span>.log(chapterTitle + <span class="string">'\n'</span>);</div><div class="line">		item.videos.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">video</span>)</span>&#123;</div><div class="line">			<span class="built_in">console</span>.log(<span class="string">'  【'</span> + video.id + <span class="string">'】'</span> + video.title + <span class="string">'\n'</span>);</div><div class="line">		&#125;)</div><div class="line">		&#125;)</div><div class="line">	&#125;)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPageAsync</span>(<span class="params">url</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'正在爬取'</span>+ url);</div><div class="line">http.get(url,<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> html = <span class="string">''</span>;</div><div class="line"></div><div class="line">	res.on(<span class="string">'data'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">	html += data;	</div><div class="line">	&#125;);</div><div class="line">	res.on(<span class="string">'end'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		resolve(html);</div><div class="line">		<span class="comment">// var courseData = filterChapters(html);</span></div><div class="line">		<span class="comment">// printCourseInfo(courseData);</span></div><div class="line">	&#125;)</div><div class="line">&#125;).on(<span class="string">'error'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	reject(e);</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'获取课程数据出错！'</span>);</div><div class="line">&#125;)</div><div class="line">	&#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> fetchCourseArray = []</div><div class="line">videoIds.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>&#123;</div><div class="line">	fetchCourseArray.push(getPageAsync(baseurl + id));</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="built_in">Promise</span>.all(fetchCourseArray)</div><div class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">pages</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> coursesData = []</div><div class="line">    pages.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">html</span>)</span>&#123;</div><div class="line">    	<span class="keyword">var</span> courses = filterChapters(html)</div><div class="line">    	coursesData.push(courses)</div><div class="line">    &#125;)</div><div class="line">    coursesData.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line">    	<span class="keyword">return</span> a.number &lt; b.number</div><div class="line">    &#125;)</div><div class="line">    printCourseInfo(coursesData);</div><div class="line"></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>关于异步操作的理解：<br>在网上找到关于这方面的理解：</p>
+<ul>
+<li><a href="http://www.jb51.net/article/70167.htm" target="_blank" rel="external">梁砫-异步JavaScript编程中的Promise使用方法</a></li>
+<li><a href="http://www.cnblogs.com/aaronjs/p/3163786.html" target="_blank" rel="external">艾伦-关于异步Promise</a></li>
+<li></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/fclefang/JavaScript/JS深入浅出日记——Three/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JS深入浅出日记——Three</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="JavaScript/JS深入浅出日记——Four" data-title="JS深入浅出日记——Four" data-url="http://www.fclef.me/fclefang/JavaScript/JS深入浅出日记——Four/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fclef"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Fclefang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
