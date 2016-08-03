@@ -20,7 +20,7 @@
 
 必须分区：/(根分区)swap分区(交换分区，内存两倍，不超过两GB)
 推荐分区：/boot(启动分区，200M)">
-<meta property="og:updated_time" content="2016-08-03T12:11:33.964Z">
+<meta property="og:updated_time" content="2016-08-03T12:13:56.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux——One">
 <meta name="twitter:description" content="Linux——One
@@ -237,12 +237,12 @@
 <h3 id="1-挂载"><a href="#1-挂载" class="headerlink" title="1. 挂载"></a><strong>1. 挂载</strong></h3><p>分区：把大硬盘分为小的逻辑区<br>格式化：写入文件系统<br>挂载：给每个分区分配挂载点</p>
 <ul>
 <li>必须分区：<br>/(根分区)<br>swap分区(交换分区，内存两倍，不超过两GB)</li>
-<li><p>推荐分区：<br>/boot(启动分区，200M)</p>
+<li>推荐分区：<br>/boot(启动分区，200M)</li>
+</ul>
 <a id="more"></a>
 <h3 id="2-VMware-Tools"><a href="#2-VMware-Tools" class="headerlink" title="2. VMware Tools"></a><strong>2. VMware Tools</strong></h3><p>如果未装载 VMware Tools 虚拟 CD-ROM 映像，请装载 CD-ROM 驱动器。</p>
-</li>
-<li><p>如果装载点目录尚不存在，请创建该目录:mkdir /mnt/cdrom<br>某些 Linux 发行版使用不同的装载点名称。例如，某些发行版上的装载点是:<br>/media/VMware Tools而不是/mnt/cdrom。请修改该命令以反映您的发行版使用的约定。</p>
-</li>
+<ul>
+<li>如果装载点目录尚不存在，请创建该目录:mkdir /mnt/cdrom<br>某些 Linux 发行版使用不同的装载点名称。例如，某些发行版上的装载点是:<br>/media/VMware Tools而不是/mnt/cdrom。请修改该命令以反映您的发行版使用的约定。</li>
 <li><p>装载 CD-ROM 驱动器:mount /dev/cdrom /mnt/cdrom<br>某些 Linux 发行版使用不同的设备名称，或者以不同的方式组织 /dev 目录。如果 CD-ROM 驱动器不是 /dev/cdrom 或 CD-ROM 装载点不是/mnt/cdrom，则必须修改该命令以反映您的发行版使用的约定。</p>
 <h3 id="3-本机与linux虚拟机的互通"><a href="#3-本机与linux虚拟机的互通" class="headerlink" title="3. 本机与linux虚拟机的互通"></a><strong>3. 本机与linux虚拟机的互通</strong></h3><p>因为知识的缺乏，在网络配置方面有点白痴，所以跟着老师视频里的教程进行试验时出现了好几个小漏洞，虽然花了几个小时，但最后总算实现了的本机Xshell操作台实现对Linux虚拟机的控制。</p>
 </li>
