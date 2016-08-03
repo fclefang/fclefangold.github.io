@@ -111,7 +111,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/JQuery，AudioContext/" style="font-size: 10px;">JQuery，AudioContext</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 20px;">Node.js</a>
+						<a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Node-js/" style="font-size: 15px;">Node.js</a>
 					</div>
 				</section>
 				
@@ -216,12 +216,12 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JQuery，AudioContext/">JQuery，AudioContext</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
 	</div>
 
       
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Node-js/">Node.js</a>
+	<a class="article-category-link" href="/categories/JQuery-AudioContext/">JQuery AudioContext</a>
 	</div>
 
 
@@ -229,6 +229,86 @@
         <p class="article-more-link">
           <a  href="/fclefang/JavaScript/JS深入浅出日记——Five/#more">more >></a>
         </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/Linux——One" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/Linux——One/" class="article-date">
+  	<time datetime="2016-07-30T08:00:26.000Z" itemprop="datePublished">2016-07-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/Linux——One/">Linux——One</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux——One"><a href="#Linux——One" class="headerlink" title="Linux——One"></a>Linux——One</h1><hr>
+<h3 id="1-挂载"><a href="#1-挂载" class="headerlink" title="1. 挂载"></a><strong>1. 挂载</strong></h3><p>分区：把大硬盘分为小的逻辑区<br>格式化：写入文件系统<br>挂载：给每个分区分配挂载点</p>
+<ul>
+<li>必须分区：<br>/(根分区)<br>swap分区(交换分区，内存两倍，不超过两GB)</li>
+<li><p>推荐分区：<br>/boot(启动分区，200M)</p>
+<h3 id="2-VMware-Tools"><a href="#2-VMware-Tools" class="headerlink" title="2. VMware Tools"></a><strong>2. VMware Tools</strong></h3><p>如果未装载 VMware Tools 虚拟 CD-ROM 映像，请装载 CD-ROM 驱动器。</p>
+</li>
+<li><p>如果装载点目录尚不存在，请创建该目录:mkdir /mnt/cdrom<br>某些 Linux 发行版使用不同的装载点名称。例如，某些发行版上的装载点是:<br>/media/VMware Tools而不是/mnt/cdrom。请修改该命令以反映您的发行版使用的约定。</p>
+</li>
+<li><p>装载 CD-ROM 驱动器:mount /dev/cdrom /mnt/cdrom<br>某些 Linux 发行版使用不同的设备名称，或者以不同的方式组织 /dev 目录。如果 CD-ROM 驱动器不是 /dev/cdrom 或 CD-ROM 装载点不是/mnt/cdrom，则必须修改该命令以反映您的发行版使用的约定。</p>
+<h3 id="3-本机与linux虚拟机的互通"><a href="#3-本机与linux虚拟机的互通" class="headerlink" title="3. 本机与linux虚拟机的互通"></a><strong>3. 本机与linux虚拟机的互通</strong></h3><p>因为知识的缺乏，在网络配置方面有点白痴，所以跟着老师视频里的教程进行试验时出现了好几个小漏洞，虽然花了几个小时，但最后总算实现了的本机Xshell操作台实现对Linux虚拟机的控制。</p>
+</li>
+<li><p>‘：wq’:文件保存并退出</p>
+</li>
+<li>‘bc’:计算器</li>
+<li>‘sync’:数据同步写入磁盘</li>
+<li>‘shutdown’:此外，需要注意的是，时间参数请务必加入指令中，否则shutdown会自动跳到 run-level 1</li>
+<li>其他一些常见的可以参考<a href="http://blog.csdn.net/xiaoguaihai/article/details/8705992" target="_blank" rel="external">文哥博客</a><br><strong>实现互通的解决思路：</strong>其实这次搞完主机和虚拟机互通之后，对于老师的讲解其实有一点疑问。我自己是觉得主机和虚拟机借助于共同的网关192.168.1.1.</li>
+</ul>
+<p><strong>首先</strong>：dos界面下ipconfig命令取得当前主机的IP地址以及网关地址。<br><strong>然后</strong>：虚拟机设置为桥接模式，setup进入网络配置eth0，配置一个合理的IP地址，以及相同的网关地址，当然DNS以及子网掩码也需要配置好。当然也可以自己对eth0进行ifconfig配置。<br>1、配置网卡eth0静态IP。<br>2、将其中的ONBOOT设置为no<br>3、重新启动机器<br>4、使用ifconfig eth0 up来激活网卡的，ifconfig 查看eth0，eth0的信息并有显示eth0的静态ip。<br>5、改用ifup eth0 来激活网卡，ifconfig查看eth0，此时的eth0的信息中静态IP就被启用。<br>6、如果将ONBOOT设置为yes，重新启动后，ifconfig up与ifup的效果是一样的。<br>在网百度上搜了一下ifconfig up 与ifup的区别，只查到说ifconfig up 会回调ifup脚本。<br>使用ifup和ifdown脚本“启用”或“禁用“特定的网络接口比直接使用<br>ifconfig命令要好一些，这是因为脚本可以认真查看并处理与某一个<br>特定接口有关的所有参数和相关功能。<br>ifup和ifdown这两个脚本通常放在/etc/sysconfig/network-scripts/或者/etc/network/下面。<br><strong>最后：</strong>利用Xshell新建一个连接，配置好虚拟机eth0的IP地址就可以连接上虚拟机实现主机控制虚拟机的实验。<br><strong>PS：</strong><code>vi /etc/sysconfig/network-scripts/ifcfg-eth0</code>配置网卡：<code>ONBOOT=yes</code>这句是什么含义？<br>解答：ONBOOT是指明在系统启动时是否激活网卡，只有在激活状态的网卡才能去连接网络，进行网络通讯。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Linux/">Linux</a>
+	</div>
+
+
       
       <div class="clearfix"></div>
     </div>
