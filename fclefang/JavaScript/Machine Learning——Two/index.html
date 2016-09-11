@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Machine Learning——Two | fclefang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="2.1 经验误差与过拟合
+error： 一般的，我们把学习器的实际预测输出与样本的真是输出之间的差异称之为误差。而学习器在训练集上的误差称为training error or empirical error.而在新样本上的误差称之为generalization error也就是泛化误差。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning——Two">
+<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/Machine Learning——Two/index.html">
+<meta property="og:site_name" content="fclefang">
+<meta property="og:description" content="2.1 经验误差与过拟合
+error： 一般的，我们把学习器的实际预测输出与样本的真是输出之间的差异称之为误差。而学习器在训练集上的误差称为training error or empirical error.而在新样本上的误差称之为generalization error也就是泛化误差。">
+<meta property="og:updated_time" content="2016-09-08T05:43:06.900Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Machine Learning——Two">
+<meta name="twitter:description" content="2.1 经验误差与过拟合
+error： 一般的，我们把学习器的实际预测输出与样本的真是输出之间的差异称之为误差。而学习器在训练集上的误差称为training error or empirical error.而在新样本上的误差称之为generalization error也就是泛化误差。">
+  
+    <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fclefang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">开心自由最重要</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories">分类</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Node-js/" style="font-size: 15px;">Node.js</a> <a href="/tags/java/" style="font-size: 10px;">java</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">CIT（2012-2016）,GuiLin Elec(2016-2019).认真做好应该做的每一件事。衣不如新，人不如旧，旧衣穿着最舒服，新人也未必不是更好的选择...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Fclefang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fclefang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">开心自由最重要</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories">分类</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-JavaScript/Machine Learning——Two" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/Machine Learning——Two/" class="article-date">
+  	<time datetime="2016-09-05T11:42:36.000Z" itemprop="datePublished">2016-09-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Machine Learning——Two
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/model-evaluation/">model evaluation</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="2-1-经验误差与过拟合"><a href="#2-1-经验误差与过拟合" class="headerlink" title="2.1 经验误差与过拟合"></a>2.1 经验误差与过拟合</h3><ul>
+<li>error： 一般的，我们把学习器的实际预测输出与样本的真是输出之间的差异称之为误差。而学习器在训练集上的误差称为training error or empirical error.而在新样本上的误差称之为generalization error也就是泛化误差。<a id="more"></a>
+在很多情况下，我们可以得到一个经验误差很小也就是在训练集上表现很好的学习器，甚至达到错误率为0.但是我们实际希望得到的是在新样本上能够表现很好的学习器。<strong>这里有个注意点：</strong>我们为了得到在新样本上变现很好的学习器，就会尽可能得从训练样本中学出适用于所有潜在样本的“普遍规律”，以便在遇到新样本时才能做出正确的判断。但是当学习器把训练样本学的“太好”的时候，也就是可能已经把训练样本本身具有的一些特点当做所有潜在样本都会具有的一般性质，从而导致泛华性能下降。即<strong>过拟合现象</strong>。</li>
+<li>首先需要介绍P(Polynomial,多项式)问题.P问题是可以在多项式时间内被确定机(通常意义的计算机)解决的问题.<br>NP(Non-Deterministic Polynomial, 非确定多项式)问题,是指可以在多项式时间内被非确定机(他可以猜,他总是能猜到最能满足你需要的那种选择,如果你让他解决n皇后问题,他只要猜n次就能完成—-每次都是那么幸运)解决的问题.<br>这里有一个著名的问题—-千禧难题之首,是说P问题是否等于NP问题,也即是否所有在非确定机上多项式可解的问题都能在确定机上用多项式时间求解.<br>周志华老师说我们可以这样理解：机器学习面临的问题通常是NP难甚至更难，而有效的学习算法必然是在多项式时间内运行完成，若可彻底避免过拟合，则通过经验误差最小化就能获得最优解，这就意味着我们构造性地证明了“P=NP”，所以只要相信“P ！= NP”，过拟合就不可避免。</li>
+<li>model selection：理想的解决方案就是对候选模型的泛化误差进行评估，选择误差最小的那个。因为我们无法直接获得泛化误差，而训练误差由于过拟合的存在而不适合作为判定标准，那我们<strong>如何对泛化误差进行评估呢？</strong>在这里需要一个测试集，来测试学习器对新样本的判别能力，然后以测试集上的测试误差作为泛化误差的近似。可是<strong>为什么测试样本要尽可能不出现在训练集中呢？</strong>因为如果测试样本被用作训练了，则得到的将是过于“乐观”的估计结果。</li>
+<li>一个包含m个样例的数据集D，既要训练又要测试，需要进行一些处理得到我们想要的训练集S和测试集T.</li>
+</ul>
+<blockquote>
+<p>2.2.1 留出法<br><strong>hold-out留出法就是直接将数据集D划分为两个互斥的集合，其中一个集合作为训练集S，另一个就作为测试集T。在S上训练出模型后再用T来评估其测试误差，作为对泛化误差的估计。</strong><br>需要注意的是训练/测试集的划分要尽可能保持数据分布的一致性，避免因为数据划分而引入额外的误差影响。<br>2.2.2 交叉验证法(也就是k折交叉验证)<br><strong>cross validation先将数据集D划分为k个大小相似的互斥子集，每个子集D(i)都尽可能保持数据分布的一致性即从D中通过分层采样得到。然后每次用(k-1)个子集的并集作为训练集，余下的那个子集作为测试集，这样就可以获得k组训练/测试集，从而可以进行k次训练和测试，最终返回的是这k个测试结果的均值</strong><br>2.2.3 自助法(bootstrapping)<br>在留出法和交叉验证法中因为测试样本的影响，必然会引入因训练样本规模不同而导致的估计偏差。留一法就是k折法中令k等于样本数。该方法受样本规模变化影响较小，但是计算复杂度太高了<br>bootstrapping以自助采样法为基础，每次从D中随机挑选一个样本将其拷贝放入D’，重复执行m次后就得到了包含m个样本的数据集D’。在这个过程中D中会有一部分样本不会出现在D’中，这样的概率为(1-1/m)的m次方取极限约为1/e,将D’用作训练集，D\D’用作测试集，这种测试结果也称作“包外估计”。该方法适用于数据集较小的情况。</p>
+</blockquote>
+<h3 id="2-3-性能度量"><a href="#2-3-性能度量" class="headerlink" title="2.3 性能度量"></a>2.3 性能度量</h3><p>模型的好坏不仅取决于算法和数据，还决定于任务需求。回归任务最常用的性能度量是均方误差。错误率和精度是分类任务中最常用的两种性能度量。而查准率和查全率更为适用于此类需求的性能度量。P-R图直观地显示出学习器在样本总体上的查全率和查准率。当一个学习器的P-R曲线被另一个学习器完全包住，则可断言后者的性能优于前者，若发生交叉，则比较曲线下的面积，但是面积的比较并不容易，因此引入BEP平衡点这个度量。很明显地发现BEP过于简化，更常用的是F1=(2<em>P</em>R)/(P+R)=(2<em>TP)/(样例总数+TP-TN)(基于查准率和查全率的调和平均).在一些应用中对于查全率和查准率的重视程度不同，有的时候查准率更重要一些，有的时候查全率更重要。所以F1即加权调和平均的一般形式Fβ=(1+β的平方)</em>P<em>R/((β的平方</em>P)+R).β=1即标准F1，β&gt;1查全率更大影响，β&lt;1时查准率更大影响。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/fclefang/JavaScript/Java1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Java1
+        
+      </div>
+    </a>
+  
+  
+    <a href="/fclefang/JavaScript/JS深入浅出日记——Five/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JS深入浅出日记——Five</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="JavaScript/Machine Learning——Two" data-title="Machine Learning——Two" data-url="http://www.fclef.me/fclefang/JavaScript/Machine Learning——Two/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fclef"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Fclefang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
