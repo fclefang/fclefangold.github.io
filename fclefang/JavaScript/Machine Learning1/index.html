@@ -4,18 +4,21 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>JS深入浅出日记——One | fclefang</title>
+  <title>Machine Learning1 | fclefang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数据类型objectnumberstringbooleannullundefined">
+  <meta name="description" content="线性回归 梯度下降 批梯度下降法以及随机梯度下降法 等高线分析局部加权回归 最小二乘拟合">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS深入浅出日记——One">
-<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/JS深入浅出日记——One/index.html">
+<meta property="og:title" content="Machine Learning1">
+<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/Machine Learning1/index.html">
 <meta property="og:site_name" content="fclefang">
-<meta property="og:description" content="数据类型objectnumberstringbooleannullundefined">
-<meta property="og:updated_time" content="2016-09-08T05:12:09.097Z">
+<meta property="og:description" content="线性回归 梯度下降 批梯度下降法以及随机梯度下降法 等高线分析局部加权回归 最小二乘拟合">
+<meta property="og:image" content="http://a.hiphotos.baidu.com/baike/c0=baike60,5,5,60,20/sign=05ff0f5520a446236ac7ad30f94b196b/d009b3de9c82d158a4622c9e800a19d8bc3e4238.jpg">
+<meta property="og:image" content="http://f.hiphotos.baidu.com/baike/c0=baike60,5,5,60,20/sign=ddc9493bab18972bb737089887a410ec/8644ebf81a4c510fd42697356059252dd42aa53a.jpg">
+<meta property="og:updated_time" content="2016-09-17T14:53:53.216Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS深入浅出日记——One">
-<meta name="twitter:description" content="数据类型objectnumberstringbooleannullundefined">
+<meta name="twitter:title" content="Machine Learning1">
+<meta name="twitter:description" content="线性回归 梯度下降 批梯度下降法以及随机梯度下降法 等高线分析局部加权回归 最小二乘拟合">
+<meta name="twitter:image" content="http://a.hiphotos.baidu.com/baike/c0=baike60,5,5,60,20/sign=05ff0f5520a446236ac7ad30f94b196b/d009b3de9c82d158a4622c9e800a19d8bc3e4238.jpg">
   
     <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
   
@@ -180,11 +183,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-JavaScript/JS深入浅出日记——One" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-JavaScript/Machine Learning1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/fclefang/JavaScript/JS深入浅出日记——One/" class="article-date">
-  	<time datetime="2016-07-23T12:38:16.000Z" itemprop="datePublished">2016-07-23</time>
+      <a href="/fclefang/JavaScript/Machine Learning1/" class="article-date">
+  	<time datetime="2016-08-06T07:48:36.000Z" itemprop="datePublished">2016-08-06</time>
 </a>
     </div>
   
@@ -197,7 +200,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      JS深入浅出日记——One
+      Machine Learning1
     </h1>
   
 
@@ -206,12 +209,12 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
 	</div>
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+	<a class="article-category-link" href="/categories/linear-regression/">linear regression</a>
 	</div>
 
 
@@ -221,26 +224,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li><strong>数据类型</strong><br>object<br>number<br>string<br>boolean<br>null<br>undefined<a id="more"></a></li>
-<li><p><strong>巧用+/-号实现类型转换</strong><br>for instance:var num;<br>num-0 :将num转换成数字类型<br>num+” :将num转换成字符串型</p>
+        <p>线性回归 梯度下降 批梯度下降法以及随机梯度下降法 等高线分析<br>局部加权回归 最小二乘拟合<br><a id="more"></a></p>
+<ul>
+<li>以一简单数据组来说明什么是线性回归。假设有一组数据型态为 y=y(x)，其中<br>x={0, 1, 2, 3, 4, 5}, y={0, 20, 60, 68, 77, 110}<br>如果要以一个最简单的方程式来近似这组数据，则用一阶的线性方程式最为适合。随意假设一阶线性方程式y=20x，用以代表这些数据的一个方程式。以下将上述绘图的MATLAB指令列出，并计算这个线性方程式的 y 值与原数据 y 值间误差平方的总合。<blockquote>
+<blockquote>
+<p>x=[0 1 2 3 4 5];<br>y=[0 20 60 68 77 110];<br>y1=20*x; % 一阶线性方程式的 y1 值<br>sum_sq = sum((y-y1).^2); % 误差平方总和为 573<br>axis([-1,6,-20,120])<br>plot(x,y1,x,y,’o’), title(‘Linear estimate’), grid<br>如此任意的假设一个线性方程式并无根据，如果换成其它人来设定就可能采用不同的线性方程式；所以必须要有比较精确方式决定理想的线性方程式。可以要求误差平方的总和为最小，做为决定理想的线性方程式的准则，这样的方法就称为最小平方误差(least squares error)或是线性回归。</p>
+</blockquote>
+</blockquote>
 </li>
-<li><p><strong>JS引擎关于基本类型当对象使用时：</strong><br>var str=”string”;<br>str.t=10;<br>这里JS引擎将基本字符串类型str转换成对象str，并给t属性赋值，然     后销毁对象str。<br><strong>问题：</strong> 这种智能化将基本类型转换成对象有什么实际意义？</p>
-</li>
-<li><strong>类型检测：</strong><br>typeof: 适合基本类型和函数对象，直接返回一个字符串，非常直观。<br>instanceof: 适合自定义对象，也可以用来检测原生对象，在不同的if     rame和window之间检测是无效的。因为生成的是不同的对象！<br>Object.prototype.toString<br>Constructor<br>duck type</li>
-<li><p><strong>将数组转为字符串：</strong><br>`Array.prototype.join:<br>function repeatString(n,str){</p>
-<pre><code>return new Array(n+1).join(str);
-</code></pre><p>}</p>
-<pre><code>repeatString(3,a);//&quot;aaa&quot;`
-</code></pre></li>
-<li><p><strong>排序：</strong><br><code>Array.prototype.sort:
-var arr=[13,24,51,3];
-arr.sort();//[13,24,3,51]，将数字看成字符串排序
-arr;//[13,24,3,51]，并不是新建一个数组排序，直接在原数组排序。</code><br><strong>那么如何将数组内的数字排序呢？</strong><br>添加一个比较函数：<br><code>arr.sort(function(a,b){
-return a-b;
-});</code></p>
-</li>
-</ol>
+<li>最小二乘法<br>最小二乘法（又称最小平方法）是一种数学优化技术。它通过最小化误差的平方和寻找数据的最佳函数匹配。利用最小二乘法可以简便地求得未知的数据，并使得这些求得的数据与实际数据之间误差的平方和为最小。最小二乘法还可用于曲线拟合。其他一些优化问题也可通过最小化能量或最大化熵用最小二乘法来表达。一般来说，线性回归都可以通过最小二乘法求出其方程，可以计算出对于y=bx+a的直线，其经验拟合方程如下：<br><img src="http://a.hiphotos.baidu.com/baike/c0=baike60,5,5,60,20/sign=05ff0f5520a446236ac7ad30f94b196b/d009b3de9c82d158a4622c9e800a19d8bc3e4238.jpg" alt="此处输入图片的描述"></li>
+</ul>
+<p>  其相关系数（即通常说的拟合的好坏）可以用以下公式来计算：<br>  <img src="http://f.hiphotos.baidu.com/baike/c0=baike60,5,5,60,20/sign=ddc9493bab18972bb737089887a410ec/8644ebf81a4c510fd42697356059252dd42aa53a.jpg" alt="此处输入图片的描述"></p>
+<ul>
+<li>牛顿法<br><a href="http://blog.csdn.net/luoleicn/article/details/6527049" target="_blank" rel="external">牛顿法入门解析</a></li>
+</ul>
 
       
     </div>
@@ -250,15 +247,20 @@ return a-b;
     
 <nav id="article-nav">
   
-    <a href="/fclefang/JavaScript/JS深入浅出日记——Two/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/fclefang/JavaScript/Machine Learning2/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          JS深入浅出日记——Two
+          Machine Learning2
         
       </div>
     </a>
   
+  
+    <a href="/fclefang/JavaScript/JS深入浅出日记——Five/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JS深入浅出日记——Five</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -291,7 +293,7 @@ return a-b;
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="JavaScript/JS深入浅出日记——One" data-title="JS深入浅出日记——One" data-url="http://www.fclef.me/fclefang/JavaScript/JS深入浅出日记——One/"></div>
+	<div class="ds-thread" data-thread-key="JavaScript/Machine Learning1" data-title="Machine Learning1" data-url="http://www.fclef.me/fclefang/JavaScript/Machine Learning1/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
