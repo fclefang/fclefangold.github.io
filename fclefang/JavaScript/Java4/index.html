@@ -4,18 +4,24 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Java1 | fclefang</title>
+  <title>Java4 | fclefang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="环境变量：path以及classpath的配置，当配置可执行文件时用path，当配置java文件时用classpath.path配置完成，操作系统先查找当前目录下然后再查找环境变量path配置的路径，而classpath配置后操作系统的查找顺序则相反。当用set path进行临时配置时，结束后不会影响本机原有配置。">
+  <meta name="description" content="1.多态特性：
+在编译时期，参阅引用型变量所属的类中是否有调用的方法，如果有编译成功，没有则编译失败。
+在运行时期，参阅对象所属的类中是否有调用的方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java1">
-<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/Java1/index.html">
+<meta property="og:title" content="Java4">
+<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/Java4/index.html">
 <meta property="og:site_name" content="fclefang">
-<meta property="og:description" content="环境变量：path以及classpath的配置，当配置可执行文件时用path，当配置java文件时用classpath.path配置完成，操作系统先查找当前目录下然后再查找环境变量path配置的路径，而classpath配置后操作系统的查找顺序则相反。当用set path进行临时配置时，结束后不会影响本机原有配置。">
-<meta property="og:updated_time" content="2016-09-11T04:04:36.477Z">
+<meta property="og:description" content="1.多态特性：
+在编译时期，参阅引用型变量所属的类中是否有调用的方法，如果有编译成功，没有则编译失败。
+在运行时期，参阅对象所属的类中是否有调用的方法。">
+<meta property="og:updated_time" content="2016-09-21T10:02:07.603Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java1">
-<meta name="twitter:description" content="环境变量：path以及classpath的配置，当配置可执行文件时用path，当配置java文件时用classpath.path配置完成，操作系统先查找当前目录下然后再查找环境变量path配置的路径，而classpath配置后操作系统的查找顺序则相反。当用set path进行临时配置时，结束后不会影响本机原有配置。">
+<meta name="twitter:title" content="Java4">
+<meta name="twitter:description" content="1.多态特性：
+在编译时期，参阅引用型变量所属的类中是否有调用的方法，如果有编译成功，没有则编译失败。
+在运行时期，参阅对象所属的类中是否有调用的方法。">
   
     <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
   
@@ -180,11 +186,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-JavaScript/Java1" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-JavaScript/Java4" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/fclefang/JavaScript/Java1/" class="article-date">
-  	<time datetime="2016-09-09T07:58:36.000Z" itemprop="datePublished">2016-09-09</time>
+      <a href="/fclefang/JavaScript/Java4/" class="article-date">
+  	<time datetime="2016-09-18T13:13:12.000Z" itemprop="datePublished">2016-09-18</time>
 </a>
     </div>
   
@@ -197,7 +203,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Java1
+      Java4
     </h1>
   
 
@@ -211,7 +217,7 @@
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/java1/">java1</a>
+	<a class="article-category-link" href="/categories/inner-class/">inner class</a>
 	</div>
 
 
@@ -221,19 +227,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li>环境变量：path以及classpath的配置，当配置可执行文件时用path，当配置java文件时用classpath.<br>path配置完成，操作系统先查找当前目录下然后再查找环境变量path配置的路径，而classpath配置后操作系统的查找顺序则相反。<br>当用set path进行临时配置时，结束后不会影响本机原有配置。<a id="more"></a></li>
-<li>重载overload<br>在同一个类中，允许存在一个以上的同名函数，只要它们的参数个数或者参数类型不同即可。</li>
-<li>类和对象<br>如下一小段代码：<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span></span>&#123;</div><div class="line">	String color = <span class="string">"红色"</span>;</div><div class="line">	<span class="keyword">int</span> num = <span class="number">4</span>;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(color+<span class="string">".."</span>+num);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CarDemo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Car c = <span class="keyword">new</span> Car();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h3 id="1-多态特性："><a href="#1-多态特性：" class="headerlink" title="1.多态特性："></a>1.多态特性：</h3><ul>
+<li>在编译时期，参阅引用型变量所属的类中是否有调用的方法，如果有编译成功，没有则编译失败。</li>
+<li>在运行时期，参阅对象所属的类中是否有调用的方法。<a id="more"></a><br>简单总结就是成员函数在多态调用时，编译看左边，运行看右边。</li>
+<li><p>多态成员变量的特点：<br>无论编译和运行都参考左边也就是引用型变量所属的类。<br>多态<strong>静态</strong>成员函数的特性和变量特性一致！</p>
+<h3 id="2-内部类"><a href="#2-内部类" class="headerlink" title="2.内部类"></a>2.内部类</h3></li>
+<li><p><strong>访问规则</strong>：内部类可以直接访问外部类中的成员包括私有。之所以可以直接访问外部类中的成员，是因为内部类中持有了一个外部类的引用，格式为：<code>外部类名+this</code>。外部类要访问内部类必须建立内部类对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> x = <span class="number">3</span>;</div><div class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> x = <span class="number">4</span>;</div><div class="line">		<span class="function"><span class="keyword">void</span> <span class="title">function</span><span class="params">()</span></span>&#123;</div><div class="line">			<span class="keyword">int</span> x= <span class="number">6</span>;</div><div class="line">			System.out.println(<span class="string">"inner :"</span>+Outer.<span class="keyword">this</span>.x);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</div><div class="line">		Inner in = <span class="keyword">new</span> Inner();</div><div class="line">		in.function();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">InnerClassDemo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Outer out = <span class="keyword">new</span> Outer();</div><div class="line">		out.method();</div><div class="line">		<span class="comment">//access straight to the member of an internal class</span></div><div class="line">		Outer.Inner in = <span class="keyword">new</span> Outer().new Inner();</div><div class="line">		in.function();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
-</ol>
-<p><code>Car c = new Car();</code>这样就产生了栈内存和堆内存。这句代码让栈内存中就产生了Car类型的变量c，而在堆中就产生了实体(包含实体的一些内容属性)，实体所在的地址就赋值给了c，所以变量c就指向了该实体。如果再执行<code>Car c1 = new Car();</code>就会在堆中产生一个新的实体，栈中新的变量c1指向该新实体，而并不是指向之前的实体。</p>
-<ul>
-<li>成员变量和局部变量：成员变量作用域整个类中，而局部变量作用于函数或者语句中。成员变量存在于堆内存中，而局部变量存在于栈内存中。</li>
-<li>构造函数：对象一建立就会调用与之对应的构造函数，可以用于给对象进行初始化。可以通过构造函数的参数不同给对象进行不同的初始化。<strong>如果某个构造函数加上private属性私有化那么<code>Person p = new Person(&quot;Lisi&quot;);</code>就不能创建该对象。</strong></li>
-<li>构造代码块：给对象进行初始化，对象一建立就执行，而且优先于构造函数执行。给所有对象统一初始化而构造函数则是给相对应的对象初始化。所以可以借助于构造代码块给对象包含的一些共性的特征进行初始化。</li>
-<li>this：看上去用于区分局部变量和全局变量同名的情况。代表所在函数所属对象的引用，也就是说哪个对象调用this所在的函数，this就代表哪个对象。构造函数间调用只能用this语句！只能定义在构造函数的第一行，因为初始化要先执行。</li>
-<li>static：比如当我们在Person类中<code>static String country = &quot;cn&quot;;</code>当使用静态修饰时，那么这个country就不随着其他属性存在于堆中，而是成为一个共享属性和方法一起存在于方法区(共享区，数据区)中。<strong>可以被类名直接调用</strong>，静态方法中不可以定义this和super关键词，因为静态方法优先于对象存在。</li>
+<li><p>访问格式：<br>(1)当内部类定义在外部类的成员位置上，而且非私有，可以在外部其他类中直接建立内部类对象<code>Outer.Inner in = new Outer().new Inner();</code>.<br>(2)当内部类在成员位置上，就可以被成员修饰符所修饰。比如private将内部类在外部类中直接封装。static内部类就具备static的特性，只能访问外部类中static成员。在外部其他类中，如何直接访问static内部类的非静态成员呢？比如上述代码块中<strong><code>new Outer.Inner().function();</code></strong>。在外部其他类中如何直接访问static内部类的静态成员呢？比如<strong><code>Outer.Inner.function();</code></strong>。<strong>注意：</strong>内部类中定义了静态成员那么该内部类必须静态声明。当外部类中的静态方法访问内部类时，内部类也必须是static的。</p>
+<h3 id="3-包"><a href="#3-包" class="headerlink" title="3.包"></a>3.包</h3></li>
+<li><p>包的基本应用：dos进入当前java文件的目录，执行命令<code>javac -d . PackageDemo.java</code>编译成功后，再执行<code>java pack.PackageDemo</code>运行。当然也可以使用命令<code>javac -d dir(select where you want to deposit) PackageDemo.java</code>这样就可以达到将源文件和执行文件分离的效果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> pack;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PackageDemo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"biubiubiu..."</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>包的特性：<br>包与包之间进行访问，被访问的包中的类以及类中的成员需要public修饰。<br>不同包中的子类还可以直接访问父类中被protected权限修饰的成员。<br>包与包之间可以使用的权限只有两种就是public和protected。<br>为了简化类名的书写使用关键字import导入包中的类。</p>
+</li>
 </ul>
 
       
@@ -244,18 +252,9 @@
     
 <nav id="article-nav">
   
-    <a href="/fclefang/JavaScript/Machine Learning3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Machine Learning3
-        
-      </div>
-    </a>
   
-  
-    <a href="/fclefang/JavaScript/Machine Learning2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Machine Learning2</div>
+    <a href="/fclefang/JavaScript/Java3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java3</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -290,7 +289,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="JavaScript/Java1" data-title="Java1" data-url="http://www.fclef.me/fclefang/JavaScript/Java1/"></div>
+	<div class="ds-thread" data-thread-key="JavaScript/Java4" data-title="Java4" data-url="http://www.fclef.me/fclefang/JavaScript/Java4/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
