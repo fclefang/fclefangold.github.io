@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>K邻近算法 | fclefang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="##安装numpy模块(1)numpy模块资源文件下载完成（必须符合本机系统）.(2)dos界面中cd进入python安装文件下的Script文件中，然后执行pip    install 模块资源目录\模块全名，小技巧：在Script目录下执行dos命令pip list可以查看pip安装的模块名称。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="K邻近算法">
+<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/K邻近算法/index.html">
+<meta property="og:site_name" content="fclefang">
+<meta property="og:description" content="##安装numpy模块(1)numpy模块资源文件下载完成（必须符合本机系统）.(2)dos界面中cd进入python安装文件下的Script文件中，然后执行pip    install 模块资源目录\模块全名，小技巧：在Script目录下执行dos命令pip list可以查看pip安装的模块名称。">
+<meta property="og:updated_time" content="2016-10-03T14:35:03.657Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="K邻近算法">
+<meta name="twitter:description" content="##安装numpy模块(1)numpy模块资源文件下载完成（必须符合本机系统）.(2)dos界面中cd进入python安装文件下的Script文件中，然后执行pip    install 模块资源目录\模块全名，小技巧：在Script目录下执行dos命令pip list可以查看pip安装的模块名称。">
+  
+    <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fclefang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">开心自由最重要</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories">分类</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 17.5px;">MachineLearning</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/java/" style="font-size: 20px;">java</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">CIT（2012-2016）,GuiLin Elec(2016-2019).认真做好应该做的每一件事。衣不如新，人不如旧，旧衣穿着最舒服，新人也未必不是更好的选择...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Fclefang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fclefang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">开心自由最重要</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories">分类</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-JavaScript/K邻近算法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/K邻近算法/" class="article-date">
+  	<time datetime="2016-09-25T07:15:25.000Z" itemprop="datePublished">2016-09-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      K邻近算法
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/inAction/">inAction</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##安装numpy模块<br>(1)<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/" target="_blank" rel="external">numpy模块资源文件</a>下载完成（<strong>必须符合本机系统</strong>）.<br>(2)dos界面中cd进入python安装文件下的Script文件中，然后执行<code>pip    install 模块资源目录\模块全名</code>，小技巧：在Script目录下执行dos命令<code>pip list</code>可以查看pip安装的模块名称。<br><a id="more"></a></p>
+<p>##交互环境下import模块包</p>
+<ul>
+<li>当我们想import一个工具模块时，出现错误的情况要么是模块不存在，要么就是默认的系统路径中找不到这个模块，所以可以通过<code>import sys</code>这个sys包来进行系统路径的配置。<code>print sys.path</code>可以查看到环境默认的一些路径变量，也就是说如果将工具模块包放置在这些路径下可以直接通过<code>import 模块名</code>。或者<code>sys.path.append(&#39;模块路径&#39;)</code>来添加你的模块所在的路径，这样系统在编译时就会在你添加的路径下进行模块的查找并导入。</li>
+<li>在目录中建一个文件名为<strong>init</strong>.py的文件，就可以直接按照路径名import模块。有了这个文件，我们就可以导入这个目录下的文件了</li>
+</ul>
+<p>##实施KNN算法<br>利用kNN算法为每组数据分类，对未知属性的数据集中的每个点依次执行一下操作：<br>(1)计算已知类别数据集中的点与当前点之间的距离。<br>(2)按照距离递增次序排序。<br>(3)选取与当前点距离最小的k个点。<br>(4)确定前k个点所在类别的出现频率。<br>(5)返回前k个点出现频率最高的类别作为当前点的预测分类。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</div><div class="line"><span class="keyword">import</span> operator</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="comment"># print sys.path</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">createDataSet</span><span class="params">()</span>:</span></div><div class="line">	group = array([[<span class="number">1.0</span>,<span class="number">1.1</span>],[<span class="number">1.0</span>,<span class="number">1.0</span>],[<span class="number">0</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">0.1</span>]])</div><div class="line">	labels = [<span class="string">'A'</span>,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'B'</span>]</div><div class="line">	<span class="keyword">return</span> group,labels</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">classify0</span><span class="params">(inX,dataSet,labels,k)</span>:</span></div><div class="line">	dataSetSize = dataSet.shape[<span class="number">0</span>]</div><div class="line">	diffMat = tile(inX,(dataSetSize,<span class="number">1</span>)) - dataSet</div><div class="line">	sqDiffMat = diffMat**<span class="number">2</span></div><div class="line">	sqDistances = sqDiffMat.sum(axis=<span class="number">1</span>)</div><div class="line">	distances = sqDistances**<span class="number">0.5</span></div><div class="line">	sortedDistIndicies = distances.argsort()</div><div class="line">	classCount=&#123;&#125;</div><div class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(k):</div><div class="line">		voteIlabel = labels[sortedDistIndicies[i]]</div><div class="line">		classCount[voteIlabel] = classCount.get(voteIlabel,<span class="number">0</span>) +<span class="number">1</span></div><div class="line">	sortedClassCount = sorted(classCount.iteritems(),key=operator.itemgetter(<span class="number">1</span>),reverse=<span class="keyword">True</span>)</div><div class="line">	<span class="keyword">return</span> sortedClassCount[<span class="number">0</span>][<span class="number">0</span>]</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__== <span class="string">"__main__"</span>:    </div><div class="line">    dataset, labels = createDataSet()  </div><div class="line">    inX = [<span class="number">0.1</span>, <span class="number">0.1</span>]   </div><div class="line">    className = classify0(inX, dataset, labels, <span class="number">3</span>)  </div><div class="line">    <span class="keyword">print</span> <span class="string">'the class of test sample is %s'</span> %className</div></pre></td></tr></table></figure></p>
+<p>kNN算法python代码解析：</p>
+<ul>
+<li><code>dataSetSize = dataSet.shape[0]</code>:shape返回矩阵的[行数，列数]，那么shape[0]获取数据集的行数，行数就是样本的数量。</li>
+<li><code>tile(inX,(dataSetSize,1))</code>:tile属于numpy模块下边的函数,tile（A, reps）返回一个shape=reps的矩阵，矩阵的每个元素是A。这个地方就是为了把输入的测试样本扩展为和dataset的shape一样，然后就可以直接做矩阵减法了。</li>
+<li><code>sqDiffMat = diffMat**2</code>：diffMat是一个矩阵，矩阵<strong>2表示对矩阵中的每个元素进行</strong>2操作，即平方运算。</li>
+<li>sqDistances = sqDiffMat.sum(axis=1)：axis=1表示按照横轴，sum表示累加，即按照行进行累加。</li>
+<li><code>distance = sqDistance ** 0.5</code>：对平方和进行开根号。到这一步为止算法实现欧式距离计算。要记住的是转换为矩阵格式是为了方便计算。</li>
+<li><code>distances.argsort()</code>：按照升序进行快速排序，返回的是原数组的下标。  比如，x = [30, 10, 20, 40] ，升序排序后应该是[10,20,30,40],他们的原下标是[1,2,0,3]，那么，numpy.argsort(x) = [1, 2, 0, 3] 。</li>
+<li><code>distances.argsort()</code>:按照升序进行快速排序，返回的是原数组的下标。classCount={}存放最终的分类结果及相应的结果投票数。再利用for循环得到key各自的票数value值，最后对分类结果进行排序获得票数最多的分类key.</li>
+</ul>
+<p>##使用Matplotlib创建散点图</p>
+<ul>
+<li><p>从文本文件中解析数据：准备好数据TXT格式文件放到当前项目目录下方便调用，然后将文本文件中的数据格式转变为分类器可以结束的格式。程序代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">file2matrix</span><span class="params">(filename)</span>:</span></div><div class="line">	fr = open(filename)</div><div class="line">	arrayOLines = fr.readlines()</div><div class="line">	numberOfLines = len(arrayOLines)</div><div class="line">	returnMat = zeros((numberOfLines,<span class="number">3</span>))</div><div class="line">	classLabelVector = []</div><div class="line">	index = <span class="number">0</span></div><div class="line">	<span class="keyword">for</span> line <span class="keyword">in</span> arrayOLines:</div><div class="line">		line = line.strip()</div><div class="line">		listFromLine = line.split(<span class="string">'\t'</span>)</div><div class="line">		returnMat[index,:] = listFromLine[<span class="number">0</span>:<span class="number">3</span>]</div><div class="line">		classLabelVector.append(int(listFromLine[<span class="number">-1</span>]))</div><div class="line">		index += <span class="number">1</span></div><div class="line">	<span class="keyword">return</span> returnMat,classLabelVector</div></pre></td></tr></table></figure>
+</li>
+<li><p>Matplotlib模块:按照之前安装numpy模块的方法安装Matplotlib模块。利用该库中提供的scatter函数支持个性化标记散点图上的点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">datingDataMat,datingLabels = file2matrix(<span class="string">'datingTestSet.txt'</span>)</div><div class="line">	fig = plt.figure()</div><div class="line">	ax = fig.add_subplot(<span class="number">111</span>)</div><div class="line">	ax.scatter(datingDataMat[:,<span class="number">0</span>],datingDataMat[:,<span class="number">1</span>],<span class="number">15.0</span>*array(datingLabels),<span class="number">15.0</span>*array(datingLabels))</div><div class="line">	plt.show()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>##归一化数值<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#normalized characteristic value</span></div><div class="line"><span class="comment">#according to the explanation of the above-metioned code,it is easy to understand the following program.</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">autoNorm</span><span class="params">(dataSet)</span>:</span></div><div class="line">	minVals = dataSet.min(<span class="number">0</span>)</div><div class="line">	maxVals = dataSet.max(<span class="number">0</span>)</div><div class="line">	ranges = maxVals - minVals</div><div class="line">	normDataSet = zeros(shape(dataSet))</div><div class="line">	m = dataSet.shape[<span class="number">0</span>]</div><div class="line">	normDataSet = dataSet - tile(minVals,(m,<span class="number">1</span>))</div><div class="line">	normDataSet = normDataSet/tile(minVals,(m,<span class="number">1</span>))</div><div class="line">	<span class="keyword">return</span> normDataSet,ranges,minVals</div></pre></td></tr></table></figure></p>
+<p>##K邻近算法识别手写数字<br>直接上代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</div><div class="line"><span class="keyword">from</span> os <span class="keyword">import</span> listdir</div><div class="line"><span class="keyword">import</span> operator</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">img2vector</span><span class="params">(filename)</span>:</span></div><div class="line">	returnVect = zeros((<span class="number">1</span>,<span class="number">1024</span>))</div><div class="line">	fr = open(filename)</div><div class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">32</span>):</div><div class="line">		lineStr = fr.readline()</div><div class="line">		<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">32</span>):</div><div class="line">			returnVect[<span class="number">0</span>,<span class="number">32</span>*i+j] = int(lineStr[j])</div><div class="line">			<span class="comment">#I made a mistake that write the 'return returnVect'here,then the error of testing is very high finally!!!</span></div><div class="line">	<span class="keyword">return</span> returnVect</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">classify0</span><span class="params">(inX, dataSet, labels, k)</span>:</span></div><div class="line">    dataSetSize = dataSet.shape[<span class="number">0</span>]</div><div class="line">    diffMat = tile(inX, (dataSetSize,<span class="number">1</span>)) - dataSet</div><div class="line">    sqDiffMat = diffMat**<span class="number">2</span></div><div class="line">    sqDistances = sqDiffMat.sum(axis=<span class="number">1</span>)</div><div class="line">    distances = sqDistances**<span class="number">0.5</span></div><div class="line">    sortedDistIndicies = distances.argsort()     </div><div class="line">    classCount=&#123;&#125;          </div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</div><div class="line">        voteIlabel = labels[sortedDistIndicies[i]]</div><div class="line">        classCount[voteIlabel] = classCount.get(voteIlabel,<span class="number">0</span>) + <span class="number">1</span></div><div class="line">    sortedClassCount = sorted(classCount.iteritems(), key=operator.itemgetter(<span class="number">1</span>), reverse=<span class="keyword">True</span>)</div><div class="line">    <span class="keyword">return</span> sortedClassCount[<span class="number">0</span>][<span class="number">0</span>]</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">handwritingClassTest</span><span class="params">()</span>:</span></div><div class="line">    hwLabels = []</div><div class="line">    trainingFileList = listdir(<span class="string">'trainingDigits'</span>)           </div><div class="line">    m = len(trainingFileList)</div><div class="line">    trainingMat = zeros((m,<span class="number">1024</span>))</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</div><div class="line">        fileNameStr = trainingFileList[i]</div><div class="line">        fileStr = fileNameStr.split(<span class="string">'.'</span>)[<span class="number">0</span>]</div><div class="line">        classNumStr = int(fileStr.split(<span class="string">'_'</span>)[<span class="number">0</span>])</div><div class="line">        hwLabels.append(classNumStr)</div><div class="line">        trainingMat[i,:] = img2vector(<span class="string">'trainingDigits/%s'</span> % fileNameStr)</div><div class="line">    testFileList = listdir(<span class="string">'testDigits'</span>)</div><div class="line">    errorCount = <span class="number">0.0</span></div><div class="line">    mTest = len(testFileList)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(mTest):</div><div class="line">        fileNameStr = testFileList[i]</div><div class="line">        fileStr = fileNameStr.split(<span class="string">'.'</span>)[<span class="number">0</span>]</div><div class="line">        classNumStr = int(fileStr.split(<span class="string">'_'</span>)[<span class="number">0</span>])</div><div class="line">        vectorUnderTest = img2vector(<span class="string">'testDigits/%s'</span> % fileNameStr)</div><div class="line">        classifierResult = classify0(vectorUnderTest, trainingMat, hwLabels, <span class="number">3</span>)</div><div class="line">        <span class="keyword">print</span> <span class="string">"the classifier came back with: %d, the real answer is: %d"</span> % (classifierResult, classNumStr)</div><div class="line">        <span class="keyword">if</span> (classifierResult != classNumStr): errorCount += <span class="number">1.0</span></div><div class="line">    <span class="keyword">print</span> <span class="string">"\nthe total number of errors is: %d"</span> % errorCount</div><div class="line">    <span class="keyword">print</span> <span class="string">"\nthe total error rate is: %f"</span> % (errorCount/float(mTest))</div><div class="line"><span class="keyword">if</span> __name__== <span class="string">"__main__"</span>:</div><div class="line">	handwritingClassTest()</div></pre></td></tr></table></figure></p>
+<ul>
+<li>函数img2vector()将图像转换为向量：创建1*1024的Numpy数组，然后打开准备的数据文件，循环读出文件的前32行，并将每行的头32个字符值存储在Numpy数组中，最后返回数组。</li>
+<li>handwritingClassTest():函数listdir获取目录内容即列出给定的目录的文件名。<code>m = len(trainingFileList)</code>一个文件名代表一个实例，m则表示所有文件名的个数。然后zeros函数创建一个m行1024列的训练矩阵，这样的矩阵每行存储一个数字图像(因为一个数字图像32*32=1024)。<br>接着<code>lassNumStr = int(fileStr.split(&#39;_&#39;)[0])</code>解析文件名得到分类数字。理解了这些代码的意思，之后的程序就很好理解了。</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/fclefang/JavaScript/决策树/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          决策树
+        
+      </div>
+    </a>
+  
+  
+    <a href="/fclefang/JavaScript/Java5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java5</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="JavaScript/K邻近算法" data-title="K邻近算法" data-url="http://www.fclef.me/fclefang/JavaScript/K邻近算法/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fclef"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Fclefang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
