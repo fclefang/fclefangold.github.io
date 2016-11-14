@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Java7 | fclefang</title>
+  <title>Java8 | fclefang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="###1.泛型
 
@@ -13,7 +13,7 @@ JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安�
 
 上述几行代码在编译时没问题但是在运行时会报出类型转换的错误，也就是整形不能转换为String类型，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java7">
+<meta property="og:title" content="Java8">
 <meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/Java8/index.html">
 <meta property="og:site_name" content="fclefang">
 <meta property="og:description" content="###1.泛型
@@ -22,9 +22,9 @@ JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安�
 
 
 上述几行代码在编译时没问题但是在运行时会报出类型转换的错误，也就是整形不能转换为String类型，">
-<meta property="og:updated_time" content="2016-10-15T08:27:24.053Z">
+<meta property="og:updated_time" content="2016-11-14T02:58:25.864Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java7">
+<meta name="twitter:title" content="Java8">
 <meta name="twitter:description" content="###1.泛型
 
 JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安全机制。12345ArrayList a1 = new ArrayList();		a1.add(&quot;java01&quot;);		a1.add(&quot;java02&quot;);		a1.add(&quot;java01&quot;);		a1.add(4);
@@ -88,7 +88,7 @@ JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安�
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -212,7 +212,7 @@ JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安�
         
   
     <h1 class="article-title" itemprop="name">
-      Java7
+      Java8
     </h1>
   
 
@@ -241,7 +241,7 @@ JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安�
 <li>JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安全机制。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ArrayList a1 = <span class="keyword">new</span> ArrayList();</div><div class="line">		a1.add(<span class="string">"java01"</span>);</div><div class="line">		a1.add(<span class="string">"java02"</span>);</div><div class="line">		a1.add(<span class="string">"java01"</span>);</div><div class="line">		a1.add(<span class="number">4</span>);</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>上述几行代码在编译时没问题但是在运行时会报出类型转换的错误，也就是整形不能转换为String类型，那么如何能够在编译时就报出错误让开发人员知道呢？这里就用到了泛型。在使用迭代器的时候也要对应的选择泛型。看下面的代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ArrayList&lt;String&gt; a1 = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">		a1.add(<span class="string">"java01"</span>);</div><div class="line">		a1.add(<span class="string">"java02"</span>);</div><div class="line">		a1.add(<span class="string">"java01"</span>);</div><div class="line">		a1.add(<span class="number">4</span>);</div><div class="line">		Iterator&lt;String&gt; it = <span class="keyword">new</span> a1.iterator();</div></pre></td></tr></table></figure></p>
+<p>上述几行代码在编译时没问题但是在运行时会报出类型转换的错误，也就是整形不能转换为String类型，那么如何能够在编译时就报出错误让开发人员知道呢？这里就用到了泛型。<br><a id="more"></a><br>在使用迭代器的时候也要对应的选择泛型。看下面的代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ArrayList&lt;String&gt; a1 = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">		a1.add(<span class="string">"java01"</span>);</div><div class="line">		a1.add(<span class="string">"java02"</span>);</div><div class="line">		a1.add(<span class="string">"java01"</span>);</div><div class="line">		a1.add(<span class="number">4</span>);</div><div class="line">		Iterator&lt;String&gt; it = <span class="keyword">new</span> a1.iterator();</div></pre></td></tr></table></figure></p>
 <ul>
 <li>泛型类定义的泛型，在整个类中有效，如果被方法使用，那么泛型类的对象明确要操作的具体类型后所有要操作的类型就已经确定了。为了让不同方法操作不同类型，而且类型还不确定，那么可以将泛型定义在方法上。下面的代码分别为类型定义在类和方法上的不同情况。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(T t)</span></span>&#123;</div><div class="line">		System.out..println(<span class="string">"show:"</span>+t);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(T t)</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"print"</span>+t);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenericDemo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Demo&lt;Integer&gt; d = <span class="keyword">new</span> Demo&lt;Integer&gt;();</div><div class="line"></div><div class="line">		d.show(<span class="keyword">new</span> Integer(<span class="number">4</span>));</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
@@ -318,7 +318,7 @@ JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安�
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="JavaScript/Java8" data-title="Java7" data-url="http://www.fclef.me/fclefang/JavaScript/Java8/"></div>
+	<div class="ds-thread" data-thread-key="JavaScript/Java8" data-title="Java8" data-url="http://www.fclef.me/fclefang/JavaScript/Java8/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
