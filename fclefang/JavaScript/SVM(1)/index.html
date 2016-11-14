@@ -16,7 +16,7 @@
 <meta property="og:description" content="这算是第二遍学习SVM了吧，之前看西瓜书上关于支持向量机前面浅显一点的还能看懂，越往后真的只是单纯地去看书而不是去思考了。这一次结合机器学习实战，西瓜书，统计学习以及与SVM相关的论文来进行系统一点点的学习并总结，希望能够将下面一段文字真正的看明白。
 
 很多人认为，AdaBoost和SVM是监督机器学习中最强大的两种方法。实际上这两者之间与很多相似之处，我们把弱分类器想象成SVM中的一个核函数，也">
-<meta property="og:updated_time" content="2016-11-14T02:54:53.173Z">
+<meta property="og:updated_time" content="2016-11-14T03:18:58.555Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SVM(1)">
 <meta name="twitter:description" content="这算是第二遍学习SVM了吧，之前看西瓜书上关于支持向量机前面浅显一点的还能看懂，越往后真的只是单纯地去看书而不是去思考了。这一次结合机器学习实战，西瓜书，统计学习以及与SVM相关的论文来进行系统一点点的学习并总结，希望能够将下面一段文字真正的看明白。
@@ -79,7 +79,7 @@
 						<li>Tags</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -230,7 +230,7 @@
         <p>这算是第二遍学习SVM了吧，之前看西瓜书上关于支持向量机前面浅显一点的还能看懂，越往后真的只是单纯地去看书而不是去思考了。这一次结合机器学习实战，西瓜书，统计学习以及与SVM相关的论文来进行系统一点点的学习并总结，希望能够将下面一段文字真正的看明白。</p>
 <hr>
 <p><strong>很多人认为，AdaBoost和SVM是监督机器学习中最强大的两种方法。实际上这两者之间与很多相似之处，我们把弱分类器想象成SVM中的一个核函数，也可以按照最大化某个最小间隔的方式重写AdaBoost算法。而他们的额不同之处就在于其所定义的间隔方式有所不同，因此导致的结果也不同，特别是在高维空间下二者差异更明显。</strong><br><a id="more"></a></p>
-<p>###1.支持向量机(Support Vector Machines,SVM)<br>分类学习最基本的思想就是基于训练集D在样本空间中找到一个划分超平面将不同类别的样本区分开。但是这样的平面不止一个，那么我们就需要去找这样一个划分超平面，它产生的分类结果最鲁棒(对样本的局部扰动容忍度最高)，对预测示例的泛化效果最强。</p>
+<h3 id="1-支持向量机-Support-Vector-Machines-SVM"><a href="#1-支持向量机-Support-Vector-Machines-SVM" class="headerlink" title="1.支持向量机(Support Vector Machines,SVM)"></a>1.支持向量机(Support Vector Machines,SVM)</h3><p>分类学习最基本的思想就是基于训练集D在样本空间中找到一个划分超平面将不同类别的样本区分开。但是这样的平面不止一个，那么我们就需要去找这样一个划分超平面，它产生的分类结果最鲁棒(对样本的局部扰动容忍度最高)，对预测示例的泛化效果最强。</p>
 <ul>
 <li>划分超平面可以用线性方程表示：<strong>$w^Tx$</strong>+b=0,其中$w$是法向量决定超平面的方向，而b是位移项决定超平面与远点的距离。这里假设样本空间数据线性可分，如果样本不能被直线分开时需要作出改动，所以这里就姑且假设数据时线性可分的，不用担心假设不完美。</li>
 <li>样本空间点到划分超平面的距离：r=|<strong>$w^Tx$</strong>+b|/||$w$||(具体的公式证明推导后面介绍)，函数间隔为$y_i(w^Tx_i+b)$，可以发现当$w和b$成比例增加时，划分超平面没有变化，但是函数间隔却会变化，因此我们应该对划分超平面的法向量加某些约束使得间隔不变，所以加个||$w$||。</li>
@@ -240,24 +240,23 @@
 <li>间隔最大化(实战)：也就是说我们的额目标就是找出分类器定义中的$w$和b。为此，我们需要先找到具有最小间隔的数据点(支持向量)，然后再求该间隔的最大化。总结一下就是找出$w$和b使得$||w||^2$最小化，为了方便后面求最优化问题可以加一个(1/2)的乘积项，即求$w$和b，在s.t. $y_i(w^Tx_i+b)$&gt;=1的约束条件下，求min(0.5$||w||^2$)的问题，这也就是SVM的基本型。</li>
 <li>这里可能会让人觉得间隔貌似仅仅与$w$有关，但事实上b通过约束隐式地影响着$w$的取值，进而对间隔产生影响。</li>
 </ul>
-<p>###2. 间隔最优值<br><strong>在上面一节中我们经过简单分析得到SVM的基本型，那么如何求得决定我们假设的划分超平面的$w$和b呢？</strong></p>
+<h3 id="2-间隔最优值"><a href="#2-间隔最优值" class="headerlink" title="2. 间隔最优值"></a>2. 间隔最优值</h3><p><strong>在上面一节中我们经过简单分析得到SVM的基本型，那么如何求得决定我们假设的划分超平面的$w$和b呢？</strong></p>
 <ul>
-<li>在上一节间隔最大化最后总结了在约束条件下求min(0.5$||w||^2$)。这个公式本身是一个凸二次规划问题，现在有现成的优化计算包求解这类问题。这里关于凸二次规划问题不做详细介绍。下面将详细介绍一个非常著名的求解方法：拉格朗日乘子法，通过引入拉格朗日乘子就可以基于约束条件来重新表述原来的问题，而这个对问题新的表述方式我们称之为“对偶问题”(dual problem)。具体一点讲就是给每个约束条件加一个乘子$\alpha<em>i$,于是可以得到这样的<strong>拉格朗日函数：</strong>$L(w,b,\alpha)={1\over2}||w||^2+\sum</em>{i=1}^{m}\alpha_i(1-y_i(w^Tx_i+b))$。</li>
-<li>得到了拉格朗日函数，这里说一下$\alpha=(\alpha_1;\alpha_2;…;\alpha<em>m)$.有了该函数，我们就可以对$w$和b求偏导并将偏导等于0求得$w=\sum</em>{i=1}^{m}\alpha_iy_ix<em>i,0=\sum</em>{i=1}^{m}\alpha_iy<em>i$.接着将$w$代入到拉日函数就得到上面提到的对偶问题的形式：$max</em>\alpha\sum_{i=1}^{m}\alpha<em>i-{1\over2}\sum</em>{i=1}^{m}\sum_{j=1}^{m}\alpha_i\alpha_jy_iy_jx_i^Tx<em>j$,求偏导时得到的第二个公式可以看作约束条件$s.t.\sum</em>{i=1}^{m}\alpha_iy_i,\alpha_i&gt;=0$.从而我们可以将之前所有的约束条件整合一下就是$\alpha_i&gt;=0;y_if(x_i)-1&gt;=0;\alpha_i(y_if(x_i)-1)=0$,这三个条件称之为KKT(Karush-Kuhn-Tucker)条件。</li>
+<li>在上一节间隔最大化最后总结了在约束条件下求min(0.5$||w||^2$)。这个公式本身是一个凸二次规划问题，现在有现成的优化计算包求解这类问题。这里关于凸二次规划问题不做详细介绍。下面将详细介绍一个非常著名的求解方法：拉格朗日乘子法，通过引入拉格朗日乘子就可以基于约束条件来重新表述原来的问题，而这个对问题新的表述方式我们称之为“对偶问题”(dual problem)。具体一点讲就是给每个约束条件加一个乘子$\alpha<em>i$，于是可以得到这样的拉格朗日函数：<br>$$L(w,b,\alpha)={1\over2}||w||^2+\sum</em>{i=1}^{m}\alpha_i(1-y_i(w^Tx_i+b))$$</li>
+<li>得到了拉格朗日函数，这里说一下$\alpha=(\alpha_1;\alpha_2;…;\alpha<em>m)$。<br>有了该函数，我们就可以对$w$和b求偏导并将偏导等于0求得<br>$$w=\sum</em>{i=1}^{m}\alpha_iy_ix<em>i,0=\sum</em>{i=1}^{m}\alpha_iy<em>i$$<br>接着将$w$代入到拉日函数就得到上面提到的对偶问题的形式：<br>$$max</em>\alpha\sum_{i=1}^{m}\alpha<em>i-{1\over2}\sum</em>{i=1}^{m}\sum_{j=1}^{m}\alpha_i\alpha_jy_iy_jx_i^Tx<em>j$$<br>求偏导时得到的第二个公式可以看作约束条件:<br>$$s.t.\sum</em>{i=1}^{m}\alpha_iy_i,\alpha_i&gt;=0$$<br>从而我们可以将之前所有的约束条件整合一下就是<br>$$\alpha_i&gt;=0;y_if(x_i)-1&gt;=0;\alpha_i(y_if(x_i)-1)=0$$<br>这三个条件称之为KKT(Karush-Kuhn-Tucker)条件。</li>
 <li>我们借助拉格朗日乘子将原来的凸二次问题转化为对偶问题，将对$w,b$的求解转化为对乘子$\alpha$的求解。关于上面的KKT条件的第三个约束$\alpha_i(y_if(x_i)-1)=0$可以这么理解：对任意一个样本$(x_i，y_i)$,总有对应的$\alpha_i=0$或者$y_if(x_i)=1$。若乘子为0，则对应样本不会在模型的求和公式中出现，若$y_if(x_i)=1$则该样本位于最大间隔的边界上，也就是之前说的支持向量，这里体现了一个重要的性质即最终模型仅与支持向量有关。</li>
 </ul>
-<p>###3. SMO(Sequential Minimal Optimization)<br>上一节通过理论推导得到对偶问题公式，那么接下来就是对其进行求解。不难发现仍然是一个二次规划问题，但是跟原先的问题已经有了很大的不同。以前人们会使用二次规划求解工具来求解这类最优化问题，这种工具是一种用于在线性约束下优化具有多个变量的二次目标函数的软件，在实际计算任务中会造成很大的开销，而且实现起来也非常复杂，因此利用问题本身的特性围绕优化这个目标来训练分类器，一旦得到alpha的最优值也就相应得到划分超平面。下面将详细讲述解决这类最优化问题一个著名的算法SMO。</p>
+<h3 id="3-SMO-Sequential-Minimal-Optimization"><a href="#3-SMO-Sequential-Minimal-Optimization" class="headerlink" title="3. SMO(Sequential Minimal Optimization)"></a>3. SMO(Sequential Minimal Optimization)</h3><p>上一节通过理论推导得到对偶问题公式，那么接下来就是对其进行求解。不难发现仍然是一个二次规划问题，但是跟原先的问题已经有了很大的不同。以前人们会使用二次规划求解工具来求解这类最优化问题，这种工具是一种用于在线性约束下优化具有多个变量的二次目标函数的软件，在实际计算任务中会造成很大的开销，而且实现起来也非常复杂，因此利用问题本身的特性围绕优化这个目标来训练分类器，一旦得到alpha的最优值也就相应得到划分超平面。下面将详细讲述解决这类最优化问题一个著名的算法SMO。</p>
 <ul>
 <li>96年Platt发布了SMO这个算法，用于训练SVM。从SMO的英文全称序列最小优化可以明白算法主要就是将大的优化问题分解为多个小优化问题，小优化问题更容易求解，并且对所有小优化问题顺序求解的结果与它们作为整体求解结果完全一样，因此SMO是一个高效的算法。</li>
 <li>SMO算法的基本原理就是每次循环中选择俩个$\alpha_i$进行优化处理。一旦找到一对合适的$\alpha_i$，那么就增大其中一个，同时减小另一个。这里的合适是指两个$\alpha_i$必须要在间隔边界之外并且它们还没进行区间化处理或者不在边界上。另外稍微提一下这里选两个$\alpha_i$是有一定道理的，因为我们选择一定数量的$\alpha_i$同时固定其他的所有参数对我们选定的$\alpha_i$进行求极值，而如果只选择一个$\alpha<em>i$的话，根据0$=\sum</em>{i=1}^{m}\alpha_iy_i$可以直接得到$\alpha_i$的值，因此求极值就没啥意义，所以就选两个。这个约束条件也是为何增大其中一个，同时减小另一个的原因。</li>
-<li>SMO不断指向如下两步直至收敛：(1)选取一对需要更新的变量$\alpha_i$和$\alpha_j$。(2)固定$\alpha_i$和$\alpha<em>j$以外的参数，对$max</em>\alpha\sum_{i=1}^{m}\alpha<em>i-{1\over2}\sum</em>{i=1}^{m}\sum_{j=1}^{m}\alpha_i\alpha_jy_iy_jx_i^Tx_j$求解获得更新后的$\alpha_i$和$\alpha_j$。</li>
+<li>SMO不断指向如下两步直至收敛：<br>(1)选取一对需要更新的变量$\alpha_i$和$\alpha_j$。<br>(2)固定 $\alpha_i$，$\alpha<em>j$ 以外的参数，对<br>$$max</em>\alpha\sum_{i=1}^{m}\alpha<em>i-{1\over2}\sum</em>{i=1}^{m}\sum_{j=1}^{m}\alpha_i\alpha_jy_iy_jx_i^Tx_j$求解获得更新后的$\alpha_i$和$\alpha_j$$。</li>
 <li>SMO第一步选择两个变量：SMO采用了一个启发式使选取的两个变量所对应样本之间的间隔最大。一种直观的解释是，这样的两个变量有很大的差别，与对两个相似的变量进行更新相比，对它们进行更新会给目标函数值带来更大的变化。</li>
-<li>第二步更新选择的一对变量：固定其他所有参数，所以$\alpha_iy_i+\alpha_jy<em>j=c=-\sum</em>{k\neq{i,j}}\alpha_ky_k$.根据这个公式消去$\alpha_j$得到一个关于$\alpha_i$的单变量二次规划问题，仅有的约束是$\alpha_i\geq0$。可以发现这样的二次规划问题具有闭式解，于是不必调用数值优化算法即可高效地计算更新后的变量。</li>
+<li>第二步更新选择的一对变量：固定其他所有参数，所以<br>$$\alpha_iy_i+\alpha_jy<em>j=c=-\sum</em>{k\neq{i,j}}\alpha_ky_k$$<br>根据这个公式消去$\alpha_j$，<br>得到一个关于$\alpha_i$<br>的单变量二次规划问题，仅有的约束是$$\alpha_i \geq0$$。可以发现这样的二次规划问题具有闭式解，于是不必调用数值优化算法即可高效地计算更新后的变量。</li>
 <li>经过算法的执行得到了我们想要的$\alpha$，于是我们可以求得$w$，那么偏移项b怎么确定呢？因为对任意支持向量$(x_s,y_s)$都有$y_sf(x_s)=1$，理论上任意取得一个支持向量都可以通过上面的函数模型求得b的值，但是现实中我们常采用一种更加鲁棒的做法：使用所有支持向量求解的平均值。</li>
 <li><strong>还没引入松弛变量</strong></li>
 </ul>
-<p>###4.简化版SMO算法处理小规模数据集</p>
-<ul>
+<h3 id="4-简化版SMO算法处理小规模数据集"><a href="#4-简化版SMO算法处理小规模数据集" class="headerlink" title="4.简化版SMO算法处理小规模数据集"></a>4.简化版SMO算法处理小规模数据集</h3><ul>
 <li><p>三个SMO算法用到的辅助函数：<br>(1)loadDataSet(fileName):该函数打开文件并对其逐行解析，从而得到每行的类标签和整个数据矩阵。<br>(2)selectJrand(i,m):两个参数值，i是第一个alpha的下标，m是所有alpha的数目，也就是函数最后随机返回一个不是$\alpha_i$的alpha。<br>(3)clipAlpha($\alpha_j$,H,L):这个函数就是用来调整大于H或者小于L的alpha值。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">(fileName)</span>:</span></div><div class="line">    dataMat = []; labelMat = []</div><div class="line">    fr = open(fileName)</div><div class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> fr.readlines():</div><div class="line">        lineArr = line.strip().split(<span class="string">'\t'</span>)</div><div class="line">        dataMat.append([float(lineArr[<span class="number">0</span>]), float(lineArr[<span class="number">1</span>])])</div><div class="line">        labelMat.append(float(lineArr[<span class="number">2</span>]))</div><div class="line">    <span class="keyword">return</span> dataMat,labelMat</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">selectJrand</span><span class="params">(i,m)</span>:</span></div><div class="line">    j=i <span class="comment">#we want to select any J not equal to i</span></div><div class="line">    <span class="keyword">while</span> (j==i):</div><div class="line">        j = int(random.uniform(<span class="number">0</span>,m))</div><div class="line">    <span class="keyword">return</span> j</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">clipAlpha</span><span class="params">(aj,H,L)</span>:</span></div><div class="line">    <span class="keyword">if</span> aj &gt; H: </div><div class="line">        aj = H</div><div class="line">    <span class="keyword">if</span> L &gt; aj:</div><div class="line">        aj = L</div><div class="line">    <span class="keyword">return</span> aj</div></pre></td></tr></table></figure>
 </li>

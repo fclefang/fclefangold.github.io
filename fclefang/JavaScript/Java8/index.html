@@ -6,31 +6,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Java8 | fclefang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###1.泛型
-
+  <meta name="description" content="1.泛型
 JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安全机制。12345ArrayList a1 = new ArrayList();		a1.add(&quot;java01&quot;);		a1.add(&quot;java02&quot;);		a1.add(&quot;java01&quot;);		a1.add(4);
 
 
-上述几行代码在编译时没问题但是在运行时会报出类型转换的错误，也就是整形不能转换为String类型，">
+上述几行代码在编译时没问题但是在运行时会报出类型转换的错误，也就是整形不能转换为String类型，那么如何">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java8">
 <meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/Java8/index.html">
 <meta property="og:site_name" content="fclefang">
-<meta property="og:description" content="###1.泛型
-
+<meta property="og:description" content="1.泛型
 JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安全机制。12345ArrayList a1 = new ArrayList();		a1.add(&quot;java01&quot;);		a1.add(&quot;java02&quot;);		a1.add(&quot;java01&quot;);		a1.add(4);
 
 
-上述几行代码在编译时没问题但是在运行时会报出类型转换的错误，也就是整形不能转换为String类型，">
-<meta property="og:updated_time" content="2016-11-14T02:58:25.864Z">
+上述几行代码在编译时没问题但是在运行时会报出类型转换的错误，也就是整形不能转换为String类型，那么如何">
+<meta property="og:updated_time" content="2016-11-14T03:04:20.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java8">
-<meta name="twitter:description" content="###1.泛型
-
+<meta name="twitter:description" content="1.泛型
 JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安全机制。12345ArrayList a1 = new ArrayList();		a1.add(&quot;java01&quot;);		a1.add(&quot;java02&quot;);		a1.add(&quot;java01&quot;);		a1.add(4);
 
 
-上述几行代码在编译时没问题但是在运行时会报出类型转换的错误，也就是整形不能转换为String类型，">
+上述几行代码在编译时没问题但是在运行时会报出类型转换的错误，也就是整形不能转换为String类型，那么如何">
   
     <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
   
@@ -88,7 +85,7 @@ JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安�
 						<li>Tags</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -236,8 +233,7 @@ JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安�
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###1.泛型</p>
-<ul>
+        <h3 id="1-泛型"><a href="#1-泛型" class="headerlink" title="1.泛型"></a>1.泛型</h3><ul>
 <li>JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安全机制。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ArrayList a1 = <span class="keyword">new</span> ArrayList();</div><div class="line">		a1.add(<span class="string">"java01"</span>);</div><div class="line">		a1.add(<span class="string">"java02"</span>);</div><div class="line">		a1.add(<span class="string">"java01"</span>);</div><div class="line">		a1.add(<span class="number">4</span>);</div></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -257,8 +253,7 @@ JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安�
 <li><p><strong>？通配符</strong>：可以理解为占位符。关于泛型的限定，<code>? extends E</code>可以接收E类型或者E的子类型，<code>? super E</code>可以接收E类型及其父类型。</p>
 </li>
 </ul>
-<p>###2.Map</p>
-<ul>
+<h3 id="2-Map"><a href="#2-Map" class="headerlink" title="2.Map"></a>2.Map</h3><ul>
 <li>Map集合：该集合存储键值对，一对一对往里存，而且要保证键的唯一性。<br>|–Hashtable：底层是哈希表数据结构，不可以存入null键和null值，该集合是线程同步的，<br>|–HashMap：底层是哈希表数据结构，允许使用null键和null值，该集合是不同步的。<br>|–TreeMap:底层是二叉树数据结构，线程不同步，可以用于给Map集合中的键进行排序。和Set很像，其实Set底层就是使用了Map集合。</li>
 <li>Map集合的两种取出方式：<br>(1)<code>Set&lt;k&gt;</code>keySet:强Map集合中所有的键存入到Set集合，因为Set具备迭代器。所以可以迭代方式取出所有的键，再根据get方法，获取每一个键对应的值。而Map集合的取出原理就是将map集合转换成set集合，再通过迭代器取出。<br>(2)<code>Set&lt;Map.Entry&lt;k,v&gt;&gt;</code> entrySet:将Map集合中的映射关系存入到Set集合中，而这个关系的数据类型就定义为Map.Entry，和keySet一样，也是将映射关系取出存到set集合中，这样可以再通过迭代器取出映射关系键值对，通过该接口特有的方法分别取出键和值就OK。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MapDemo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Map&lt;String,String&gt; map = <span class="keyword">new</span> HashMap&lt;String,String&gt;();</div><div class="line">		map.put(<span class="string">"02"</span>,<span class="string">"zhangsan2"</span>);</div><div class="line">		map.put(<span class="string">"03"</span>,<span class="string">"zhangsan3"</span>);</div><div class="line">		map.put(<span class="string">"01"</span>,<span class="string">"zhangsan1"</span>);</div><div class="line">		map.put(<span class="string">"04"</span>,<span class="string">"zhangsan4"</span>);</div><div class="line">		Set&lt;Map.Entry&lt;String,String&gt;&gt; entrySet = map.entrySet();</div><div class="line">		Iterator&lt;Map.Entry&lt;String,String&gt;&gt; it = entrySet.iterator();</div><div class="line">		<span class="keyword">while</span>(it.hasNext())&#123;</div><div class="line">			Map.Entry&lt;String,String&gt; me = it.next();</div><div class="line">			String key = me.getKey();</div><div class="line">			String value = me.getValue();</div><div class="line">			System.out.println(key+<span class="string">":"</span>+value);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
