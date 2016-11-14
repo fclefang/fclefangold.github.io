@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>SVM(3) | fclefang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习日常小记：最近邻近期中，有一些课程需要结课，尤其是计算机理论，需要花点时间准备考试，每天看机器学习方面书籍论文的时间少了很多。移动互联网也要结课，虽然一开始一直吐槽老师上课不正经，但是老师有句话说的很对，是我还把自己当个小学生，一直想着让老师讲授专业技术方面的知识。那句话我忘了说了啥，大概意思就是：研究生阶段，老师给我们讲授前人发现的正确的专业技术知识固然重要，但是这些知识作为研究生应当有足够">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVM(3)">
+<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/SVM(3)/index.html">
+<meta property="og:site_name" content="fclefang">
+<meta property="og:description" content="学习日常小记：最近邻近期中，有一些课程需要结课，尤其是计算机理论，需要花点时间准备考试，每天看机器学习方面书籍论文的时间少了很多。移动互联网也要结课，虽然一开始一直吐槽老师上课不正经，但是老师有句话说的很对，是我还把自己当个小学生，一直想着让老师讲授专业技术方面的知识。那句话我忘了说了啥，大概意思就是：研究生阶段，老师给我们讲授前人发现的正确的专业技术知识固然重要，但是这些知识作为研究生应当有足够">
+<meta property="og:updated_time" content="2016-11-14T02:55:39.289Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SVM(3)">
+<meta name="twitter:description" content="学习日常小记：最近邻近期中，有一些课程需要结课，尤其是计算机理论，需要花点时间准备考试，每天看机器学习方面书籍论文的时间少了很多。移动互联网也要结课，虽然一开始一直吐槽老师上课不正经，但是老师有句话说的很对，是我还把自己当个小学生，一直想着让老师讲授专业技术方面的知识。那句话我忘了说了啥，大概意思就是：研究生阶段，老师给我们讲授前人发现的正确的专业技术知识固然重要，但是这些知识作为研究生应当有足够">
+  
+    <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fclefang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">开心自由最重要</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories">分类</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">CIT（2012-2016）,GuiLin Elec(2016-2019).认真做好应该做的每一件事。衣不如新，人不如旧，旧衣穿着最舒服，新人也未必不是更好的选择...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Fclefang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fclefang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">开心自由最重要</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories">分类</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-JavaScript/SVM(3)" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/SVM(3)/" class="article-date">
+  	<time datetime="2016-11-06T17:01:00.000Z" itemprop="datePublished">2016-11-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SVM(3)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/SVM/">SVM</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习日常小记：最近邻近期中，有一些课程需要结课，尤其是计算机理论，需要花点时间准备考试，每天看机器学习方面书籍论文的时间少了很多。移动互联网也要结课，虽然一开始一直吐槽老师上课不正经，但是老师有句话说的很对，是我还把自己当个小学生，一直想着让老师讲授专业技术方面的知识。那句话我忘了说了啥，大概意思就是：研究生阶段，老师给我们讲授前人发现的正确的专业技术知识固然重要，但是这些知识作为研究生应当有足够的能力自学，而我们更应当珍惜在课程中思考学习方法，分析思考问题时候的思维模式，珍惜和其他同学在一起交流思想的机会，不能只做一个闷在实验室的技术宅(当然我连这个都没做到呢。。)。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p>###1. 松弛变量与软间隔最大化</p>
+<ul>
+<li>通常情况下我们之前讨论的线性可分情况中总存在一些特异点，只有再去掉这些特异点样本集才能完全线性可分。这里的线性不可分意思也就是不是所有点都能满足函数间隔大于等于1这样的约束条件(回想SVM基本型的约束条件$y_i(w^Tx_i+b)\geq1$)。</li>
+<li>为了解决上面的问题，这里引入一个松弛变量$s_i\geq0$使得样本间隔加上松弛变量大于等于1。所以约束条件变为$y_i(w^Tx_i+b)\geq1-s<em>i$，因此SVM基本型的目标函数变为最小化${1\over2}||w||^2+C\sum</em>{j=1}^{N}s<em>i$，C为惩罚因子，由具体问题来决定或者说是用来权衡${1\over2}||w||^2$和$\sum</em>{j=1}^{N}s_i$之间的重要性。C值大对误分类的惩罚大，C值小对误分类的惩罚小。</li>
+<li>这个时候原始问题的拉日函数就和以前不一样了，函数中会出现两个乘子，因为约束条件加了一个$s_i\geq0$。对偶问题是拉日函数的极大极小值问题，首先求拉日对$w,b,s$的极小，然后再对这样的极小求对$a$的 极大，最后得到对偶问题以及加上松弛变量的约束条件：$0\leq a_i\leq C$，当C无穷大时，拉日函数迫使所有样本均满足约束即所有样本函数间隔均大于等于1，也就对应了没有特异点的情况。那么当C取有限值时也就允许一些特异点的出现，所以当$a_i=C$则对应了多个特异点的情形。具体的推导可以参考李航统计学习一书中关于SVM的知识点详解。<strong>另外，前面的代码实战就是在引入松弛变量的情况下的算法。</strong></li>
+</ul>
+<p>###2. 核函数<br>在之前(1)(2)的讨论过程中一直假设训练样本线性可分，也就是存在一个划分超平面能够将训练样本正确分类。然而现实任务中，原始样本空间内也许并不存在一个能正确划分两类样本的超平面，也就是训练样本集线性不可分。<strong>那么我们是不是可以样本原始空间映射到一个更高维的特征空间是的样本在这样一个空间内线性可分呢？幸运的是，只要原始空间是有限维数即样本属性有限，那么必然存在一个高维特征空间使样本线性可分。详细证明见。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。</strong></p>
+<ul>
+<li>我们把样本$x$映射到高维空间后的特征向量记为$h(x)$，于是在高维特征空间中划分超平面模型可表示为$f(x)=w^Th(x)+b$，从而我们就可以得到对应的对偶问题：$max<em>\alpha\sum</em>{i=1}^{m}\alpha<em>i-{1\over2}\sum</em>{i=1}^{m}\sum_{j=1}^{m}\alpha_i\alpha_jy_iy_jh(x_i)^Th(x_j)$。可以发现唯一不同就是计算$h(x_i)^Th(x_j)$，这是样本$x_i$和$x_j$映射到特征空间之后的内积，计算这样一个高维空间下的向量内积必然很困难，因此我们不妨设想这样一个函数能够让我们避开高维空间下的计算，也就是说我们是否能够找到在原始空间下关于这两个向量的函数计算直接等于这两个向量映射到高维空间下的内积呢？</li>
+<li>我们把上面设想的函数记为$k(x_i,x_j)=<h(x_i),h(x_j)>=h(x_i)^Th(x<em>j)$，有了这样的函数就不必去计算高维甚至无穷维特征空间下的内积，因此之前的对偶问题可以写成这样的形式：$max</em>\alpha\sum_{i=1}^{m}\alpha<em>i-{1\over2}\sum</em>{i=1}^{m}\sum_{j=1}^{m}\alpha_i\alpha_jy_iy_jk(x_i,x<em>j)$(不要忘了约束条件)。偏导求解，原始模型也就可以写成$f(x)=w^Th(x)+b=\sum</em>{i=1}^{m}\alpha_iy_ih(x<em>i)^Th(x)+b$$=\sum</em>{i=1}^{m}\alpha_iy_ik(x,x_i)+b$。这里<strong>函数k()</strong>就是核函数。</h(x_i),h(x_j)></li>
+</ul>
+<p>###3. 核函数的选择<br><strong>令$X$为输入空间，k(.,.)是定义在$X笛卡尔积X$上的对称函数，只要一个对称函数所对应的核矩阵半正定，那么它就能作为核函数使用。</strong>事实上，对于一个半正定核矩阵，总能找到一个与之对应的映射h。换种说法就是任何一个核函数都隐式地定义了一个称为“再生核希尔伯特空间”(RKHS)的特征空间。</p>
+<ul>
+<li>从上面简单的讨论可以发现核函数的选择成为SVM的最大变数，若核函数选择不合适则意味着映射到了一个不合适的特征空间，很可能导致性能不佳。</li>
+<li>其中常用的核函数有线性核，多项式核，高斯核，拉普拉斯核，Sigmoid核等等，对于核函数的线性组合，直积以及和任意函数的乘积都可以使核函数。另外按照经验，对文本数据通常采用线性核，情况不明时可以先尝试高斯核。</li>
+</ul>
+<p>###4. 西瓜书之软间隔与正则化<br><strong>这里主要写下周志华教授在介绍这方面知识与统计学习等书籍上的不同之处。</strong></p>
+<ul>
+<li>软间隔允许某些样本不满足约束$y_i(w^Tx<em>i+b)\geq1$，当然最大化间隔的同时应当使不满足约束的样本尽可能少。于是优化目标可以写为${1\over2}||w||^2+C\sum</em>{j=1}^{N}l_{0/1}(y_i(w^Tx<em>i+b)-1)$，其中$l</em>{0/1}()$是损失函数，但是它的数学性质不好，不利于求解计算，于是通常人们用其他一些函数来代替它，这些函数称为替代损失，这些替代损失具有较好的数学性质比如通常是凸连续函数且是损失函数的上界。</li>
+<li>我们常用的一般有hinge损失：$l_{hinge}(z)=max(0,1-z)$.</li>
+<li>指数损失：$l_{exp}(z)=exp(-z)$.</li>
+<li>对率损失：$l_{log}(z)=log(1+exp(-z))$.</li>
+<li>如果采用hinge损失优化目标就变为：${1\over2}||w||^2+C\sum_{j=1}^{N}max(0,y_i(w^Tx_i+b)-1)$，这个时候引入松弛变量就可以得到我们第一点提出的优化目标：求$w,b,s<em>i$最小化${1\over2}||w||^2+C\sum</em>{j=1}^{N}s_i$。从式中可以发现每个样本都有一个对应的松弛变量，用来表征该样本不满足约束的程度。</li>
+<li>这里需要强调一下软间隔支持向量机的KKT条件：<br>(1)$a_i\geq0,μ_i\geq0$，<br>(2)$y_if(x_i)-1+s_i\geq0$，<br>(3)$a_i(y_if(x_i)-1+s_i)=0$，<br>(4)$s_i\geq0,μ_is_i=0$<br>这四点对接下来的样本分析非常重要，还有样本距离边界的距离我们记为${s_i}\over{||w||^2}$。于是对于任意样本$(x_i,y_i)$，总有$a_i=0$或者$y_if(x_i)=1-s_i$。若$a_i=0$则该样本不会对f(x)有任何影响；若$a_i&gt;0$则必有$y_if(x_i)=1-s_i$，即该样本是支持向量：在支持向量的情况下，根据拉日函数求偏导得到的惩罚因子$C=a_i+μ_i$，当$a_i<c$则$μ_i>0$，进而$s_i=0$即该样本在最大间隔边界上；若$a_i=C$则$μ_i=$，此时若$s_i\leq1$则样本落在最大间隔内部，若$s_i&gt;1$则该样本被错误分类。由此可以看出软间隔支持向量机的最终模型仅与支持向量有关，即通过采用hinge损失函数仍保持了稀疏性。</c$则$μ_i></li>
+<li>如果使用对率损失函数来替代则几乎得到了对率回归模型。回归方面的知识没总结，下面也会专门写一篇关于线性回归的总结。实际上SVM和对率回归的优化目标相近，通常情况下他们的性能也相当。对率回归主要特点是输出具有自然的概率意义，在给出预测标记的同时也给出概率，而SVM输出则没有概率意义，需要进行特殊的处理才能得到概率。此外对率回归能够直接用于多分类，而支持向量机需要进行进一步推广。还有重要的一点是，hinge损失有一块平坦的零区域(参考西瓜书P131)使得SVM的解具有稀疏性，而对率损失是光滑的单调递减函数，不能导出类似支持向量的概念，因此对率回归的解以来更多的训练样本，计算开销更大。</li>
+<li>从上面的分析我们发现不同的替代损失函数可以得到不同的函数模型，但是函数模型的一般表现形式可以理解为：$min<em>y Ω(f)+C\sum</em>{i=1}^{m}l(f(x_i),y<em>i)$。<br>对于这个基本形式，我们可以从两个方面来理解，这对以后的学习有帮助。<br>(1).$Ω(f)$为结构风险，用于描述模型f的某些性质，比如${1\over2}||w||^2$则决定了SVM的具体模型性质；第二项为经验风险用于描述模型与训练数据的契合程度，比如我们用$l</em>{0/1}(y_i(w^Tx_i+b)-1)$损失函数来代表误分类样本。<br>(2).我们也可以把一般表现形式看成正则化问题，正则化可以理解为一种惩罚函数法，就是对不希望得到的结果施以惩戒，从而使得优化过程趋于希望的目标，这一点在以后总结稀疏学习应该还会提及。$Ω(f)$作为正则化项，C是正则化常数。正则化项通常表示模型复杂度，当我们为了获得相对复杂度较小的模型时，可以通过正则化项削减假设空间，从而降低最小化训练误差的过拟合风险。</li>
+</ul>
+<p>###5. 支持向量回归<br>首先这里先回忆一下线性回归的一些基础知识，传统的回归模型通常直接基于模型输出f(x)与真实输出y之间的差别来计算损失，只有当f(x)与标记y完全相同时损失才为0。支持向量回归SVR会假设一个容忍的偏差，当f(x)与y的差别绝对值大于这个偏差时才计算损失，也就是说预测值与真实标记的差值绝对值小于偏差则仍然认为预测正确。于是SVR问题可以形式化为以不敏感损失函数为损失函数的最后花问题，之后的求解问题和前面的求解一模一样，只是这里需要提一下的就是根据损失函数引入的松弛变量可以分为两个不同的松弛变量，因为间隔两侧的松弛程度可有所不同。因为具体的数学推导没必要再推导一次，所以这里不详细总结，见西瓜书P134.</p>
+<p>###6. 核方法以及核线性判别分析<br>若不考虑偏移项b，则无论SVM还是SVR学得的模型若考虑到特征映射总能表示为核函数的线性组合。人们基于核函数的学习方法统称为核方法。最常见的是通过核化即引入核函数来将线性学习器拓展为非线性学习器，下面以线性判别分析为例演示如何通过荷花进行非线性拓展从而得到核线性判别分析KLDR。其实吧，只是在进行LDR之前先将原始样本映射到新的特征空间，在新的特征空间中可以进行LDR，再通过核函数的引入将优化问题转化为原始空间下的优化求解。这里依然借助于核函数的空间转变思路，加上LDR对求解优化问题的方法，最红形成KLDR。因为在求解过程中涉及到大量LDR的知识，而我对这方面忘记了很多，目前不方便总结，因此，等线性规划总结之后再到这里进一步详细分析理解。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/fclefang/JavaScript/SVM(2)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SVM(2)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="JavaScript/SVM(3)" data-title="SVM(3)" data-url="http://www.fclef.me/fclefang/JavaScript/SVM(3)/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fclef"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Fclefang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

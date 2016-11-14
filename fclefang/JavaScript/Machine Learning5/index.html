@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Machine Learning5 | fclefang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这次的学习周志华机器学习第七章贝叶斯分类器结合实战学习第四章朴素贝叶斯来加深对贝叶斯决策论的理解
+###1.Bayesian decision theory贝叶斯决策论是概率框架下实施决策的基本方法。对分类任务来说，在所有相关概率都已知的理想情形下，贝叶斯决策论考虑如何基于这些概率和误判损失来选择最优的类别标记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning5">
+<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/Machine Learning5/index.html">
+<meta property="og:site_name" content="fclefang">
+<meta property="og:description" content="这次的学习周志华机器学习第七章贝叶斯分类器结合实战学习第四章朴素贝叶斯来加深对贝叶斯决策论的理解
+###1.Bayesian decision theory贝叶斯决策论是概率框架下实施决策的基本方法。对分类任务来说，在所有相关概率都已知的理想情形下，贝叶斯决策论考虑如何基于这些概率和误判损失来选择最优的类别标记。">
+<meta property="og:updated_time" content="2016-10-08T02:39:48.618Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Machine Learning5">
+<meta name="twitter:description" content="这次的学习周志华机器学习第七章贝叶斯分类器结合实战学习第四章朴素贝叶斯来加深对贝叶斯决策论的理解
+###1.Bayesian decision theory贝叶斯决策论是概率框架下实施决策的基本方法。对分类任务来说，在所有相关概率都已知的理想情形下，贝叶斯决策论考虑如何基于这些概率和误判损失来选择最优的类别标记。">
+  
+    <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fclefang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">开心自由最重要</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories">分类</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">CIT（2012-2016）,GuiLin Elec(2016-2019).认真做好应该做的每一件事。衣不如新，人不如旧，旧衣穿着最舒服，新人也未必不是更好的选择...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Fclefang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fclefang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">开心自由最重要</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories">分类</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-JavaScript/Machine Learning5" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/Machine Learning5/" class="article-date">
+  	<time datetime="2016-10-04T07:55:36.000Z" itemprop="datePublished">2016-10-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Machine Learning5
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Bayesian/">Bayesian</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>这次的学习周志华机器学习第七章贝叶斯分类器结合实战学习第四章朴素贝叶斯来加深对贝叶斯决策论的理解</strong></p>
+<p>###1.Bayesian decision theory<br>贝叶斯决策论是概率框架下实施决策的基本方法。对分类任务来说，在所有相关概率都已知的理想情形下，贝叶斯决策论考虑如何基于这些概率和误判损失来选择最优的类别标记。<br><a id="more"></a></p>
+<ul>
+<li>贝叶斯判定准则：为最小化总体风险，只需在每个样本上选择那个能使条件风险R(c|<strong>x</strong>)最小的类别标记，我们称之为贝叶斯最优分类器，与之对应的总体风险称为贝叶斯风险R(h$^<em>$)。而1-R(h$^</em>$)则反映了分类器所能达到的最好性能。</li>
+<li><p>欲使用贝叶斯判定准则来最小化决策风险，首先要获得后验概率P(c|<strong>x</strong>),而估计P(c|<strong>x</strong>)的问题就转化为如何基于训练数据D来估计先验P(c)和似然P(<strong>x</strong>|c).而对于类条件概率P(<strong>x</strong>|c)来说，由于它涉及关于x所有属性的联合概率，直接通过样本出现的频率来估计会遇到严重的困难。估计类条件概率的一种常用策略是先假定其具有某种确定的概率分布形式，再基于训练样本对概率分布的参数进行估计。事实上，概率模型的训练过程就是参数估计过程。<strong>频率主义学派的极大似然估计。</strong><br>###2.朴素贝叶斯分类器<br>不难发现，基于贝叶斯公式来估计后验概率P(c|<strong>x</strong>)的主要困难就是P(<strong>x</strong>|c)是所有属性上的联合概率，难以从有限的训练样本直接估计得到。为了避开这个障碍，朴素贝叶斯分类器采用了属性条件独立性假设：对已知类别，假设所有属性相互独立，也就是每个属性独立地对分类结果产生影响。显然，朴素贝叶斯分类器的训练过程就是基于训练集D来估计类先验概率P(c),并为每个属性估计条件概率P(x$_i$|c),对于连续属性可以考虑概率密度函数。对于贝叶斯判定准则表达式的连乘操作容易造成数值下溢，这里可通过取对数的方式来避免数值下溢。需要注意的是，若某个属性值在训练集中没有与某个类同时出现过，那么就会出现概率值为0的情况，而这也会影响其他属性携带的信息，为了避免这种情况，在估计概率值时通常要进行“平滑”，常用“拉普拉斯修正”。<br>###3.使用朴素贝叶斯进行文档分类<br>(1)收集数据：可以使用任何方法。<br>(2)准备数据：需要数值型或者布尔型数据。<br>(3)分析数据：有大量特征时，绘制特征作用不大，此时使用直方图效果更好。<br>(4)训练算法：计算不同的独立特征的条件概率。<br>(5)测试算法：计算错误率。<br>(6)使用算法：一个常用的朴素贝叶斯应用是文档分类。可以在任意的分类场景中使用朴素贝叶斯分类器，不一定非要是文本。<br>###4.准备数据：从文本中构建词向量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">()</span>:</span></div><div class="line">	postingList=[[<span class="string">'my'</span>,<span class="string">'dog'</span>,<span class="string">'has'</span>,<span class="string">'flea'</span>,<span class="string">'problems'</span>,<span class="string">'help'</span>,<span class="string">'please'</span>],</div><div class="line">				 [<span class="string">'maybe'</span>,<span class="string">'not'</span>,<span class="string">'take'</span>,<span class="string">'him'</span>,<span class="string">'to'</span>,<span class="string">'dog'</span>,<span class="string">'park'</span>,<span class="string">'stupid'</span>],</div><div class="line">				 [<span class="string">'my'</span>,<span class="string">'dalmation'</span>,<span class="string">'is'</span>,<span class="string">'so'</span>,<span class="string">'cute'</span>,<span class="string">'I'</span>,<span class="string">'love'</span>,<span class="string">'him'</span>],</div><div class="line">				 [<span class="string">'stop'</span>,<span class="string">'posting'</span>,<span class="string">'stupid'</span>,<span class="string">'worthless'</span>,<span class="string">'garbage'</span>],</div><div class="line">				 [<span class="string">'mr'</span>,<span class="string">'licks'</span>,<span class="string">'ate'</span>,<span class="string">'my'</span>,<span class="string">'steak'</span>,<span class="string">'how'</span>,<span class="string">'to'</span>,<span class="string">'stop'</span>,<span class="string">'him'</span>],</div><div class="line">				 [<span class="string">'quit'</span>,<span class="string">'buying'</span>,<span class="string">'worthless'</span>,<span class="string">'dog'</span>,<span class="string">'food'</span>,<span class="string">'stupid'</span>]]</div><div class="line">	classVec = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]</div><div class="line">	<span class="keyword">return</span> postingList,classVec</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">createVocabList</span><span class="params">(dataSet)</span>:</span></div><div class="line">	vocabSet = set([])</div><div class="line">	<span class="keyword">for</span> document <span class="keyword">in</span> dataSet:</div><div class="line">		<span class="keyword">print</span> document</div><div class="line">		vocabSet = vocabSet | set(document)</div><div class="line">		<span class="keyword">print</span> vocabSet</div><div class="line">	<span class="keyword">return</span> list(vocabSet)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">setOfWords2Vec</span><span class="params">(vocabList,inputSet)</span>:</span></div><div class="line">	returnVec = [<span class="number">0</span>]*len(vocabList)</div><div class="line">	<span class="keyword">for</span> word <span class="keyword">in</span> inputSet:</div><div class="line">		<span class="keyword">if</span> word <span class="keyword">in</span> vocabList:</div><div class="line">			returnVec[vocabList.index(word)]=<span class="number">1</span></div><div class="line">		<span class="keyword">else</span>:<span class="keyword">print</span> <span class="string">"the world: %s is not in my Vocabulary!"</span> % word</div><div class="line">	<span class="keyword">return</span> returnVec</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__== <span class="string">"__main__"</span>:</div><div class="line">	listOPosts,listClasses = loadDataSet()</div><div class="line">	myVocabList = createVocabList(listOPosts)</div><div class="line">	<span class="keyword">print</span> myVocabList</div><div class="line">	setOfWords2Vec(myVocabList,listOPosts[<span class="number">0</span>])</div><div class="line">	setOfWords2Vec(myVocabList,listOPosts[<span class="number">3</span>])</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>loadDataSet()</code>:创建一些实验样本。</p>
+</li>
+<li><code>createVocabList(dataSet)</code>:创建一个包含在所有文档中出现的不重复词的列表。</li>
+<li><code>setOfWords2Vec(vocabList,inputSet)</code>:输入参数为词汇表及某个文档，输出的是文档向量，输出文档向量中的每个元素分别表示词汇表中词汇是否在输入文档中出现过(1 or 0表示出现和未出现)，我们可以将这种描述称为词集模型。但是如果词在文档中不止出现过一次，而我们的词集模型会丢失此信息，所以对代码进行完善建立词袋模型bagOfWords2Vec()。</li>
+<li><code>vocabSet = vocabSet | set(document)</code>:我在代码上下两行分别print了document和vocabSet，从代码运行结果可以发现该语句执行过程以及set构造函数的执行机制。</li>
+<li><code>returnVec = [0]*len(vocabList)</code>:创建一个和词汇表等长的向量，并将其元素都设置为0。<br>###5.朴素贝叶斯分类函数<br>利用函数求解类先验概率P(c),并为每个属性估计条件概率P(x$_i$|c)，加入拉普拉斯修正和取对数方法，其中取对数是为了避免数值下溢的现象。<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">trainNB0</span><span class="params">(trainMatrix,trainCategory)</span>:</span></div><div class="line">    numTrainDocs = len(trainMatrix)</div><div class="line">    numWords = len(trainMatrix[<span class="number">0</span>])</div><div class="line">    pAbusive = sum(trainCategory)/float(numTrainDocs)</div><div class="line">    p0Num = ones(numWords); p1Num = ones(numWords)      <span class="comment">#change to ones() </span></div><div class="line">    p0Denom = <span class="number">2.0</span>; p1Denom = <span class="number">2.0</span>                        <span class="comment">#change to 2.0</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(numTrainDocs):</div><div class="line">        <span class="keyword">if</span> trainCategory[i] == <span class="number">1</span>:</div><div class="line">            p1Num += trainMatrix[i]</div><div class="line">            p1Denom += sum(trainMatrix[i])</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            p0Num += trainMatrix[i]</div><div class="line">            p0Denom += sum(trainMatrix[i])</div><div class="line">    p1Vect = log(p1Num/p1Denom)          <span class="comment">#change to log()</span></div><div class="line">    p0Vect = log(p0Num/p0Denom)          <span class="comment">#change to log()</span></div><div class="line">    <span class="keyword">return</span> p0Vect,p1Vect,pAbusive</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">classifyNB</span><span class="params">(vec2Classify, p0Vec, p1Vec, pClass1)</span>:</span></div><div class="line">    p1 = sum(vec2Classify * p1Vec) + log(pClass1)    <span class="comment">#element-wise mult</span></div><div class="line">    p0 = sum(vec2Classify * p0Vec) + log(<span class="number">1.0</span> - pClass1)</div><div class="line">    <span class="keyword">if</span> p1 &gt; p0:</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">    <span class="keyword">else</span>: </div><div class="line">        <span class="keyword">return</span> <span class="number">0</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>###使用朴素贝叶斯过滤垃圾邮件<br>直接上代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">createVocabList</span><span class="params">(dataSet)</span>:</span></div><div class="line">	vocabSet = set([])</div><div class="line">	<span class="keyword">for</span> document <span class="keyword">in</span> dataSet:</div><div class="line">		<span class="comment"># print document</span></div><div class="line">		vocabSet = vocabSet | set(document)</div><div class="line">		<span class="comment"># print vocabSet</span></div><div class="line">	<span class="keyword">return</span> list(vocabSet)</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bagOfWords2VecMN</span><span class="params">(vocabList, inputSet)</span>:</span></div><div class="line">    returnVec = [<span class="number">0</span>]*len(vocabList)</div><div class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> inputSet:</div><div class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> vocabList:</div><div class="line">            returnVec[vocabList.index(word)] += <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> returnVec</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">trainNB0</span><span class="params">(trainMatrix,trainCategory)</span>:</span></div><div class="line">    numTrainDocs = len(trainMatrix)</div><div class="line">    numWords = len(trainMatrix[<span class="number">0</span>])</div><div class="line">    pAbusive = sum(trainCategory)/float(numTrainDocs)</div><div class="line">    p0Num = ones(numWords); p1Num = ones(numWords)      <span class="comment">#change to ones() </span></div><div class="line">    p0Denom = <span class="number">2.0</span>; p1Denom = <span class="number">2.0</span>                        <span class="comment">#change to 2.0</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(numTrainDocs):</div><div class="line">        <span class="keyword">if</span> trainCategory[i] == <span class="number">1</span>:</div><div class="line">            p1Num += trainMatrix[i]</div><div class="line">            p1Denom += sum(trainMatrix[i])</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            p0Num += trainMatrix[i]</div><div class="line">            p0Denom += sum(trainMatrix[i])</div><div class="line">    p1Vect = log(p1Num/p1Denom)          <span class="comment">#change to log()</span></div><div class="line">    p0Vect = log(p0Num/p0Denom)          <span class="comment">#change to log()</span></div><div class="line">    <span class="keyword">return</span> p0Vect,p1Vect,pAbusive</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">classifyNB</span><span class="params">(vec2Classify, p0Vec, p1Vec, pClass1)</span>:</span></div><div class="line">    p1 = sum(vec2Classify * p1Vec) + log(pClass1)    <span class="comment">#element-wise mult</span></div><div class="line">    p0 = sum(vec2Classify * p0Vec) + log(<span class="number">1.0</span> - pClass1)</div><div class="line">    <span class="keyword">if</span> p1 &gt; p0:</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">    <span class="keyword">else</span>: </div><div class="line">        <span class="keyword">return</span> <span class="number">0</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">textParse</span><span class="params">(bigString)</span>:</span>    <span class="comment">#input is big string, #output is word list</span></div><div class="line">    <span class="keyword">import</span> re</div><div class="line">    listOfTokens = re.split(<span class="string">r'\W*'</span>, bigString)</div><div class="line">    <span class="keyword">return</span> [tok.lower() <span class="keyword">for</span> tok <span class="keyword">in</span> listOfTokens <span class="keyword">if</span> len(tok) &gt; <span class="number">2</span>] </div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">spamTest</span><span class="params">()</span>:</span></div><div class="line">    docList=[]; classList = []; fullText =[]</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">26</span>):</div><div class="line">        wordList = textParse(open(<span class="string">'email/spam/%d.txt'</span> % i).read())</div><div class="line">        docList.append(wordList)</div><div class="line">        fullText.extend(wordList)</div><div class="line">        classList.append(<span class="number">1</span>)</div><div class="line">        wordList = textParse(open(<span class="string">'email/ham/%d.txt'</span> % i).read())</div><div class="line">        docList.append(wordList)</div><div class="line">        fullText.extend(wordList)</div><div class="line">        classList.append(<span class="number">0</span>)</div><div class="line">    vocabList = createVocabList(docList)<span class="comment">#create vocabulary</span></div><div class="line">    trainingSet = range(<span class="number">50</span>); testSet=[]           <span class="comment">#create test set</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</div><div class="line">        randIndex = int(random.uniform(<span class="number">0</span>,len(trainingSet)))</div><div class="line">        testSet.append(trainingSet[randIndex])</div><div class="line">        <span class="keyword">del</span>(trainingSet[randIndex])  </div><div class="line">    trainMat=[]; trainClasses = []</div><div class="line">    <span class="keyword">for</span> docIndex <span class="keyword">in</span> trainingSet:<span class="comment">#train the classifier (get probs) trainNB0</span></div><div class="line">        trainMat.append(bagOfWords2VecMN(vocabList, docList[docIndex]))</div><div class="line">        trainClasses.append(classList[docIndex])</div><div class="line">    p0V,p1V,pSpam = trainNB0(array(trainMat),array(trainClasses))</div><div class="line">    errorCount = <span class="number">0</span></div><div class="line">    <span class="keyword">for</span> docIndex <span class="keyword">in</span> testSet:        <span class="comment">#classify the remaining items</span></div><div class="line">        wordVector = bagOfWords2VecMN(vocabList, docList[docIndex])</div><div class="line">        <span class="keyword">if</span> classifyNB(array(wordVector),p0V,p1V,pSpam) != classList[docIndex]:</div><div class="line">            errorCount += <span class="number">1</span></div><div class="line">            <span class="keyword">print</span> <span class="string">"classification error"</span>,docList[docIndex]</div><div class="line">    <span class="keyword">print</span> <span class="string">'the error rate is: '</span>,float(errorCount)/len(testSet)</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/fclefang/JavaScript/Java7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Java7
+        
+      </div>
+    </a>
+  
+  
+    <a href="/fclefang/JavaScript/决策树/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">决策树</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="JavaScript/Machine Learning5" data-title="Machine Learning5" data-url="http://www.fclef.me/fclefang/JavaScript/Machine Learning5/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fclef"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Fclefang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

@@ -111,7 +111,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 17.5px;">MachineLearning</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/java/" style="font-size: 20px;">java</a>
+						<a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a>
 					</div>
 				</section>
 				
@@ -181,6 +181,511 @@
 
       <div class="body-wrap">
   
+    <article id="post-JavaScript/SVM(3)" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/SVM(3)/" class="article-date">
+  	<time datetime="2016-11-06T17:01:00.000Z" itemprop="datePublished">2016-11-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/SVM(3)/">SVM(3)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习日常小记：最近邻近期中，有一些课程需要结课，尤其是计算机理论，需要花点时间准备考试，每天看机器学习方面书籍论文的时间少了很多。移动互联网也要结课，虽然一开始一直吐槽老师上课不正经，但是老师有句话说的很对，是我还把自己当个小学生，一直想着让老师讲授专业技术方面的知识。那句话我忘了说了啥，大概意思就是：研究生阶段，老师给我们讲授前人发现的正确的专业技术知识固然重要，但是这些知识作为研究生应当有足够的能力自学，而我们更应当珍惜在课程中思考学习方法，分析思考问题时候的思维模式，珍惜和其他同学在一起交流思想的机会，不能只做一个闷在实验室的技术宅(当然我连这个都没做到呢。。)。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/SVM/">SVM</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/fclefang/JavaScript/SVM(3)/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/SVM(2)" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/SVM(2)/" class="article-date">
+  	<time datetime="2016-11-04T07:46:46.000Z" itemprop="datePublished">2016-11-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/SVM(2)/">SVM(2)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>接着上一篇关于SVM的总结，上一篇在学习实战的过程中还有好几点问题没解决，所以最后也将问题的思路大概写下来，接下来会花点时间解决这些问题。这一篇将会学习完整的SMO算法并且接触核函数的知识。</strong></p>
+<hr>
+<p>###1. Platt SMO算法<br>上一篇博客中提到的简化版计算成本太大，这里讨论完整版的Platt SMO算法及其应用到的启发式方法。算法的原本思想不变，仍然是找一对alpha值，只是在找第二个alpha值的时候与之前简化版的不同。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/SVM/">SVM</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/fclefang/JavaScript/SVM(2)/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/SVM(1)" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/SVM(1)/" class="article-date">
+  	<time datetime="2016-11-02T13:37:36.000Z" itemprop="datePublished">2016-11-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/SVM(1)/">SVM(1)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这算是第二遍学习SVM了吧，之前看西瓜书上关于支持向量机前面浅显一点的还能看懂，越往后真的只是单纯地去看书而不是去思考了。这一次结合机器学习实战，西瓜书，统计学习以及与SVM相关的论文来进行系统一点点的学习并总结，希望能够将下面一段文字真正的看明白。</p>
+<hr>
+<p><strong>很多人认为，AdaBoost和SVM是监督机器学习中最强大的两种方法。实际上这两者之间与很多相似之处，我们把弱分类器想象成SVM中的一个核函数，也可以按照最大化某个最小间隔的方式重写AdaBoost算法。而他们的额不同之处就在于其所定义的间隔方式有所不同，因此导致的结果也不同，特别是在高维空间下二者差异更明显。</strong><br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/SVM/">SVM</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/fclefang/JavaScript/SVM(1)/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/AdaBoost" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/AdaBoost/" class="article-date">
+  	<time datetime="2016-10-31T00:52:36.000Z" itemprop="datePublished">2016-10-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/AdaBoost/">AdaBoost</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>鉴于之前入门机器学习的两个月学习起来很吃力，很难写出相对系统有意义的博客，从今天起，这一学期的接下来两个月会好好写下自己的学习总结，清晰头脑中的知识结构。<br>任务：论文的阅读理解，机器学习知识的总结，机器学习实战代码的训练。</strong></p>
+<p>###1. AdaBoost起源介绍<br>集成学习(ensemble learning)通过构建并结合多个学习器来完成学习任务，有时也被称为多分类器系统。若多个分类器属于同种类型则这样的集成是同质的，否则称之为异质。
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/AdaBoost/">AdaBoost</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/fclefang/JavaScript/AdaBoost/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/Java8" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/Java8/" class="article-date">
+  	<time datetime="2016-10-13T02:16:25.000Z" itemprop="datePublished">2016-10-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/Java8/">Java7</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###1.泛型</p>
+<ul>
+<li>JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安全机制。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ArrayList a1 = <span class="keyword">new</span> ArrayList();</div><div class="line">		a1.add(<span class="string">"java01"</span>);</div><div class="line">		a1.add(<span class="string">"java02"</span>);</div><div class="line">		a1.add(<span class="string">"java01"</span>);</div><div class="line">		a1.add(<span class="number">4</span>);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上述几行代码在编译时没问题但是在运行时会报出类型转换的错误，也就是整形不能转换为String类型，那么如何能够在编译时就报出错误让开发人员知道呢？这里就用到了泛型。在使用迭代器的时候也要对应的选择泛型。看下面的代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ArrayList&lt;String&gt; a1 = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">		a1.add(<span class="string">"java01"</span>);</div><div class="line">		a1.add(<span class="string">"java02"</span>);</div><div class="line">		a1.add(<span class="string">"java01"</span>);</div><div class="line">		a1.add(<span class="number">4</span>);</div><div class="line">		Iterator&lt;String&gt; it = <span class="keyword">new</span> a1.iterator();</div></pre></td></tr></table></figure></p>
+<ul>
+<li>泛型类定义的泛型，在整个类中有效，如果被方法使用，那么泛型类的对象明确要操作的具体类型后所有要操作的类型就已经确定了。为了让不同方法操作不同类型，而且类型还不确定，那么可以将泛型定义在方法上。下面的代码分别为类型定义在类和方法上的不同情况。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(T t)</span></span>&#123;</div><div class="line">		System.out..println(<span class="string">"show:"</span>+t);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(T t)</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"print"</span>+t);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenericDemo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Demo&lt;Integer&gt; d = <span class="keyword">new</span> Demo&lt;Integer&gt;();</div><div class="line"></div><div class="line">		d.show(<span class="keyword">new</span> Integer(<span class="number">4</span>));</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>当我们在类上就明确类型后，那么不同方法只能调用同一类型，而如果面临不同方法调用不同类型则可以在方法上定义类型，代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo1</span></span>&#123;</div><div class="line">	<span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">(T t)</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"show:"</span>+t);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(T t)</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"print"</span>+t);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenericDemo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Demo1 d = <span class="keyword">new</span> Demo1();</div><div class="line">		d.show(<span class="string">"hah"</span>);</div><div class="line">		d.show(<span class="keyword">new</span> Integer(<span class="number">4</span>));</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>泛型类：当类中要操作的引用数据类型不确定的时候，早期定义Object来完成扩展，现在定义泛型来完成扩展。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Utils</span>&lt;<span class="title">QQ</span>&gt;</span>&#123;</div><div class="line">	<span class="keyword">private</span> QQ q;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setObject</span><span class="params">(QQ q)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.q = q;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> QQ <span class="title">getObject</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> q;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Worker</span></span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenericDemo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Utils&lt;Worker&gt; u = <span class="keyword">new</span> Utils&lt;Worker&gt;();</div><div class="line">		u.setObject(<span class="keyword">new</span> Worker());</div><div class="line">		Worker w = u.getObject();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>特殊之处：静态方法不可以访问类上定义的泛型。如果静态方法操作的引用数据类型不确定，可以将泛型定义在方法上。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo2</span>&lt;<span class="title">Q</span>&gt;</span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(Q t)</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"show:"</span>+t);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(T t)</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"print:"</span>+t);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> &lt;W&gt; <span class="function"><span class="keyword">void</span> <span class="title">method</span><span class="params">(W t)</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"method:"</span>+t);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenericDemo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Demo2 &lt;String&gt; d = <span class="keyword">new</span> Demo2&lt;String&gt;();</div><div class="line">		d.show(<span class="string">"haha"</span>);</div><div class="line">		d.print(<span class="number">5</span>);</div><div class="line">		Demo2.method(<span class="string">"hahahahaha"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>？通配符</strong>：可以理解为占位符。关于泛型的限定，<code>? extends E</code>可以接收E类型或者E的子类型，<code>? super E</code>可以接收E类型及其父类型。</p>
+</li>
+</ul>
+<p>###2.Map</p>
+<ul>
+<li>Map集合：该集合存储键值对，一对一对往里存，而且要保证键的唯一性。<br>|–Hashtable：底层是哈希表数据结构，不可以存入null键和null值，该集合是线程同步的，<br>|–HashMap：底层是哈希表数据结构，允许使用null键和null值，该集合是不同步的。<br>|–TreeMap:底层是二叉树数据结构，线程不同步，可以用于给Map集合中的键进行排序。和Set很像，其实Set底层就是使用了Map集合。</li>
+<li>Map集合的两种取出方式：<br>(1)<code>Set&lt;k&gt;</code>keySet:强Map集合中所有的键存入到Set集合，因为Set具备迭代器。所以可以迭代方式取出所有的键，再根据get方法，获取每一个键对应的值。而Map集合的取出原理就是将map集合转换成set集合，再通过迭代器取出。<br>(2)<code>Set&lt;Map.Entry&lt;k,v&gt;&gt;</code> entrySet:将Map集合中的映射关系存入到Set集合中，而这个关系的数据类型就定义为Map.Entry，和keySet一样，也是将映射关系取出存到set集合中，这样可以再通过迭代器取出映射关系键值对，通过该接口特有的方法分别取出键和值就OK。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MapDemo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Map&lt;String,String&gt; map = <span class="keyword">new</span> HashMap&lt;String,String&gt;();</div><div class="line">		map.put(<span class="string">"02"</span>,<span class="string">"zhangsan2"</span>);</div><div class="line">		map.put(<span class="string">"03"</span>,<span class="string">"zhangsan3"</span>);</div><div class="line">		map.put(<span class="string">"01"</span>,<span class="string">"zhangsan1"</span>);</div><div class="line">		map.put(<span class="string">"04"</span>,<span class="string">"zhangsan4"</span>);</div><div class="line">		Set&lt;Map.Entry&lt;String,String&gt;&gt; entrySet = map.entrySet();</div><div class="line">		Iterator&lt;Map.Entry&lt;String,String&gt;&gt; it = entrySet.iterator();</div><div class="line">		<span class="keyword">while</span>(it.hasNext())&#123;</div><div class="line">			Map.Entry&lt;String,String&gt; me = it.next();</div><div class="line">			String key = me.getKey();</div><div class="line">			String value = me.getValue();</div><div class="line">			System.out.println(key+<span class="string">":"</span>+value);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Collection/">Collection</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/Java7" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/Java7/" class="article-date">
+  	<time datetime="2016-10-05T03:33:25.000Z" itemprop="datePublished">2016-10-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/Java7/">Java7</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-StringBuffer"><a href="#1-StringBuffer" class="headerlink" title="1.StringBuffer"></a>1.StringBuffer</h3><ul>
+<li>字符串缓冲区：它是一个容器。长度是可以变化的，可以字节操作多个数据类型，最终会通过toString方法变成字符串。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringBufferDemo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line">		StringBuffer sb1 = sb.append(<span class="number">34</span>);</div><div class="line">		sop(<span class="string">"sb==sb1:"</span>+(sb==sb1));</div><div class="line">		sop(sb.toString());</div><div class="line">		sop(sb1.toString());</div><div class="line">		sb.append(<span class="string">"abc"</span>).append(<span class="keyword">true</span>);</div><div class="line">		sop(sb.toString());</div><div class="line">		sb.insert(<span class="number">1</span>,<span class="string">"qq"</span>);</div><div class="line">		sop(sb.toString());</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sop</span><span class="params">(String str)</span></span>&#123;</div><div class="line">		System.out.println(str);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>遇到一个小问题：</strong>将java文件名设置成StringBuffer引起类名调用错误，只要将文件名改成其他的就OK。<br><strong>注意点：</strong>StringBuffer是一个容器，每次操作后返回的是同一个对象，因此可以连续方法操作。并且代码中sb==sb1是为true的。</p>
+<ul>
+<li>StringBuilder：StringBuffer更加安全，因为多线程同步，有锁的判定。而StringBuilder则没有锁的判定，所以相对于StringBuffer而言安全性降低，但是效率更高。所以多线程用StringBuffer，单线程用StringBuilder，多线程也可以用StringBuilder，自己可以添加锁，开发时更加推荐使用StringBuilder。</li>
+</ul>
+<p>###2.集合类</p>
+<p>Collection<br>    |–List：元素是有序的，元素可以重复，因为该集合体系有索引。<br>        |–ArrayList：底层使用的是数组数据结构，特点是查询速度快，但是增删稍慢，线程不同步。<br>        |–LinkedList：底层使用的是链表数据结构，特点是增删速度很快，查询稍慢，线程不同步。<br>        |–Vector：底层是数组数据结构，线程同步，被ArrayList替代了，因为效率低。<br>    |–Set：元素是无序的，元素不可以重复。</p>
+<ul>
+<li>为什么出现集合类：面向对象语言对事物的体现都是以对象的形式，所以为了方便对多个对象的操作，就对对象进行存储，集合就是存储对象最常用的一种方式。</li>
+<li>数组和集合类同是容器，有何不同？：数组虽然可以存储对象，但是长度是固定的，而集合长度是可变的。数组中可以存储基本数据类型，集合只能存储对象。</li>
+<li>集合类的特点：集合只用于存储对象，集合长度是可变的，集合可以存储不同类型的对象。</li>
+</ul>
+<p>###3.集合方法<br>接口型引用只能指向自己的子类对象，而这个对象不是直接new出来的，而是通过方法获取到的。比如Iterator接口：<code>Iterator it = a1.iterator();</code>.<br><strong>下面给出几句代码加深集合理解：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.*;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CollectionDemo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		method();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</div><div class="line">		ArrayList a1 = <span class="keyword">new</span> ArrayList();</div><div class="line"></div><div class="line">		a1.add(<span class="string">"java0"</span>);</div><div class="line">		a1.add(<span class="string">"java1"</span>);</div><div class="line">		a1.add(<span class="string">"java2"</span>);</div><div class="line">		a1.add(<span class="string">"java3"</span>);</div><div class="line">		Iterator it = a1.iterator();</div><div class="line">		<span class="keyword">while</span>(it.hasNext())&#123;</div><div class="line">			sop(it.next());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sop</span><span class="params">(Object obj)</span></span>&#123;</div><div class="line">		System.out.println(obj);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>什么事迭代器呢？：其实就是集合的去除元素的方式。</li>
+<li><p>List集合：List集合特有的迭代器ListIterator是Iterator的子接口。在迭代时不可以通过集合对象的方法操作集合中的元素。因为会发生ConcurrentModificationException异常。所以在迭代器时只能用迭代器的方法操作元素，可是Iterator方法时有限的，只能对元素进行判断取出或删除的操作，如果想要其他添加之类的操作则需要使用其子接口ListIterator，该接口只能通过List集合的listIterator方法获取。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ListIterator li = a1.listIterator();</div><div class="line">		<span class="keyword">while</span>(li.hasNext())&#123;</div><div class="line">			Object obj = li.next();</div><div class="line">			<span class="keyword">if</span>(obj.equals(<span class="string">"java2"</span>))</div><div class="line">				li.add(<span class="string">"java8"</span>);</div><div class="line">			sop(<span class="string">"obj="</span>+obj);</div><div class="line">		&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>HashSet：在堆内存中按照哈希表规则存储对象哈希值，因为每个类中都有hashCode方法让底层操作系统调用分配hash值，我们可以尝试在类中复写hashCode这样就可以改变类的hash值，如果我们将同一个类的两个对象hash值设置为相同，我们知道Set元素是无序的，在hash表中元素确实是无序进入哈希表内存，但是在表中是按照分配的哈希值存储的，而一旦发生哈希值相同的现象就会对对象进行比较，如果对象也相同的话存储才会false。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">HashTest</span><span class="params">()</span></span>&#123;</div><div class="line">		HashSet hs = <span class="keyword">new</span> HashSet();</div><div class="line">		sop(hs.add(<span class="string">"java01"</span>));</div><div class="line">		sop(hs.add(<span class="string">"java01"</span>));</div><div class="line">		hs.add(<span class="string">"java02"</span>);</div><div class="line">		hs.add(<span class="string">"java03"</span>);</div><div class="line">		hs.add(<span class="string">"java06"</span>);</div><div class="line">		hs.add(<span class="string">"java04"</span>);</div><div class="line">		hs.add(<span class="string">"java05"</span>);		</div><div class="line">		Iterator it = hs.iterator();</div><div class="line">		<span class="keyword">while</span>(it.hasNext())&#123;</div><div class="line">			sop(it.next());</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>hashSet底层数据结构是哈希表，如何保证数据唯一性呢？<br>答：通过元素的两个方法：hashCode和equals方法。<br>如果元素的HashCode值相同才会判断equals是否为true。如果值不同则不会调用equals。这两个方法是集合底层自动调用的方法，我们可以通过复写的方式来理解这样的机制。注意，对于判断元素是否存在以及删除等操作依赖的方法是元素的hasCode方法和equals方法，这就是哈希表的特性。而ArrayLIst则只依赖equals方法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line">	Person(String name,<span class="keyword">int</span> age)&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">		<span class="keyword">this</span>.age  = age;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="keyword">this</span>.name+<span class="string">"...hashCode..."</span>);</div><div class="line">		<span class="keyword">return</span> name.hashCode()+age;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(!(obj <span class="keyword">instanceof</span> Person))</div><div class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">		Person p = (Person)obj;</div><div class="line">		System.out.println(<span class="keyword">this</span>.name+<span class="string">"...equals..."</span>+p.name);</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.name.equals(p.name) &amp;&amp; <span class="keyword">this</span>.age == p.age;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> age;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>TreeSet：可以对Set集合中的元素进行排序，底层数据结构是二叉树，保证元素唯一性的是compareTo方法的return 0.往TreeSet集合中存储自定义对象学生，想按照学生的年龄进行排序，记住排序时当主要条件相同时一定要判断一下次要条件。compareTo方法类似于上面的hasCode方法也是底层操作系统自动调用的，这里复写实现compareTo的功能。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Comparable</span></span>&#123;</div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line">	Student(String name,<span class="keyword">int</span> age)&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">		<span class="keyword">this</span>.age = age;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Object obj)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(!(obj <span class="keyword">instanceof</span> Student))</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"不是学生对象"</span>);</div><div class="line">		Student s = (Student)obj;</div><div class="line">		System.out.println(<span class="keyword">this</span>.name+<span class="string">" compare to "</span>+s.name);</div><div class="line">		<span class="keyword">if</span>(<span class="keyword">this</span>.age&gt;s.age)</div><div class="line">			<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">		<span class="keyword">if</span>(<span class="keyword">this</span>.age==s.age)&#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">this</span>.name.compareTo(s.name);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> age;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>当元素自身不具备比较性，或者具备的比较性不是所需的时候，就需要让容器自身具备比较性。可以定义一个比较器，将比较器对象作为参数传递给TreeSet集合的构造函数。当两种排序都存在时以比较器为主，定义一个类，实现Comparator接口，覆盖compare方法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCompare</span> <span class="keyword">implements</span> <span class="title">Comparator</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Object o1,Object o2)</span></span>&#123;</div><div class="line">		Student s1 = (Student)o1;</div><div class="line">		Student s2 = (Student)o2;</div><div class="line">		<span class="keyword">int</span> num = s1.getName().compareTo(s2.getName());</div><div class="line">		<span class="keyword">if</span>(num==<span class="number">0</span>)</div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> Integer(s1.getAge()).compareTo(<span class="keyword">new</span> Integer(s2.getAge()));</div><div class="line">		<span class="keyword">return</span> num;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Collection/">Collection</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/Machine Learning5" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/Machine Learning5/" class="article-date">
+  	<time datetime="2016-10-04T07:55:36.000Z" itemprop="datePublished">2016-10-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/Machine Learning5/">Machine Learning5</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>这次的学习周志华机器学习第七章贝叶斯分类器结合实战学习第四章朴素贝叶斯来加深对贝叶斯决策论的理解</strong></p>
+<p>###1.Bayesian decision theory<br>贝叶斯决策论是概率框架下实施决策的基本方法。对分类任务来说，在所有相关概率都已知的理想情形下，贝叶斯决策论考虑如何基于这些概率和误判损失来选择最优的类别标记。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Bayesian/">Bayesian</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/fclefang/JavaScript/Machine Learning5/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-JavaScript/决策树" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -227,6 +732,70 @@
       
         <p class="article-more-link">
           <a  href="/fclefang/JavaScript/决策树/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/Java6" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/Java6/" class="article-date">
+  	<time datetime="2016-09-25T12:42:25.000Z" itemprop="datePublished">2016-09-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/Java6/">Java6</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###1.停止线程<br>我们知道stop方法已经过时，那么如何停止线程呢？只有一种那就是用run方法结束。开启多线程运行，运行代码通常是循环结构，只要控制住循环，就可以让run方法接护送，也就是线程结束。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/String/">String</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/fclefang/JavaScript/Java6/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -309,528 +878,9 @@
 
 
   
-    <article id="post-JavaScript/Java5" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/Java5/" class="article-date">
-  	<time datetime="2016-09-21T10:02:18.000Z" itemprop="datePublished">2016-09-21</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/Java5/">Java5</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><ul>
-<li><p>创建线程的第一种方式：继承Thread类。<br>(1)定义类继承Thread<br>(2)复写Thread类中的run方法<br>(3)调用线程的start()方法：启动线程，调用run方法。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Thread/">Thread</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/Java5/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/Java4" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/Java4/" class="article-date">
-  	<time datetime="2016-09-18T13:13:12.000Z" itemprop="datePublished">2016-09-18</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/Java4/">Java4</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-多态特性："><a href="#1-多态特性：" class="headerlink" title="1.多态特性："></a>1.多态特性：</h3><ul>
-<li>在编译时期，参阅引用型变量所属的类中是否有调用的方法，如果有编译成功，没有则编译失败。</li>
-<li>在运行时期，参阅对象所属的类中是否有调用的方法。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/inner-class/">inner class</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/Java4/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/Java3" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/Java3/" class="article-date">
-  	<time datetime="2016-09-14T07:43:12.000Z" itemprop="datePublished">2016-09-14</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/Java3/">Java3</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>设计模式：解决某一类问题最行之有效的方法。java中23种设计模式。单例设计模式：解决一个类在内存只存在一个对象。<br><strong>如何保证对象唯一呢？</strong>：<br>为了避免其他程序过多建立对象，先禁止其他程序建立该对象(构造函数私有化)。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/extends/">extends</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/Java3/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/Java2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/Java2/" class="article-date">
-  	<time datetime="2016-09-11T04:12:12.000Z" itemprop="datePublished">2016-09-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/Java2/">Java2</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>每一个应用程序中都有共性的功能，可以将这些功能进行抽取独立封装以便复用。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/tool-readme/">tool-readme</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/Java2/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/Machine Learning3" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/Machine Learning3/" class="article-date">
-  	<time datetime="2016-09-10T05:42:36.000Z" itemprop="datePublished">2016-09-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/Machine Learning3/">Machine Learning3</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="2-3-3-ROC和AUC"><a href="#2-3-3-ROC和AUC" class="headerlink" title="2.3.3 ROC和AUC"></a>2.3.3 ROC和AUC</h3><p>对于二分类问题，可将样例根据其真实类别与学习器预测类别的组合划分为真正类(true positive)、假正例(false postive)、真反例(true negative)、假反例(false negative)四种情形。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/model-evaluation/">model evaluation</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/Machine Learning3/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/Java1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/Java1/" class="article-date">
-  	<time datetime="2016-09-09T07:58:36.000Z" itemprop="datePublished">2016-09-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/Java1/">Java1</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>环境变量：path以及classpath的配置，当配置可执行文件时用path，当配置java文件时用classpath.<br>path配置完成，操作系统先查找当前目录下然后再查找环境变量path配置的路径，而classpath配置后操作系统的查找顺序则相反。<br>当用set path进行临时配置时，结束后不会影响本机原有配置。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/java1/">java1</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/Java1/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/Machine Learning2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/Machine Learning2/" class="article-date">
-  	<time datetime="2016-09-05T11:42:36.000Z" itemprop="datePublished">2016-09-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/Machine Learning2/">Machine Learning2</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="2-1-经验误差与过拟合"><a href="#2-1-经验误差与过拟合" class="headerlink" title="2.1 经验误差与过拟合"></a>2.1 经验误差与过拟合</h3><ul>
-<li>error： 一般的，我们把学习器的实际预测输出与样本的真是输出之间的差异称之为误差。而学习器在训练集上的误差称为training error or empirical error.而在新样本上的误差称之为generalization error也就是泛化误差。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/model-evaluation/">model evaluation</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/Machine Learning2/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/JS深入浅出日记——Five" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/JS深入浅出日记——Five/" class="article-date">
-  	<time datetime="2016-08-02T04:25:36.000Z" itemprop="datePublished">2016-08-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/JS深入浅出日记——Five/">JS深入浅出日记——Five</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-JQuery"><a href="#1-JQuery" class="headerlink" title="1. JQuery"></a>1. JQuery</h3><p>jQuery is registered as a package on npm. You can install the latest version of jQuery with the command：<br><code>npm install jquery</code><br>This will install jQuery in the node_modules directory. Within <code>node_modules/jquery/dist/</code> you will find an uncompressed release, a compressed release, and a map file.<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/JQuery-AudioContext/">JQuery AudioContext</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/JS深入浅出日记——Five/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
