@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="fclefang">
 <meta property="og:description" content="1.StringBuffer
 字符串缓冲区：它是一个容器。长度是可以变化的，可以字节操作多个数据类型，最终会通过toString方法变成字符串。12345678910111213141516class StringBufferDemo&amp;#123;	public static void main(String[] args) &amp;#123;		StringBuffer sb = new StringB">
-<meta property="og:updated_time" content="2016-10-13T02:16:13.514Z">
+<meta property="og:updated_time" content="2016-11-15T03:39:03.090Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java7">
 <meta name="twitter:description" content="1.StringBuffer
@@ -228,6 +228,7 @@
 <li>字符串缓冲区：它是一个容器。长度是可以变化的，可以字节操作多个数据类型，最终会通过toString方法变成字符串。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringBufferDemo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line">		StringBuffer sb1 = sb.append(<span class="number">34</span>);</div><div class="line">		sop(<span class="string">"sb==sb1:"</span>+(sb==sb1));</div><div class="line">		sop(sb.toString());</div><div class="line">		sop(sb1.toString());</div><div class="line">		sb.append(<span class="string">"abc"</span>).append(<span class="keyword">true</span>);</div><div class="line">		sop(sb.toString());</div><div class="line">		sb.insert(<span class="number">1</span>,<span class="string">"qq"</span>);</div><div class="line">		sop(sb.toString());</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sop</span><span class="params">(String str)</span></span>&#123;</div><div class="line">		System.out.println(str);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<a id="more"></a>
 <p><strong>遇到一个小问题：</strong>将java文件名设置成StringBuffer引起类名调用错误，只要将文件名改成其他的就OK。<br><strong>注意点：</strong>StringBuffer是一个容器，每次操作后返回的是同一个对象，因此可以连续方法操作。并且代码中sb==sb1是为true的。</p>
 <ul>
 <li>StringBuilder：StringBuffer更加安全，因为多线程同步，有锁的判定。而StringBuilder则没有锁的判定，所以相对于StringBuffer而言安全性降低，但是效率更高。所以多线程用StringBuffer，单线程用StringBuilder，多线程也可以用StringBuilder，自己可以添加锁，开发时更加推荐使用StringBuilder。</li>
