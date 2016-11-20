@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>线性回归 | fclefang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="线性模型形式简单，易于建模，许多强大的非线性模型可以在新型模型的基础上引入层级结构或者高维映射得到，比如之前总结SVR的核化就是典型的在线性模型基础之上进行高维映射。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性回归">
+<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/线性回归/index.html">
+<meta property="og:site_name" content="fclefang">
+<meta property="og:description" content="线性模型形式简单，易于建模，许多强大的非线性模型可以在新型模型的基础上引入层级结构或者高维映射得到，比如之前总结SVR的核化就是典型的在线性模型基础之上进行高维映射。">
+<meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/blog/image/linear-regression/error.pngerror.png">
+<meta property="og:updated_time" content="2016-11-20T14:47:35.919Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="线性回归">
+<meta name="twitter:description" content="线性模型形式简单，易于建模，许多强大的非线性模型可以在新型模型的基础上引入层级结构或者高维映射得到，比如之前总结SVR的核化就是典型的在线性模型基础之上进行高维映射。">
+<meta name="twitter:image" content="http://ogy25dae4.bkt.clouddn.com/blog/image/linear-regression/error.pngerror.png">
+  
+    <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fclefang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">开心自由最重要</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories">分类</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">CIT（2012-2016）,GuiLin Elec(2016-2019).认真做好应该做的每一件事。衣不如新，人不如旧，旧衣穿着最舒服，新人也未必不是更好的选择...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Fclefang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fclefang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">开心自由最重要</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories">分类</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-JavaScript/线性回归" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/线性回归/" class="article-date">
+  	<time datetime="2016-11-18T01:48:01.000Z" itemprop="datePublished">2016-11-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      线性回归
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/linear-regression/">linear-regression</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>线性模型形式简单，易于建模，许多强大的非线性模型可以在新型模型的基础上引入层级结构或者高维映射得到，比如之前总结SVR的核化就是典型的在线性模型基础之上进行高维映射。<br><a id="more"></a></p>
+<h2 id="1-线性回归"><a href="#1-线性回归" class="headerlink" title="1.线性回归"></a>1.线性回归</h2><p>线性回归试图学得一个线性模型以尽可能准确地预测实值输出标记，一般用向量形式：$f(x)=w^Tx+b$。</p>
+<ul>
+<li>我们常将属性划分为连续属性和离散属性，然而在我们讨论距离计算的时候，属性上是否定义了序关系更为重要。比如定义域为{1,2,3}的离散属性和连续属性性质更接近，能直接通过这些属性值进行距离计算，这样的属性称之为有序属性；而定义域为{飞机，火车，轮船}类型的离散属性则不能直接通过该属性值进行距离计算，这种属性我们称之为无序属性。对于有序属性，Minkowski-distance可以利用，而对于无需属性可以利用VDM(vlaue difference metric)，当然通常我们可以转化为k维向量,如果是混合属性的时候可以可结合两种距离计算方式并且可以根据不同属性的重要性加上权重。其实关于距离度量有相当多的知识点，但是这里线性回归用不了这么多，比如非距离度量以及距离度量学习等等。</li>
+<li>对于线性回归模型$f(x)=w^Tx+b$的求解，我们可以转换为对均方误差(对应欧氏距离)的优化问题$min<em>{w,b}\sum</em>{i=1}^{m}(y_i-f(x_i))^2$，而解决均方误差优化问题又可以使用最小二乘法。其实在线性回归中，最小二乘就是试图找到一条直线，使所有样本到直线上的欧式距离和最小。因为线性回归的数学推导过程相对简单很多，这里不做复杂的参数求解，也只是用到求偏导以及矩阵的相关运算，目的就是求得均方误差最小化。然而在实际学习过程中样本属性个数经常远大于样本数目，这个时候会得到多个满足假设的模型，面对这种情况则需要由算法的归纳偏好决定，而每个机器学习的算法都应该有其归纳偏好，归纳偏好可以看成是学习算法自身在一个可能庞大的假设空间中对假设进行选择的启发式或者价值观，比如Occam’s razor等。很多时候不同的归纳偏好直接决定算法能否取得好的泛化性能，但是这里有一点需要注意，得到的不同算法在某个具体问题环境下确实有着“好坏”之分，但是根据NFL定理一旦脱离具体问题，它们的期望性能是相同的，也就是说要谈论算法的而相对优劣必须针对某个具体的问题。</li>
+<li>其实我们还可以发现我们对假设进行归纳偏好就是引入正则化项，在SVM的学习过程中将它作为结构风险来描述模型的某些性质有利于削减假设空间从而降低过拟合风险。而在我们这里的线性回归模型中，可以引入L2范数正则化$||w||_2^2$，再乘上一个正则化参数，而引入正则化项的优化问题就变成均方误差加上L2范数正则的最小优化问题，我们又称之为岭回归，显著降低过拟合风险。当然正则化项也可以换成L1范数这个时候就是经典的LASSO，不仅可以降低过拟合风险，更易获得稀疏解即$w$会有更少的非零分量。这里关于L1和L2范数的稀疏解理解可以参见西瓜书P253有一张很简洁易懂的图。另外L1正则化问题的求解过程就不是普通线性回归优化求解那么简单了，一般使用近端梯度下降PGD，具体的数学过程以后详细推导，这里不继续深入。</li>
+</ul>
+<h2 id="2-局部权重线性回归"><a href="#2-局部权重线性回归" class="headerlink" title="2.局部权重线性回归"></a>2.局部权重线性回归</h2><ul>
+<li><p>我理解的回归就是求解优化问题参数的过程，在对均方误差最小化最后求解得到回归系数$w=(X^TX)^{-1}X^Ty)$，这里需要注意一点就是在求解过程中涉及到矩阵求逆运算，所以我们得到的回归系数是在假设$X^TX$为满秩矩阵的前提下得出的。给出一些样例数据，用python和numpy库的方法实现最小二乘法，具体代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">(fileName)</span>:</span></div><div class="line">	<span class="comment">#detect the number of the features</span></div><div class="line">	numFeat = len(open(fileName).readline().split(<span class="string">'\t'</span>)) - <span class="number">1</span></div><div class="line">	dataMat = [];labelMat = []</div><div class="line">	fr = open(fileName)</div><div class="line">	<span class="keyword">for</span> line <span class="keyword">in</span> fr.readlines():</div><div class="line">		lineArr = []</div><div class="line">		curLine = line.strip().split(<span class="string">'\t'</span>)</div><div class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> xrange(numFeat):</div><div class="line">			lineArr.append(float(curLine[i]))</div><div class="line">		dataMat.append(lineArr)</div><div class="line">		labelMat.append(float(curLine[<span class="number">-1</span>]))</div><div class="line">	<span class="keyword">return</span> dataMat,labelMat</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">standRegress</span><span class="params">(xArr,yArr)</span>:</span></div><div class="line">	xMat = mat(xArr); yMat = mat(yArr).T</div><div class="line">	xTx = xMat.T*xMat</div><div class="line">	<span class="comment">#compute the hanglieshi</span></div><div class="line">	<span class="keyword">if</span> linalg.det(xTx) == <span class="number">0.0</span>:</div><div class="line">		<span class="keyword">print</span> <span class="string">"This matrix is singular, cannot do inverse"</span></div><div class="line">		<span class="keyword">return</span></div><div class="line">	ws = xTx.I * (xMat.T*yMat)</div><div class="line">	<span class="keyword">return</span> ws</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__== <span class="string">"__main__"</span>:</div><div class="line">	xArr,yArr=loadDataSet(<span class="string">'ex0.txt'</span>)</div><div class="line">	ws =  standRegress(xArr,yArr)</div><div class="line">	xMat = mat(xArr)</div><div class="line">	yMat = mat(yArr)</div><div class="line">	yHat = xMat*ws</div><div class="line">	fig = plt.figure()</div><div class="line">	ax = fig.add_subplot(<span class="number">111</span>)</div><div class="line">	ax.scatter(xMat[:,<span class="number">1</span>].flatten().A[<span class="number">0</span>], yMat.T[:,<span class="number">0</span>].flatten().A[<span class="number">0</span>])</div><div class="line">	xCopy = xMat.copy()</div><div class="line">	xCopy.sort(<span class="number">0</span>)</div><div class="line">	yHat = xCopy*ws</div><div class="line">	ax.plot(xCopy[:,<span class="number">1</span>],yHat)</div><div class="line">	plt.show()</div></pre></td></tr></table></figure>
+</li>
+<li><p>线性回归欠拟合问题：前面我们大多分析了正则化降低过拟合，其实在一开始介绍距离变量的计算时提到过我们可以对不同属性赋予不同的权重值。 过拟合的根本原因是特征维度过少，导致拟合的函数无法满足训练集，误差较大。对于一个监督学习模型来说，过小的特征集合使得模型过于简单，过大的特征集合使得模型过于复杂，而相对应就形成欠拟合和过拟合现象。局部加权线性回归LWLR允许在估计中引入一些偏差，从而降低预测的均方误差，缓解对于特征选择的需求。算法给带预测点附近的每个点赋予一定的权重，最后求解得到的回归系数为$w=(X^TWX)^{-1}X^TWy$(注意区分权重和回归系数的差别)，LWLR使用“核”(类似于SVM中的核)来对靠近预测点赋予更高的权重，核的类型自己选择，这里介绍一个常用的高斯核，高斯核对应的权重为$w(i,i)={exp({|x^{(i)}-x|})\over{-2k^2}}$，构建这样一个只含有对角元素的权重矩阵，点x与x(i)越近，w(i,i)将会越大，在权重公式中有个参数k用来控制对附近的点赋予多达的权重，k越大意味着更多的点对回归模型产生影响，而k越小则意味着仅有很少的局部点被用于训练回归模型。综上所述由权重值公式发现：随着样本点与预测点距离的增加，样本对应权重值将指数级衰减，而输入控制参数k则控制衰减的速度。<strong>这个的参数k我不是很理解它的影响原理是啥？</strong><br>LWLR算法python实现代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">lwlr</span><span class="params">(testPoint,xArr,yArr,k=<span class="number">1.0</span>)</span>:</span></div><div class="line">	xMat = mat(xArr); yMat = mat(yArr).T</div><div class="line">	m = shape(xMat)[<span class="number">0</span>]</div><div class="line">	<span class="comment">#create diagonal matrix</span></div><div class="line">	weights = mat(eye((m)))</div><div class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> xrange(m):</div><div class="line">		diffMat = testPoint - xMat[j,:]</div><div class="line">		weights[j,j] = exp(diffMat*diffMat.T/(<span class="number">-2.0</span>*k**<span class="number">2</span>))</div><div class="line">	xTx = xMat.T*(weights * xMat)</div><div class="line">	<span class="keyword">if</span> linalg.det(xTx) == <span class="number">0.0</span>:</div><div class="line">		<span class="keyword">print</span> <span class="string">"This matrix is singular, cannot do inverse"</span></div><div class="line">		<span class="keyword">return</span></div><div class="line">	ws = xTx.I * (xMat.T * (weights * yMat))</div><div class="line">	<span class="keyword">return</span> testPoint * ws</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">lwlrTest</span><span class="params">(testArr,xArr,yArr,k=<span class="number">1.0</span>)</span>:</span></div><div class="line">	m = shape(testArr)[<span class="number">0</span>]</div><div class="line">	yHat = zeros(m)</div><div class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> xrange(m):</div><div class="line">	 	yHat[i] = lwlr(testArr[i],xArr,yArr,k)</div><div class="line">	<span class="keyword">return</span> yHat</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">plotShow</span><span class="params">(xArr,yArr,yHat)</span>:</span></div><div class="line">	ws =  standRegress(xArr,yArr)</div><div class="line">	xMat = mat(xArr)</div><div class="line">	yMat = mat(yArr)</div><div class="line">	fig = plt.figure()</div><div class="line">	ax = fig.add_subplot(<span class="number">111</span>)</div><div class="line">	ax.scatter(xMat[:,<span class="number">1</span>].flatten().A[<span class="number">0</span>], yMat.T[:,<span class="number">0</span>].flatten().A[<span class="number">0</span>] , s=<span class="number">2</span>, c=<span class="string">'red'</span>)</div><div class="line">	xCopy = xMat.copy()</div><div class="line">	xCopy.sort(<span class="number">0</span>)</div><div class="line">	ax.plot(xCopy[:,<span class="number">1</span>],yHat[xMat[:,<span class="number">1</span>].argsort(<span class="number">0</span>)])</div><div class="line">	plt.show()</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__== <span class="string">"__main__"</span>:</div><div class="line">	xArr,yArr=loadDataSet(<span class="string">'ex0.txt'</span>)</div><div class="line">	yHat = lwlrTest(xArr,xArr,yArr,<span class="number">0.003</span>)</div><div class="line">	plotShow(xArr,yArr,yHat)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>我们可以通过选取不同的k值观察拟合效果，k=1时效果和最小二乘差不多，k=0.01时效果最好，k=0.0003则考虑太多噪声进而导致过拟合。另外，LWLR很明显增加了计算量，因为对每个点进行预测都必须对整个数据集进行计算，但是当k=0.01时，观察权重公式图会发现大多数数据点权重为0，也就是说在进行计算预测的过程中大量的数据不需要计算，仅仅对局部极少的附近数据进行训练回归模型即可，因此一定程度上也缓解了LWLR算法计算量增加带来的问题。</p>
+<h2 id="3-岭回归"><a href="#3-岭回归" class="headerlink" title="3.岭回归"></a>3.岭回归</h2><p>在回归的过程中，我们需要计算矩阵的逆，但是当特征数比样本数还多时，也就是输入矩阵X不是满秩矩阵，而非满秩矩阵求逆时会有问题，为解决这样的问题之前也提到过就是均方误差基础上引入L2范数正则化$||w||_2^2$，又称之为岭回归ridge-regression。</p>
+<ul>
+<li>在对岭回归优化问题最小化最后求解得到回归系数$w=(X^TX+\lambda I)^{-1}X^Ty)$，在机器学习实战中有这样一个解释：当特征数多于样本数也就是$X^TX$不满秩从而求逆运算出现问题的情况，岭回归就是在$X^TX$基础上加上一个$\lambda I$从而使得矩阵非奇异，所以求逆运算不会出现问题。其中$I$是一个m*m的单位矩阵，而$\lambda$是用户自己定义的数值。</li>
+<li>另外岭回归也就是优化问题中加个正则化项也用于在估计中加入偏差从而得到更好的估计。也就是增大偏差的同时减小方差。在统计学中，通过引入惩罚项减少不重要的参数对问题的影响也叫做缩减(shrinkage)。不难证明，在增加所有回归系数平方和不能大于$\lambda$约束条件之后，普通最小二乘法回归会得到和岭回归一样的公式。<strong>看到这里我想到当时学习SVM求解的拉日函数和对偶问题，不就是和这个时候的最小二乘法加上一个约束条件得到的优化问题一个思想么？！不同的约束条件得到不同的优化问题，比如这里的岭回归约束条件将平方和改为绝对值和那就成为了LASSO缩减方法。</strong></li>
+<li>为了使用岭回归和缩减技术，首先需要对特征做标准化处理(以前不知道在哪里看到过一句话说过拟合使用标准化，特征相差太大则用归一化。)标准化具体做法就是所有特征都减去各自的均值并除以方差，使得每维特征具有相同的重要性。特征标准化处理之后就可以通过不同的lambda值(值以指数级变化，这样可以取到非常小和非常大的值更方便比较)来求得对应的回归系数，我们在python代码中将所有的回归系数输出到一个矩阵中并返回。<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">ridgeRegres</span><span class="params">(xMat,yMat,lam=<span class="number">0.2</span>)</span>:</span></div><div class="line">    xTx = xMat.T*xMat</div><div class="line">    denom = xTx + eye(shape(xMat)[<span class="number">1</span>])*lam</div><div class="line">    <span class="keyword">if</span> linalg.det(denom) == <span class="number">0.0</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">"This matrix is singular, cannot do inverse"</span></div><div class="line">        <span class="keyword">return</span></div><div class="line">    ws = denom.I * (xMat.T*yMat)</div><div class="line">    <span class="keyword">return</span> ws</div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">ridgeTest</span><span class="params">(xArr,yArr)</span>:</span></div><div class="line">    xMat = mat(xArr); yMat=mat(yArr).T</div><div class="line">    yMean = mean(yMat,<span class="number">0</span>)</div><div class="line">    yMat = yMat - yMean     <span class="comment">#to eliminate X0 take mean off of Y</span></div><div class="line">    <span class="comment">#regularize X's</span></div><div class="line">    xMeans = mean(xMat,<span class="number">0</span>)   <span class="comment">#calc mean then subtract it off</span></div><div class="line">    xVar = var(xMat,<span class="number">0</span>)      <span class="comment">#calc variance of Xi then divide by it</span></div><div class="line">    xMat = (xMat - xMeans)/xVar</div><div class="line">    numTestPts = <span class="number">30</span></div><div class="line">    wMat = zeros((numTestPts,shape(xMat)[<span class="number">1</span>]))</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(numTestPts):</div><div class="line">        ws = ridgeRegres(xMat,yMat,exp(i<span class="number">-10</span>))</div><div class="line">        wMat[i,:]=ws.T</div><div class="line">    <span class="keyword">return</span> wMat</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__== <span class="string">"__main__"</span>:</div><div class="line">	abX,abY=loadDataSet(<span class="string">'abalone.txt'</span>)</div><div class="line">	ridgeWeights = ridgeTest(abX,abY)</div><div class="line">	fig = plt.figure()</div><div class="line">	ax = fig.add_subplot(<span class="number">111</span>)</div><div class="line">	ax.plot(ridgeWeights)</div><div class="line">	plt.show()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这段代码我们可以得到岭回归的回归系数变化图，从中可以发现在$\lambda$很小的时候就和线性回归的回归系数值一致，而图的右边所有系数都缩减为0，所以在中间部分必然存在最好预测效果的回归系数，可以通过交叉验证得到。</p>
+<h2 id="4-权衡偏差和方差"><a href="#4-权衡偏差和方差" class="headerlink" title="4. 权衡偏差和方差"></a>4. 权衡偏差和方差</h2><ul>
+<li>关于偏差和方差是很重要的概念，其中涉及大量的知识，牵扯到算法的方方面面，首先必须要记住训练误差，预测误差以及模型复杂度还有偏差的一些基本关系，从缩减方法中我们是可以窥探出他们之间的一些基本关系从而理解上一节中岭回归算法中我们为何选择回归系数初始值和缩减为0之间找预测性能最佳的系数。</li>
+<li>偏差-方差分解是解释学习算法泛化性能的一种重要工具。以回归任务为例，学习算法的期望泛化误差$E(f;D)=E_D[(f(x;D)-y_D)^2]+E_D[(f(x;D)-f^-(x))^2]$+$(f^-(x)-y)^2+E_D[(y_D-y)^2]$。这三个子项分别为：不同训练集产生的方差刻画了数据扰动所造成的影响；期望输出与真实标记的差别即偏差刻画了学习算法本身的拟合能力；噪声则表达了在当前任务下任何学习算法所能达到的期望泛化误差的下界即刻画问题本身的难度。这里公式里的$f^-(x)=E_D[f(x;D)]$是学习算法的期望预测，$f(x;D)$表示在训练集D上学得模型f在x上的预测输出。</li>
+<li><p>从上面的分析不难看出泛化性能由方差，偏差和噪声共同决定，因此给定一个学习任务，我们需要学习得到偏差较小即算法能够充分拟合数据，并且方差较小即数据扰动产生影响小的算法。<strong>然而偏差方差是有冲突的，我们称之为偏差-方差窘境。</strong>给定一个学习任务，假定我们控制算法的训练程度，当程度较低时，学习器拟合能力不强即偏差较大，泛化误差主要由偏差主导；当程度越来越高，拟合能力逐渐加强，此时训练数据的扰动渐渐被学习器学习得到，这个时候偏差值变小，方差变大，方差逐渐主导了泛化错误率。而训练程度达到一定程度后学习器拟合能力相当强，训练数据发生轻微的扰动都会导致学习器发生显著变化，若训练数据自身的非全局特性也被学习器学到则将发生过拟合。<br><img src="http://ogy25dae4.bkt.clouddn.com/blog/image/linear-regression/error.pngerror.png" alt="偏差方差关系图"></p>
+</li>
+<li><p>看到这里回忆一下实战训练LWLR算法，在机器学习实战8.2节中有LWLR使用高斯核的权重图以及三种不同k平滑值的LWLR拟合结果图。怎么理解过拟合情况下训练程度充足呢？在高斯核的参数k值很小的时候代表仅有很少的局部点用于训练回归模型，并且考虑太多噪声，这就是训练程度充足导致过拟合？<strong>我不知道怎么理解这里的k越小，越少的样例用于训练模型而又表示模型会考虑太多的噪声。</strong></p>
+</li>
+</ul>
+<h2 id="5-对数几率回归"><a href="#5-对数几率回归" class="headerlink" title="5. 对数几率回归"></a>5. 对数几率回归</h2><ul>
+<li>关于对数几率回归印象中有一篇关于它的博客写的非常好，里面会从伯努利分布一步步引导出对数几率回归的来源。<a href="http://www.cnblogs.com/logosxxw/archive/2015/07/16/4651398.html" target="_blank" rel="external">对数几率分析</a></li>
+<li>LDA的思想：<strong>实例在直线上的投影，类内散度矩阵和类间散度矩阵，这里是不是也对应着增大偏差减小方差的思想呢？</strong></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/fclefang/JavaScript/Bayes/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Bayes</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="JavaScript/线性回归" data-title="线性回归" data-url="http://www.fclef.me/fclefang/JavaScript/线性回归/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fclef"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Fclefang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

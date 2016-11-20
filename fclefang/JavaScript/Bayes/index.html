@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Bayes | fclefang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.朴素贝叶斯学习了贝叶斯决策论，依据期望损失(条件风险)和贝叶斯定理，我们发现了基于贝叶斯公式来估计后验概率$P(c|x)$的主要困难就在于类条件概率$P(x|c)$，这里的类条件概率是所有属性上的联合概率，这里假定为离散型属性，连续性只要换成概率密度函数即可。这里先介绍两种估计类条件概率的策略：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bayes">
+<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/Bayes/index.html">
+<meta property="og:site_name" content="fclefang">
+<meta property="og:description" content="1.朴素贝叶斯学习了贝叶斯决策论，依据期望损失(条件风险)和贝叶斯定理，我们发现了基于贝叶斯公式来估计后验概率$P(c|x)$的主要困难就在于类条件概率$P(x|c)$，这里的类条件概率是所有属性上的联合概率，这里假定为离散型属性，连续性只要换成概率密度函数即可。这里先介绍两种估计类条件概率的策略：">
+<meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/blog/image/bayes/1.png%E5%8F%98%E9%87%8F%E5%85%B8%E5%9E%8B%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB.png">
+<meta property="og:updated_time" content="2016-11-20T14:58:26.118Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bayes">
+<meta name="twitter:description" content="1.朴素贝叶斯学习了贝叶斯决策论，依据期望损失(条件风险)和贝叶斯定理，我们发现了基于贝叶斯公式来估计后验概率$P(c|x)$的主要困难就在于类条件概率$P(x|c)$，这里的类条件概率是所有属性上的联合概率，这里假定为离散型属性，连续性只要换成概率密度函数即可。这里先介绍两种估计类条件概率的策略：">
+<meta name="twitter:image" content="http://ogy25dae4.bkt.clouddn.com/blog/image/bayes/1.png%E5%8F%98%E9%87%8F%E5%85%B8%E5%9E%8B%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB.png">
+  
+    <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fclefang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">开心自由最重要</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories">分类</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">CIT（2012-2016）,GuiLin Elec(2016-2019).认真做好应该做的每一件事。衣不如新，人不如旧，旧衣穿着最舒服，新人也未必不是更好的选择...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Fclefang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fclefang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">开心自由最重要</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories">分类</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-JavaScript/Bayes" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/Bayes/" class="article-date">
+  	<time datetime="2016-11-15T15:01:00.000Z" itemprop="datePublished">2016-11-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Bayes
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Bayes/">Bayes</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-朴素贝叶斯"><a href="#1-朴素贝叶斯" class="headerlink" title="1.朴素贝叶斯"></a>1.朴素贝叶斯</h2><p>学习了贝叶斯决策论，依据期望损失(条件风险)和贝叶斯定理，我们发现了基于贝叶斯公式来估计后验概率$P(c|x)$的主要困难就在于类条件概率$P(x|c)$，这里的类条件概率是所有属性上的联合概率，这里假定为离散型属性，连续性只要换成概率密度函数即可。这里先介绍两种估计类条件概率的策略：<br><a id="more"></a></p>
+<ul>
+<li>朴素贝叶斯：类条件概率作为所有属性的联合概率，朴素贝叶斯分类器采用属性条件独立假设，对已知类别假设所有属性相互独立。于是可以得到：$$P(x|c)=\prod_{i=1}^{d}P(x_i|c)$$d是属性的数目，$x_i$是样本x在第i个属性上的取值。<strong>朴素贝叶斯分类器的训练过程就是基于训练集D来估计类先验概率P(c)，并为每个属性估计条件概率</strong>$P(x_i|c)$。在上面类条件概率估计时是对各属性条件概率进行乘积处理的，那么问题来了，在某个数据集下，当某个属性条件概率为0(这种情况出现非常正常)，那么就会影响整个样本的类条件概率，拉普拉斯修正可以解决这个问题影响。深入到数学层面理解地话，拉普拉斯修正实质假设了属性值与类别的均匀分布，这是在朴素贝叶斯学习过程中额外引入的关于数据的先验，而这个歌先验的影响会随着数据集不断变大而渐渐变小从而可以忽略其影响。</li>
+<li>极大似然估计：在贝叶斯定理中，P(c)是类“先验”概率，而我们之前说的类条件概率又称为“似然”，P(x)是用于归一化的“证据”因子与类标记无关，所以上面说到只需要估计类先验和类条件概率。在估计类条件概率时，一种常用的策略就是先假定其具有某种确定的概率分布形式，也就是说我们既然想估计类条件概率，可以先对该概率情形进行建模，再基于训练样本对概率分布模型的参数进行估计。这也就是所谓的生成式模型。事实上，概率模型的训练过程就是参数估计，而参数估计这里介绍频率主义学派的极大似然估计。</li>
+<li>极大似然参数估计：零$D_c$表示训练集D中第c类样本组成的集合，假设这些样本是独立同分布的(朴素贝叶斯假设样本属性之间相互独立)，则参数$\theta_c$对于数据集$D_c$的似然是$$P(D_c|\theta<em>c)=\prod</em>{x\in D_c}P(x|\theta_c)$$所以目的就是找到这样的$\theta_c$使得似然极大。这里有一个小的数学处理方法，也是为什么要用对数似然的原因。当我们进行连乘操作时容易造成下溢现象，所以通常使用对数似然。需要注意虽然这种参数化估计使得类条件概率估计变得相对简单，但是这种估计的准确性依赖于我们的假设的概率分布形式即模型是否符合真实数据分布！</li>
+</ul>
+<h2 id="2-半朴素贝叶斯"><a href="#2-半朴素贝叶斯" class="headerlink" title="2.半朴素贝叶斯"></a>2.半朴素贝叶斯</h2><p>朴素贝叶斯假设样本属性之间互相独立，但是这样的假设在现实中很难成立，于是对这样的假设进行一定程度上的放松从而产生了半朴素贝叶斯分类器，适当考虑一部分属性间的相互依赖关系。独依赖估计(One-Dependent Estimator)简称ODE，是半朴素贝叶斯分类器最常用的一种策略即假设每个属性在类别之外最多依赖一个其他属性。</p>
+<ul>
+<li>SPODE方法就是假设所有属性依赖同一个属性(超父)，然后通过交叉验证等模型选择方法来确定超父属性。</li>
+<li>TAN(Tree Augmented naive Bayes)则是在最大带权生成树算法的基础上通过一些处理约简属性间的依赖关系。<br>(1)计算任意两个属性之间的条件互信息$I$。<br>(2)以属性为结点构建完全图，任意两个结点之间边的权重设为$I$。<br>(3)构建此完全图的最大带权生成树，挑选根变量，将边置为有向。<br>(4)加入类别结点y，增加从y到每个属性的有向边。<br>条件互信息刻画了在已知类别情况下属性之间的相关性，而TAN实际上仅仅保留了强相关属性之间的依赖性。</li>
+<li>AODE(Averaged One-Dependent Estimator)是一种基于集成学习机制更加强大的ODE，与SPODE通过模型选择确定超父属性不同，AODE尝试将每个属性作为超父来构建SPODE，然后将那些具有足够训练数据支撑的SPODE集成起来作为最终结果。与朴素贝叶斯分类器相似，AODE无需模型选择(SPODE是通过模型选择的)，既能通过预计算节省预测时间也可以采用lazy-learning在预测时再进行计数，并且易于实现增量学习。</li>
+<li>总结一下半朴素贝叶斯就是对属性互相独立这个假设的放松处理，于是有了独依赖假设，那么能否进一步放松属性互相独立的假设呢，也就是说不仅仅依赖一个，而是与多个属性之间存在依赖关系(KDE)，而这也更符合实际情况。当然这里需要注意的是，k的增加虽然有利于泛化性能的提升，但是所需的样本数量也会以指数级增加，因此需要考量训练数据是否充足的情况。</li>
+</ul>
+<h2 id="3-贝叶斯网"><a href="#3-贝叶斯网" class="headerlink" title="3.贝叶斯网"></a>3.贝叶斯网</h2><p>贝叶斯网借助有向无环图(Directed Acyclic Graph简称DAG)来刻画属性之间的依赖关系，并使用条件概率表(Conditional Probability Table加成CPT)来描述属性的联合概率分布。具体来说，贝叶斯网$B=<g,\theta>$，G表示有向无环图，$\theta$表示条件概率表，贝叶斯网将$x_1,x_2…,x_d$的联合概率分布定义为$P_B(x_1,x_2,…x<em>d)=\prod</em>{i=1}^{d}P_B(x_i|π_i)$，其中$π_i$是属性$x_i$在G中的父结点集。</g,\theta></p>
+<ul>
+<li>G刻画属性之间的关系，这里讨论一下V型结构关系，因为同父关系很好理解，只要父结点已知则子结点条件独立，而V型结构又称冲撞结构，V型结构在子结点完全未知的情况下另外的冲撞节点才是相互独立的，可以通过边际独立性进行简单验证。</li>
+<li>为了分析有向图中变量之间的独立性，可以使用有向分离。先将有向图转变为无向图：<br>(1).找出有向图中所有V型结构，在V型结构的两个父结点之间加上一条无向变。<br>(2).将所有有向边改为无向边。<br>由此产生的无向图称为“道德图”，而父结点之间的连接又称为“道德化”。在道德图中若变量x和y在另一个变量z去除后分属两个连通分支，则称变量x和y被z有向分离即在z已知的情形下x与y条件独立。</li>
+<li><p>同父，顺序，V型以及有向分离一些列属性结构的提出推动了因果发现的研究，另外这里我有个问题<strong>西瓜书P159关于有向分离的分析如何理解在道德图中V型结构的边际独立性也就是子结点未知情况下另外两个变量之间才是相互独立的。</strong><br><img src="http://ogy25dae4.bkt.clouddn.com/blog/image/bayes/1.png%E5%8F%98%E9%87%8F%E5%85%B8%E5%9E%8B%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB.png" alt="变量关系结构图"></p>
+</li>
+<li><p>贝叶斯网学习的首要任务就是根据训练数据集来找出结构最“恰当”的贝叶斯网，当我们确定了B中的网络结构G之后，只需要估计出每个结点的条件概率表即可。那么如何找到结构最优的贝叶斯网呢？下面引入评分函数，评估贝叶斯网与训练数据集的契合度，我们可以基于这样的函数找到契合度最高的贝叶斯网结构。这里提一下评分函数基于信息论准则，通过编码对数据进行压缩，以最短编码长度来描述训练数据的概率分布从而得到最优贝叶斯网模型(不难理解贝叶斯网就是训练数据集的概率分布，而我们利用编码机制来表示这样的数据分布情况)。比如一个基于综合编码长度最短的贝叶斯网，也就是“最小描述长度”准则，简称MDL。</p>
+</li>
+<li>给定训练数据集$D=[x_1,x_2,…,x<em>m]$，贝叶斯网B在D上的评分函数可写为$s(B|D)=f(\theta)|B|-LL(B|D)$其中|B|表示贝叶斯网的参数个数，$f(\theta)$表示描述每个参数所需的字节数，LL则是贝叶斯网B基于训练集D的对数似然。显然第一项是计算编码B所需的总字节数，而$LL(B|D)=\sum</em>{i=1}^{m}logP_B(x_i)$则是计算B所对应的概率分布$P_B$需多少字节来描述D。于是得到优化任务求S的最小值。</li>
+<li>$f(\theta)$的大小不同则得到不同的评分函数，为1的时候得到AIC(Akaike Information Criterion)函数，为${1\over2}logm$的时候也就是每个参数用${1\over2}logm$字节数描述，得到BIC(Bayesian Infirmation Criterion)函数，为0或者常数的时候最小化S(B|D)就是对参数的极大似然估计，<strong>这让我想到文中之前提到的关于估计类条件概率的常用策略之极大似然估计，需要注意的是当时讨论的时候假设样本之间独立同分布。</strong>而这里的极大似然对参数$\theta_{x_i|π_i}$的估计因为有了父结点集，所以可以直接利用训练数据D通过经验估计获得。</li>
+<li>这里我有一个关于极大似然参数估计的问题，我只知道这些参数决定了数据概率分布模型，但是就像上面说的，我通过训练数据得到了参数，但是为什么能够确定这些参数是最优参数呢？如何证明这些参数使得对数似然LL(B|D)最大？</li>
+<li>还有西瓜书P160也说了得到了最优参数还要对所有网络结构进行搜索最后才能得到最优的贝叶斯网，难道这些参数的确定不就可以直接确定了最优贝叶斯网吗？这些参数如何与网络结构结合得到我们想要的最优贝叶斯网呢？其实我也知道我的这些困惑在于自己对极大似然和概率分布知识理解不够。</li>
+<li>在网络结构空间中选择最优贝叶斯网结构是个ＮＰ难题，通过贪心法或者对网络结构施以条件约束都能在多项式时间内求得近似解，但是当我们通过对网络结构选择过程中，比如增加一条边，它是如何对评价函数S进行影响的呢？</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/fclefang/JavaScript/线性回归/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          线性回归
+        
+      </div>
+    </a>
+  
+  
+    <a href="/fclefang/JavaScript/SVM(3)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SVM(3)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="JavaScript/Bayes" data-title="Bayes" data-url="http://www.fclef.me/fclefang/JavaScript/Bayes/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fclef"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Fclefang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
