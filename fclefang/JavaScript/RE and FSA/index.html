@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>RE and FSA | fclefang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.正则表达式正则表达式regular expression简称RE是一种用于描述文本搜索符号串的语言。最初由Kleene开发是专用语言中用于描述符号串的简单类别公式，从形式上来说是用来刻画符号串集合的一个代数表述。可以用来描述搜索符号串，也可以用于以形式的方法定义一种语言。
+
+正则表达式是区分大小写的，表达式前后加斜线‘/’，内部有‘[]’的字符串表达式是表示字符的析取匹配，比如/[wW]ood">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RE and FSA">
+<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/RE and FSA/index.html">
+<meta property="og:site_name" content="fclefang">
+<meta property="og:description" content="1.正则表达式正则表达式regular expression简称RE是一种用于描述文本搜索符号串的语言。最初由Kleene开发是专用语言中用于描述符号串的简单类别公式，从形式上来说是用来刻画符号串集合的一个代数表述。可以用来描述搜索符号串，也可以用于以形式的方法定义一种语言。
+
+正则表达式是区分大小写的，表达式前后加斜线‘/’，内部有‘[]’的字符串表达式是表示字符的析取匹配，比如/[wW]ood">
+<meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/blog/image/NFSA/%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95.pngNFSA%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95.png">
+<meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/blog/image/FST/FST.pngFST.png">
+<meta property="og:updated_time" content="2016-11-22T16:02:59.791Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RE and FSA">
+<meta name="twitter:description" content="1.正则表达式正则表达式regular expression简称RE是一种用于描述文本搜索符号串的语言。最初由Kleene开发是专用语言中用于描述符号串的简单类别公式，从形式上来说是用来刻画符号串集合的一个代数表述。可以用来描述搜索符号串，也可以用于以形式的方法定义一种语言。
+
+正则表达式是区分大小写的，表达式前后加斜线‘/’，内部有‘[]’的字符串表达式是表示字符的析取匹配，比如/[wW]ood">
+<meta name="twitter:image" content="http://ogy25dae4.bkt.clouddn.com/blog/image/NFSA/%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95.pngNFSA%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95.png">
+  
+    <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fclefang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">开心自由最重要</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories">分类</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/gossip/" style="font-size: 10px;">gossip</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">CIT（2012-2016）,GuiLin Elec(2016-2019).认真做好应该做的每一件事。衣不如新，人不如旧，旧衣穿着最舒服，新人也未必不是更好的选择...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Fclefang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fclefang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">开心自由最重要</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories">分类</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-JavaScript/RE and FSA" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/RE and FSA/" class="article-date">
+  	<time datetime="2016-11-21T07:13:01.000Z" itemprop="datePublished">2016-11-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      RE and FSA
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/RE-FSA-FST/">RE-FSA-FST</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-正则表达式"><a href="#1-正则表达式" class="headerlink" title="1.正则表达式"></a>1.正则表达式</h2><p>正则表达式regular expression简称RE是一种用于描述文本搜索符号串的语言。最初由Kleene开发是专用语言中用于描述符号串的简单类别公式，从形式上来说是用来刻画符号串集合的一个代数表述。可以用来描述搜索符号串，也可以用于以形式的方法定义一种语言。</p>
+<ul>
+<li>正则表达式是区分大小写的，表达式前后加斜线‘/’，内部有‘[]’的字符串表达式是表示字符的析取匹配，比如/[wW]oodchuck/则会匹配Woodchuck或者woodchuck。</li>
+<li>连字符‘-’可以用来表示一定范围内的任何字符，比如/[1-3]/则表示字符1,2,3中的任一个字符。</li>
+<li>脱字符‘^’，‘[]’还可以表示不出现某个单独的字符也就是如果再方括号之后又脱字符那么相应的模式就是否定的但是需要注意这种用法仅当脱字符处于开方括号之后的第一个位置才有效，在其他位置仍然表示脱字符本身。比如[^A-Z]\表示不是一个大写字母，而[e^]\表示字母e或者脱字符^。另外还可以表示一行的开始比如/^The/表示单词The只出现在一行的开始。</li>
+<li>问号’?’表示前一个字符的有或无。</li>
+<li>‘<em>’称为“Kleene </em>”表示前面紧邻的字符好着正则表达式出现零次或者连续出现多次。</li>
+<li>‘+’表示前面一个或者多个字符。</li>
+<li>‘.’是一个通配符，表示任何与单个字符(回车符除外)相匹配的字符。</li>
+<li>‘_$’表示一行的结尾是空白，比如/^The dog.$/表示仅包含短语The dog的一个行。</li>
+<li>‘\b’表示词界，’\B’表示非词界，比如/\bthe\b/表示单词the，the前后不能是数字下划线或者字母。</li>
+<li>圆括号运算符‘()’，把一个模式括在圆括号内，它能像一个单独的字符来使用。比如/gupp(y|ies)/表示guppy或者guppies，这里的’|’是析取符，就是‘或’的意思。</li>
+<li>有了圆括号，计数符，序列与锚和析取符(优先级从高到低)，我们可以组合使用表示不同的内涵。另外更多的高级算符这里就不一一列举了。</li>
+</ul>
+<h2 id="2-有限状态自动机"><a href="#2-有限状态自动机" class="headerlink" title="2. 有限状态自动机"></a>2. 有限状态自动机</h2><p>看着就和计算机理论中图灵机有很多类似的思想。<br>FSA可以分为DFSA和NFSA，<strong>值得一提的是，对于任何NFSA又存在与之对应的DFSA，正则表达式的每个基本操作都可以通过自动机模拟，就和图灵机模拟可计算函数一样</strong>。在NFSA情况下，由于在某结点处存在一种以上的选择可能性(这也就是为何我们称之为非确定有限状态机)，我们有可能做出错误的选择，面对这样的问题这里先介绍回退方法解决该问题。</p>
+<ul>
+<li>回退：每当我们走到这样的选择点时，我们可以做一个记号，记录下在纸带输入中的什么位置以及自动机处于什么状态。当我们确认做了错误选择时可以退回去试探其他的选择可能。该方法两个重点：在每个选择点必须记住所有选择；对于每个不同选择必须存储足够的信息以便需要时返回。当返回算法到达某个点而其进程不能再进展时算法返回到前一个选择点开始重复迭代不同路径。这里我们称自动机状态为结点或者机器状态，把纸带上位置和结点的结合体称为搜索状态。</li>
+<li>下面是用于NFSA识别的算法。ND-Recognize首先建立一个初始的搜索状态，并把它放入进程表中。NEXT函数功能是从进程表中检索一个项目(尚未进行过的选择)并且把它赋给变量current-search-state(当前搜索状态)。和DFSA识别算法类似，主要回路的首要任务也是确认纸带上的输入信息是否被自动机成功识别。这里通过ACCEPT-STATE？函数来实现，如果current-search-state既包含一个接受的机器状态也包含一个纸带结尾的指针就返回accept。否则调用GENERATE-NEW-STATE函数来生成新的可能的下一状态，所有这些创建的状态都要加到当前的进程表中。最后再对进程表中新搜索状态处理，继续选择其他没尝试过的可能性选择，若仍然无法进行选择则拒绝输入的字符串。<br><img src="http://ogy25dae4.bkt.clouddn.com/blog/image/NFSA/%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95.pngNFSA%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95.png" alt="NFSA识别算法"></li>
+<li>ND识别算法的任务在于提出一种办法来系统地探索自动机中所有可能的路径，从而识别正则表达式表示的符号串。如果找到了这样一条路径并且以接收状态结束那么accept该符号串否则就refuse。利用进程表可以实现这样的探索机制。ND识别这种算法称为状态空间搜索算法。在可能的路径空间内搜索问题正确的解。进程表就是这样的“空间”，算法将下一步要处理的状态置于进程表前端然后通过stack实现，这种处理顺序的策略通常被称为深度优先搜索或者后进先出LIFO策略。当然还有用队列来实现的策略又称为广度优先搜索或者先进先出策略。</li>
+</ul>
+<h2 id="3-历史小事"><a href="#3-历史小事" class="headerlink" title="3. 历史小事"></a>3. 历史小事</h2><p>FSA来源于Turing-theory，McCulloch和Pitts研制了类似FSA的神经元模型，在神经元模型基础上Kleene定义了有限自动机和正则表达式并且证明二者等价，后来Rabin和Scott提出非确定自动机并证明与确定自动机等价。</p>
+<h2 id="4-有限状态转录机FST"><a href="#4-有限状态转录机FST" class="headerlink" title="4. 有限状态转录机FST"></a>4. 有限状态转录机FST</h2><p>关于语言形态学中曲折形态学和派生形态学不详细介绍，简单举个例子就像规则名词和不规则名字的复数形式以及动词的各种过去式啥的都是曲折形态学中的范畴，而派生形态就比如一个动词加上less变成形容词就是派生范畴，派生形态学比曲折形态复杂多，这里面的知识不作详细介绍。下面主要介绍FST。</p>
+<ul>
+<li>要知道FSA是用来解决形态识别的，所谓形态识别就是判断由字母构成的输入符号串是不是合法的，当我们用FSA来表示词表以及进行形态识别之后就会面临形态剖析问题：例如‘cats’经过剖析得到输出‘cat+N+PL’，意思是cat的复数名词。而这里的剖析过程就是FST来完成的。</li>
+<li>这里FST的思想是用的双层形态学方法，将一个词分为表层和词汇层，表层是该词实际拼写情况，而词汇层则是表层上的字母序列映射之后的语素和特征的序列信息(比如cat+N+PL)。不难理解FST就是用来完成这个映射任务的。其实吧，双层形态的双层就可以看成两个纸带，纸带上存储各自层的信息，而FST也就是具有两个纸带的自动机，我们似乎也可以把它的机制理解成在一个纸带上识别形态并且在另一个纸带上生成被识别形态的语素和特征序列。</li>
+<li>然而双层模型对于多样复杂的词汇仍然有很大的局限，尤其在处理英语中经常出现的语素边界拼写变化的问题，所以改进提出了三层模型，在表层和词汇层之间加一个中间层，在表层和中间层之间引入拼写规则又称为正词法规则来解决语素边界的问题。</li>
+<li>将FST引入规则相结合对词汇进行剖析和生成下面一张图很容易让人理解层与层之间的机制。<img src="http://ogy25dae4.bkt.clouddn.com/blog/image/FST/FST.pngFST.png" alt="此处输入图片的描述"><br>从图中看很好理解FST剖析以及生成的过程，这里剖析过程相对复杂，因为在剖析的时候存在歧义问题，比如foxes还可以表示动词的意思，出现这样的歧义FST是没有能力解决的，关于歧义消解会另外总结。</li>
+<li>建立词表加规则的FST是形态剖析的标准算法，当然还存在一些简单的额算法并没有标准算法所需的大规模联机词表的要求这样的简单算法可以用于完成信息检索任务，比如简单有效的Porter词干处理器算法，并不需要精确的形态结构分析。</li>
+<li>另外存在FST的自动编译程序，该编译程序对于任何简单的重写规则都能造出一个FST出来。</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/fclefang/JavaScript/16.11.24小记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          16.11.24小记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/fclefang/JavaScript/线性回归/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">线性回归</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="JavaScript/RE and FSA" data-title="RE and FSA" data-url="http://www.fclef.me/fclefang/JavaScript/RE and FSA/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fclef"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Fclefang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

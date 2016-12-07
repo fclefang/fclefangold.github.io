@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>发音拼写的概率模型 | fclefang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="检查和更新拼写错误问题
+语音识别和文本-语音自动转换系统模拟语音发音变化问题
+这两个问题可以都转化为概率转移问题，比如拼写错误的单词需要列出可能正确的单词列表找出可能性最大的那个单词，词汇的发音变化的问题类似。贝叶斯规则和噪声信道模型提供了解决这些的概率框架。但是实际解决这些问题还需要算法。
+这篇将会总结动态规划的主要算法以及一些实际应用，包括Viterbi算法(韦特比算法)，最小编辑距离算法和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="发音拼写的概率模型">
+<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/发音拼写的概率模型/index.html">
+<meta property="og:site_name" content="fclefang">
+<meta property="og:description" content="检查和更新拼写错误问题
+语音识别和文本-语音自动转换系统模拟语音发音变化问题
+这两个问题可以都转化为概率转移问题，比如拼写错误的单词需要列出可能正确的单词列表找出可能性最大的那个单词，词汇的发音变化的问题类似。贝叶斯规则和噪声信道模型提供了解决这些的概率框架。但是实际解决这些问题还需要算法。
+这篇将会总结动态规划的主要算法以及一些实际应用，包括Viterbi算法(韦特比算法)，最小编辑距离算法和">
+<meta property="og:updated_time" content="2016-12-07T15:14:34.509Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="发音拼写的概率模型">
+<meta name="twitter:description" content="检查和更新拼写错误问题
+语音识别和文本-语音自动转换系统模拟语音发音变化问题
+这两个问题可以都转化为概率转移问题，比如拼写错误的单词需要列出可能正确的单词列表找出可能性最大的那个单词，词汇的发音变化的问题类似。贝叶斯规则和噪声信道模型提供了解决这些的概率框架。但是实际解决这些问题还需要算法。
+这篇将会总结动态规划的主要算法以及一些实际应用，包括Viterbi算法(韦特比算法)，最小编辑距离算法和">
+  
+    <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fclefang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">开心自由最重要</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories">分类</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/gossip/" style="font-size: 10px;">gossip</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">CIT（2012-2016）,GuiLin Elec(2016-2019).认真做好应该做的每一件事。衣不如新，人不如旧，旧衣穿着最舒服，新人也未必不是更好的选择...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Fclefang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fclefang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">开心自由最重要</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories">分类</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-JavaScript/发音拼写的概率模型" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/发音拼写的概率模型/" class="article-date">
+  	<time datetime="2016-11-30T08:04:01.000Z" itemprop="datePublished">2016-11-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      发音拼写的概率模型
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/NLP/">NLP</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>检查和更新拼写错误问题</li>
+<li>语音识别和文本-语音自动转换系统模拟语音发音变化问题</li>
+<li>这两个问题可以都转化为概率转移问题，比如拼写错误的单词需要列出可能正确的单词列表找出可能性最大的那个单词，词汇的发音变化的问题类似。<strong>贝叶斯规则和噪声信道模型提供了解决这些的概率框架。</strong>但是实际解决这些问题还需要算法。</li>
+<li>这篇将会总结动态规划的主要算法以及一些实际应用，包括Viterbi算法(韦特比算法)，最小编辑距离算法和向前算法(forward algorithm)。另外还有FSA的一个概率版本即加权自动机。<a id="more"></a>
+</li>
+</ol>
+<hr>
+<h2 id="A-概率模型"><a href="#A-概率模型" class="headerlink" title="A. 概率模型"></a>A. 概率模型</h2><ul>
+<li>噪声信道模型：从直觉上来理解的话，表层形式(“推导出”的发音或者错拼单词)可以看成是词汇形式(“词汇”的发音或正确拼写的单词)在通过了噪声信道后得到的一个实例。由于在信道中有噪声使得我们难以辨认出词汇形式的“真实”单词的面目。我们的目的就是建立一个信道模型使得能够计算出这个“真实”单词是如何被“噪声”影响改变的，从而恢复它的本来面目。这让我想到以前学习通信原理的知识。</li>
+<li>贝叶斯模型：当我们得到某个observation，对于语音识别这个observation就是听到的单词的音子，对于拼写错误检查就是构成的可能错拼单词的字母串。贝叶斯分类会考虑一切可能的观察分类也就是比如得到的某个音子，一切可能的观察分类就是所有包含这个音子的可能的单词集合。我们用w表示正确的单词估计，o表示observation，模型的目标就是找出$P(w|o)$概率最大的那个单词w。这里就设计到机器学习中贝叶斯理论，不做详细介绍，可以参考Bayes那一篇博客。</li>
+<li>含混矩阵：在单词更错中，t表示错拼单词，c表示候选更正集合C上的元素c，所以贝叶斯模型就是找出使得$P(c|t)$最大的那个c，根据贝叶斯公式就是求取$P(t|c)*P(c)$极大值情形下的c，而似然度$p(t|c)$的精确计算至今还没解决，这里介绍一个估算这种概率的而方法就是用混合矩阵(Kerninghan et al. 1990)，每一类混合矩阵代表一类单独错误，这样利用贝叶斯算法和含混矩阵结合起来可以得到候选更正的c。需要注意的是在Kerninghan的工作中是假设每个单词只有一个单独的拼写错误。那么如何处理多错误情况呢？其实我们把错误单词和正确单词对比一下就能想到以前学过的一个算法最短编辑距离。</li>
+</ul>
+<h2 id="B-最小编辑距离"><a href="#B-最小编辑距离" class="headerlink" title="B.最小编辑距离"></a>B.最小编辑距离</h2><p>minimum edit distance是找出符号串距离的最通用算法之一。两个符号串之间的最小编辑距离是指把一个符号串转换为另一个符号串时所需的最小编辑操作的次数。</p>
+<ul>
+<li>表示两个字符串距离的方法可以用踪迹trace，对齐alignment和操作表operation list三种。另外根据操作程度的不同可以给操作赋权重，其中权重的选择对最小编辑距离的影响很大，这里说一下通过含混矩阵来给每种操作赋权重(概率值)，这里需要理解含混矩阵的意义，于是这样的‘最小编辑距离’称之为字符串之间的最大概率对齐可能更合适。</li>
+<li>最小编辑距离使用动态规划求解。从直觉上来看，动态规划问题就是把一个大问题化解为不同的子问题来求解，然后再把这些子问题适当地结合起来得到大问题的解。例如符号串intension和execution之间的最小编辑距离的求解，就要考虑被考虑的而不同单词的序列和路径。这里设想某个符号串(比如exention)处于最优的路径(无论哪个路径)。动态规划要求如果exention处于最优操作表中，那么最优的序列应该包含从intention到exention的最优路径。<strong>这个思想让我联想到维特比算法使用动态规划解决HHM模型预测问题。</strong></li>
+<li>这里单独列出来关于动态规划算法处理序列比较问题时建立的距离矩阵。目标序列的每个符号记录在矩阵的行上，源序列的每个符号记录在矩阵的列上，这个说的不好理解，就拿最小编辑距离举个例子，这里建立的距离矩阵就称为编辑距离矩阵，每个单元[i,j]表示目标序列前i个字符和源序列的前j个字符之间的距离。计算每个单元中的值时，取到达该单元时三个可能路径中的最小路径为其值。三个可能路径(插入ins，替代subst，脱落del)的距离分别为<code>distance[i-1,j]+ins-cost(target.i)</code>,<code>distance[i-1,j-1]+subst-cost(source.j,target.i)</code>和<code>distance[i,j-1]+del-cost(target.i)</code>。基于上面的理解我们可以很简单实现一个基于动态规划的最小编辑距离算法的伪代码的实现。当然还要再提一下distance距离函数需要选取合适的距离函数。</li>
+</ul>
+<h2 id="C-发音问题中的贝叶斯方法"><a href="#C-发音问题中的贝叶斯方法" class="headerlink" title="C.发音问题中的贝叶斯方法"></a>C.发音问题中的贝叶斯方法</h2><p>前面讲过通过一些规则和FST来模拟发音的变异，其实影响发音变异的因素不仅仅语音的环境还有很多其他复杂的因素。这里介绍一些语音变异的类型以及模拟这些变异的概率工具。</p>
+<ul>
+<li>发音变异分为两大类：词汇变异lexical variation和音位变异allophonic variation。其中词汇变异看成是用来表示词表中的单词的语音片断的差异，而音位变异则是单独的语音片断在不同的上下文中的发音差异。词汇变异一个重要来源是社会语言变异，社会语言变异是语言外的因素引起的比如方言变异等。<strong>词汇变异发生在词汇层面而音位变异发生在表层形式，它反映了语音因素和发音因素。</strong>类似于元音的声门化，音位变体规则中的同化，异化，脱落，闪音化和增音，元音弱化等，这些规则并不是说给定一个环境就可以应用，它们依赖很多复杂的因素，需要在概率上加以解释。</li>
+<li>和拼写错误的更正优化使用贝叶斯方法一样，对于给出的音子序列，任务就是计算出生成这些音子序列的概率最大的单词。利用贝叶斯公式求先验概率和似然度，思想和错误拼写更正一样，只是在概率计算过程的实现细节不同。这个贝叶斯算法事实上是现代语音识别系统的一部分。其实各种算法的不同之处在于如何检查声学中的音子以及使用什么搜索算法来有效计算贝叶斯概率以便得到的概率最大的单词真实情况下也是最大可能的正确单词。</li>
+<li>发音变异中的决策树模型：决策树特别是CART算法，这个算法我也总结过一点小知识，这里算是该算法的一个重要应用。它可以从标注语料库中自动推导出词汇到表层发音的映射关系。在发音问题研究中，可以训练决策树来提取一个词汇音子和它的各种上下文特征，并选择一个适合的表层音子来实现它。</li>
+</ul>
+<h2 id="D-加权自动机"><a href="#D-加权自动机" class="headerlink" title="D. 加权自动机"></a>D. 加权自动机</h2><p>加权自动机是由有限自动机扩充而成的，在加权自动机的每个弧上都标有下一步走哪一条路径的概率可能性，离开同一点的所有弧上的概率和应该为0。下面只作为简单的思路介绍和算法在语音识别的应用，不会对算法进行深入解释和推导。这里推荐要去看看李航统计学习的HHM和西瓜书中的HHM知识来加深原理的理解：向前向后算法，维比特算法等等。</p>
+<ul>
+<li>马尔科夫链是加权自动机的一种特殊情况，在马尔科夫链中输入符号序列唯一地确定了自动机将要通过的状态。实际上，在语音和语言处理中使用的加权自动机等价于HHM，这两个模型功能目的类似只是对解决问题的形象化解释稍有不同。</li>
+<li>基于自动机的词表的优点在于这种词表有足够的算法来生成正确单词辨别的贝叶斯模型所需的概率。不管是自动机和HHM都适用。在贝叶斯方法中，输入一个音子序列，在可能的单词序列中进行选择，根据贝叶斯公式和一些推理我们知道只要计算每个单词的先验概率以及音子序列对每个给定单词的似然度。在加权自动机模型中，我们可以使用向前向后算法来计算音子序列对某个给定单词的似然度。我们给定向前算法一个观察序列和某个单词的发音自动机，这个算法给出该单词先验概率和似然度的乘积，所以对每个词运行向前算法并选择具有最大值的单词作为结果。向前算法是计算在给定的加权自动机中观察序列似然度最有效的途径，正如最小编辑距离一样，也是动态规划的一种变体。另外还有一种变体为Viterbi算法，当我们考虑所有可能的符号串，使用贝叶斯规则来计算它们生成所观察到的“噪声”序列时，Viterbi算法非常有效。<br><strong>这些都只是我个人的一些知识小结，并不是系统的总结。总的来说这一次的小结已经到了机器学习算法在语音处理和识别的应用的临界点，接下来会详细讲解HHM等经典算法在语音处理上的应用。</strong></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/fclefang/JavaScript/tree-regression/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">tree-regression</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="JavaScript/发音拼写的概率模型" data-title="发音拼写的概率模型" data-url="http://www.fclef.me/fclefang/JavaScript/发音拼写的概率模型/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fclef"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Fclefang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

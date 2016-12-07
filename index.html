@@ -72,7 +72,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -111,7 +111,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a>
+						<a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/gossip/" style="font-size: 10px;">gossip</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a>
 					</div>
 				</section>
 				
@@ -180,6 +180,375 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-JavaScript/发音拼写的概率模型" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/发音拼写的概率模型/" class="article-date">
+  	<time datetime="2016-11-30T08:04:01.000Z" itemprop="datePublished">2016-11-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/发音拼写的概率模型/">发音拼写的概率模型</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>检查和更新拼写错误问题</li>
+<li>语音识别和文本-语音自动转换系统模拟语音发音变化问题</li>
+<li>这两个问题可以都转化为概率转移问题，比如拼写错误的单词需要列出可能正确的单词列表找出可能性最大的那个单词，词汇的发音变化的问题类似。<strong>贝叶斯规则和噪声信道模型提供了解决这些的概率框架。</strong>但是实际解决这些问题还需要算法。</li>
+<li>这篇将会总结动态规划的主要算法以及一些实际应用，包括Viterbi算法(韦特比算法)，最小编辑距离算法和向前算法(forward algorithm)。另外还有FSA的一个概率版本即加权自动机。
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/NLP/">NLP</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/fclefang/JavaScript/发音拼写的概率模型/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/tree-regression" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/tree-regression/" class="article-date">
+  	<time datetime="2016-11-26T07:55:01.000Z" itemprop="datePublished">2016-11-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/tree-regression/">tree-regression</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在前面总结的线性回归算法中都需要拟合所有的样本点，当然除了回归类中的特例LWLR。抛开更加复杂的计算不谈，面对很多现实问题，全局线性回归模型来拟合所有数据样本是不可能的。那么是否可以对数据集进行选择，得到适合进行线性回归模型拟合的子集。与LWLR不同，这里利用决策树的方法对数据集进行结构化然后切分得到理想的子集。接下来会介绍CART(Classification And Regression Trees)的树构建算法，既可以用于分类又可以用于回归。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tree-regression/">tree-regression</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/fclefang/JavaScript/tree-regression/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/语音转换" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/语音转换/" class="article-date">
+  	<time datetime="2016-11-26T03:24:01.000Z" itemprop="datePublished">2016-11-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/语音转换/">语音转换</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>语音识别系统需要研究它所要识别的每个单词的发音，文语转换系统需要研究该系统所说出的每个单词的发音。计算机音系学的一个重要部分就是研究模拟这些音位规则的计算机制，利用拼写规则转录机给音系学建模，讨论音位学习的计算机模型，研究机器学习算法自动推出音位规则。</p>
+<hr>
+<h2 id="1-音位规则与转录机"><a href="#1-音位规则与转录机" class="headerlink" title="1. 音位规则与转录机"></a>1. 音位规则与转录机</h2><p>[t]的发音在不同的上下文环境中是可能变化的。我们一般把这一类的发音变化称为一个抽象的类别-音位(phoneme)，这个音位在不同上下文环境中实现为不同的音位变体。按照传统标音习惯，音位一般写在两个斜杠之间，比如/t/，把音位变体分别记为用[]表示的不同变体。所以音位是对不同实际语言的一种归纳或抽象。通常我们把音位和词汇放在一个层面上来处理，词表中的单词按照音位来标音，像这种不加上音位变体以及更多音位细节的标音形式称为宽式音标，当然也就有了对应的包含音位细节包括音位变体的严式音标。</p>
+<ul>
+<li>音位规则：音位和它的音位变体之间的关系通常可以写成音位规则，前面讲过拼写规则可以通过FST实现，音位规则同样可以由FST实现，其实不同的计算机音系模型都以不同的方式使用的FSA来实现音位规则。对于一个音标有多个音位规则，这些音位规则彼此之间会发生相互作用，我们使用FSA(FST)实现这些规则，通过多个FST进行层叠式连接，这样能表示规则之间的相互影响。另外需要注意多个规则必须是有序的也就是说FST必然有序，因为层叠太多层不容易运行，所以通常组合多个不同FST构成一个比较复杂的FST。然而在一种语法中绝大多数音位规则是彼此独立的，所以可以用双层规则的方法避免规则交互的情况。比如利用双层规则方法避免i-插入规则和z-清音化规则的排序问题，基本思路就是z-清音化规则把词汇的z-插入规则映射到表层s，而i-规则也只涉及到词汇z。我们可以用从规则到自动机的编译算法得到i插入规则和z清音化规则的FST，这俩个FST并行运行，不是之前说的排序串行运行，这就是双层方法。</li>
+<li>面对不同语言复杂的音位规则，我们通过各种音系学的知识来结合FSA进行建模表示，那么不难想到结合机器学习来推导模型的建立。比如用监督算法，已知数据集和对应数据正确的表层形式来学习模型；或者非监督算法单纯通过数据集来推导，虽然没有正确的表层形式但是可以给出这些语言词汇数据所蕴含的规则的性质或者所形成的模型的形式提示，比如模型的形式可能是自动机这样的提示，我们也称这种学习为学习偏爱。</li>
+</ul>
+<hr>
+<h2 id="2-发音词典"><a href="#2-发音词典" class="headerlink" title="2. 发音词典"></a>2. 发音词典</h2><p>当我们学习了某语言的基本情况并且知道怎样给其音位规则建立模型，那么下一步研究怎样把符合正词法的或书面的单词映射为它们的发音。</p>
+<ul>
+<li>发音词典pronunciation dictionary：发音词典既可以用于自动语音识别系统ASR，也可以用于文本语音转换系统TTS，当然会有所不同。发音词典几个重要的研究方向：拼写形式相同而发音不同的单词；专有名词的发音；发音词典中还没有很好的模型来处理虚词的发音，因为比如and和of发音变化的语音上下文环境很复杂，一般在语音词典中只包含一些简单的最基本的虚词发音规则。另外TTS和ASR最重要的一个区别就是TTS的发音词典不需要表示方言的变体比如在非常精确的ASR发音词典中需要表示either和tomato的不同发音，而在TTS的发音词典中只需选择一种发音就可以了。</li>
+<li>词典之外的查找：文本分析。在任何语言系统中，我们都不可能将所有的词通过语音词典表示出来。在语音合成和识别的过程中，我们都需要去猜测某个在发音词典中没有的词的发音。有三种重要的语言问题是不能依靠语言词典来处理的：专有名词；形态的能产性morphological-productivity和数字number。比如随便找一篇影评文章的一段然后与发音词典作比较，总会存在一定比例的单词发音没被语音词典覆盖，当然我们会发现专有名词问题相对而言更加重要。当然还有例如土耳其语这类形态能产性很高的语言，要表示它们的每个可能的词几乎不可能。英语比起土耳其语形态已经简单多了，但是在语音模型建模时形态知识仍然非常重要。最后数字发音问题主要是数字串的发音等等。</li>
+<li>基于FST的发音词典：<br>(1).表示每个单词的基本形式即单词未经曲折变化的形式。这种基本形式是按照他们符合正词法的形式存储在字典中，然后根据正确的词汇音位表示方法来扩充这些基本形式。<br>(2).模拟单词形态变化的有限状态机。比如名词复数后缀s，这里直接将处理单词复数的FSA基础上增加s作为后缀的发音规则等其他规则就行。不难发现这一部分加上第一部分结合起来比如处理屈折变化的FSA和处理词基本形式的FST结合产生一部处理曲折功能的既包括名词单数也包括复数的微型词典。<br>(3).这种微型词典已经包含了两层分别为底层和中间层，底层就是词汇层。接下来就是应用拼写规则和发音规则把中间层映射到表层就OK。和之前学到的三层模型一样，其中词汇层(包含单词的词干和形态特征)和中间层(表示语素的简单毗连)是通过词典FST来映射的。每个FST或者表示一个简单的拼写规则限制，或者表示一个简单的音位限制，这些FST并行运行，在中间层和表层之间进行映射。记住每层都有正词法表示和音位表示。</li>
+</ul>
+<hr>
+<h2 id="3-文本-语音转换中的韵律"><a href="#3-文本-语音转换中的韵律" class="headerlink" title="3. 文本-语音转换中的韵律"></a>3. 文本-语音转换中的韵律</h2><p>音律的研究有时又称为超音段现象，有三个主要的音系学性质：突显度prominence，结构structure和调tune。</p>
+<ul>
+<li>突显度：用于覆盖重音和重读的一个广义的术语。突显度是音节的一个性质，它的描述往往是相对的。词汇的结合会对重音模型造成影响，重音的结合也需要遵循一定的规则，当然规则也有例外。另外韵基rhythm的作用可以使重读音节稍微有所扩展。</li>
+<li>韵律结构：一个句子中某些词自然地倾向于结合在一起而某些词有明显的间隔或者彼此分开，通常用韵律短语来描述韵律结构，另外具有同样韵律短语结构的一段话应该具有同样的句法结构。韵律短语是可以继续分割成更小的中间短语。可以通过算法模型来将输入文本的句子自动分割为一些语调短语，比如根据单词词类特征，长度特征等建立统计模型来预测语调短语的边界。</li>
+<li>调tune：具有同样突显度和韵律结构的两段话可能由于具有不同的调而在韵律上有所不同，调就是话语的语调节律。语调可以分解成一些组成部分，其中最重要的是音高重音。音高重音出现在重读音节中，形成F0曲拱的一个特殊模式，根据模式的类型可以产生不同的效应。</li>
+</ul>
+<p>上述三个音位因素相互作用，并在不同的语音和声学现象中实现。突显的音节一般比非突显的音节读得重一些长一些；韵律的短语边界通常有停顿，边界之前的音节边长，有时边界处的音高变低；语调则表现为基频(F0)曲拱。<br><strong>TTS的主要任务：是生成韵律的适当语言表示，并且从这样的语言表示出发，生成适当的声学模型，而这样的声学模型将表现为输出语音的波形。</strong>也就是说TTS的输出(重读音节，韵律短语，语调等等)加上精确的语调曲拱F0曲拱作为语音波形合成的输入。现实中我们想从文本中抽取韵律重读音节，语调是非常难的，因此韵律模式通常都只是产生输入文本的中性的陈述句，不需要参照话语的历史或者现实世界的事件，就是一个默认值，所以TTS中语调总是显得有些呆板。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/computational-phonology/">computational-phonology</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/16.11.24小记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/16.11.24小记/" class="article-date">
+  	<time datetime="2016-11-24T13:46:36.000Z" itemprop="datePublished">2016-11-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/16.11.24小记/">16.11.24小记</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>不知道该怎么形容今天的心情，一塌糊涂。</p>
+<p>今天把邱希鹏关于DL和NN的PPT看完，这算是一个大纲概述型的PPT讲座吧，也确实学了点东西。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gossip/">gossip</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/gossip/">gossip</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/fclefang/JavaScript/16.11.24小记/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/RE and FSA" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/RE and FSA/" class="article-date">
+  	<time datetime="2016-11-21T07:13:01.000Z" itemprop="datePublished">2016-11-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/RE and FSA/">RE and FSA</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-正则表达式"><a href="#1-正则表达式" class="headerlink" title="1.正则表达式"></a>1.正则表达式</h2><p>正则表达式regular expression简称RE是一种用于描述文本搜索符号串的语言。最初由Kleene开发是专用语言中用于描述符号串的简单类别公式，从形式上来说是用来刻画符号串集合的一个代数表述。可以用来描述搜索符号串，也可以用于以形式的方法定义一种语言。</p>
+<ul>
+<li>正则表达式是区分大小写的，表达式前后加斜线‘/’，内部有‘[]’的字符串表达式是表示字符的析取匹配，比如/[wW]oodchuck/则会匹配Woodchuck或者woodchuck。</li>
+<li>连字符‘-’可以用来表示一定范围内的任何字符，比如/[1-3]/则表示字符1,2,3中的任一个字符。</li>
+<li>脱字符‘^’，‘[]’还可以表示不出现某个单独的字符也就是如果再方括号之后又脱字符那么相应的模式就是否定的但是需要注意这种用法仅当脱字符处于开方括号之后的第一个位置才有效，在其他位置仍然表示脱字符本身。比如[^A-Z]\表示不是一个大写字母，而[e^]\表示字母e或者脱字符^。另外还可以表示一行的开始比如/^The/表示单词The只出现在一行的开始。</li>
+<li>问号’?’表示前一个字符的有或无。</li>
+<li>‘<em>’称为“Kleene </em>”表示前面紧邻的字符好着正则表达式出现零次或者连续出现多次。</li>
+<li>‘+’表示前面一个或者多个字符。</li>
+<li>‘.’是一个通配符，表示任何与单个字符(回车符除外)相匹配的字符。</li>
+<li>‘_$’表示一行的结尾是空白，比如/^The dog.$/表示仅包含短语The dog的一个行。</li>
+<li>‘\b’表示词界，’\B’表示非词界，比如/\bthe\b/表示单词the，the前后不能是数字下划线或者字母。</li>
+<li>圆括号运算符‘()’，把一个模式括在圆括号内，它能像一个单独的字符来使用。比如/gupp(y|ies)/表示guppy或者guppies，这里的’|’是析取符，就是‘或’的意思。</li>
+<li>有了圆括号，计数符，序列与锚和析取符(优先级从高到低)，我们可以组合使用表示不同的内涵。另外更多的高级算符这里就不一一列举了。</li>
+</ul>
+<h2 id="2-有限状态自动机"><a href="#2-有限状态自动机" class="headerlink" title="2. 有限状态自动机"></a>2. 有限状态自动机</h2><p>看着就和计算机理论中图灵机有很多类似的思想。<br>FSA可以分为DFSA和NFSA，<strong>值得一提的是，对于任何NFSA又存在与之对应的DFSA，正则表达式的每个基本操作都可以通过自动机模拟，就和图灵机模拟可计算函数一样</strong>。在NFSA情况下，由于在某结点处存在一种以上的选择可能性(这也就是为何我们称之为非确定有限状态机)，我们有可能做出错误的选择，面对这样的问题这里先介绍回退方法解决该问题。</p>
+<ul>
+<li>回退：每当我们走到这样的选择点时，我们可以做一个记号，记录下在纸带输入中的什么位置以及自动机处于什么状态。当我们确认做了错误选择时可以退回去试探其他的选择可能。该方法两个重点：在每个选择点必须记住所有选择；对于每个不同选择必须存储足够的信息以便需要时返回。当返回算法到达某个点而其进程不能再进展时算法返回到前一个选择点开始重复迭代不同路径。这里我们称自动机状态为结点或者机器状态，把纸带上位置和结点的结合体称为搜索状态。</li>
+<li>下面是用于NFSA识别的算法。ND-Recognize首先建立一个初始的搜索状态，并把它放入进程表中。NEXT函数功能是从进程表中检索一个项目(尚未进行过的选择)并且把它赋给变量current-search-state(当前搜索状态)。和DFSA识别算法类似，主要回路的首要任务也是确认纸带上的输入信息是否被自动机成功识别。这里通过ACCEPT-STATE？函数来实现，如果current-search-state既包含一个接受的机器状态也包含一个纸带结尾的指针就返回accept。否则调用GENERATE-NEW-STATE函数来生成新的可能的下一状态，所有这些创建的状态都要加到当前的进程表中。最后再对进程表中新搜索状态处理，继续选择其他没尝试过的可能性选择，若仍然无法进行选择则拒绝输入的字符串。<br><img src="http://ogy25dae4.bkt.clouddn.com/blog/image/NFSA/%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95.pngNFSA%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95.png" alt="NFSA识别算法"></li>
+<li>ND识别算法的任务在于提出一种办法来系统地探索自动机中所有可能的路径，从而识别正则表达式表示的符号串。如果找到了这样一条路径并且以接收状态结束那么accept该符号串否则就refuse。利用进程表可以实现这样的探索机制。ND识别这种算法称为状态空间搜索算法。在可能的路径空间内搜索问题正确的解。进程表就是这样的“空间”，算法将下一步要处理的状态置于进程表前端然后通过stack实现，这种处理顺序的策略通常被称为深度优先搜索或者后进先出LIFO策略。当然还有用队列来实现的策略又称为广度优先搜索或者先进先出策略。</li>
+</ul>
+<h2 id="3-历史小事"><a href="#3-历史小事" class="headerlink" title="3. 历史小事"></a>3. 历史小事</h2><p>FSA来源于Turing-theory，McCulloch和Pitts研制了类似FSA的神经元模型，在神经元模型基础上Kleene定义了有限自动机和正则表达式并且证明二者等价，后来Rabin和Scott提出非确定自动机并证明与确定自动机等价。</p>
+<h2 id="4-有限状态转录机FST"><a href="#4-有限状态转录机FST" class="headerlink" title="4. 有限状态转录机FST"></a>4. 有限状态转录机FST</h2><p>关于语言形态学中曲折形态学和派生形态学不详细介绍，简单举个例子就像规则名词和不规则名字的复数形式以及动词的各种过去式啥的都是曲折形态学中的范畴，而派生形态就比如一个动词加上less变成形容词就是派生范畴，派生形态学比曲折形态复杂多，这里面的知识不作详细介绍。下面主要介绍FST。</p>
+<ul>
+<li>要知道FSA是用来解决形态识别的，所谓形态识别就是判断由字母构成的输入符号串是不是合法的，当我们用FSA来表示词表以及进行形态识别之后就会面临形态剖析问题：例如‘cats’经过剖析得到输出‘cat+N+PL’，意思是cat的复数名词。而这里的剖析过程就是FST来完成的。</li>
+<li>这里FST的思想是用的双层形态学方法，将一个词分为表层和词汇层，表层是该词实际拼写情况，而词汇层则是表层上的字母序列映射之后的语素和特征的序列信息(比如cat+N+PL)。不难理解FST就是用来完成这个映射任务的。其实吧，双层形态的双层就可以看成两个纸带，纸带上存储各自层的信息，而FST也就是具有两个纸带的自动机，我们似乎也可以把它的机制理解成在一个纸带上识别形态并且在另一个纸带上生成被识别形态的语素和特征序列。</li>
+<li>然而双层模型对于多样复杂的词汇仍然有很大的局限，尤其在处理英语中经常出现的语素边界拼写变化的问题，所以改进提出了三层模型，在表层和词汇层之间加一个中间层，在表层和中间层之间引入拼写规则又称为正词法规则来解决语素边界的问题。</li>
+<li>将FST引入规则相结合对词汇进行剖析和生成下面一张图很容易让人理解层与层之间的机制。<img src="http://ogy25dae4.bkt.clouddn.com/blog/image/FST/FST.pngFST.png" alt="此处输入图片的描述"><br>从图中看很好理解FST剖析以及生成的过程，这里剖析过程相对复杂，因为在剖析的时候存在歧义问题，比如foxes还可以表示动词的意思，出现这样的歧义FST是没有能力解决的，关于歧义消解会另外总结。</li>
+<li>建立词表加规则的FST是形态剖析的标准算法，当然还存在一些简单的额算法并没有标准算法所需的大规模联机词表的要求这样的简单算法可以用于完成信息检索任务，比如简单有效的Porter词干处理器算法，并不需要精确的形态结构分析。</li>
+<li>另外存在FST的自动编译程序，该编译程序对于任何简单的重写规则都能造出一个FST出来。</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/RE-FSA-FST/">RE-FSA-FST</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-JavaScript/线性回归" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -488,335 +857,6 @@
       
         <p class="article-more-link">
           <a  href="/fclefang/JavaScript/SVM(1)/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/AdaBoost" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/AdaBoost/" class="article-date">
-  	<time datetime="2016-10-31T00:52:36.000Z" itemprop="datePublished">2016-10-31</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/AdaBoost/">AdaBoost</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>鉴于之前入门机器学习的两个月学习起来很吃力，很难写出相对系统有意义的博客，从今天起，这一学期的接下来两个月会好好写下自己的学习总结，清晰头脑中的知识结构。<br>任务：论文的阅读理解，机器学习知识的总结，机器学习实战代码的训练。</strong></p>
-<h3 id="1-AdaBoost起源介绍"><a href="#1-AdaBoost起源介绍" class="headerlink" title="1. AdaBoost起源介绍"></a>1. AdaBoost起源介绍</h3><p>集成学习(ensemble learning)通过构建并结合多个学习器来完成学习任务，有时也被称为多分类器系统。若多个分类器属于同种类型则这样的集成是同质的，否则称之为异质。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/AdaBoost/">AdaBoost</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/AdaBoost/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/Java8" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/Java8/" class="article-date">
-  	<time datetime="2016-10-13T02:16:25.000Z" itemprop="datePublished">2016-10-13</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/Java8/">Java8</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-泛型"><a href="#1-泛型" class="headerlink" title="1.泛型"></a>1.泛型</h3><ul>
-<li>JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安全机制。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ArrayList a1 = <span class="keyword">new</span> ArrayList();</div><div class="line">		a1.add(<span class="string">"java01"</span>);</div><div class="line">		a1.add(<span class="string">"java02"</span>);</div><div class="line">		a1.add(<span class="string">"java01"</span>);</div><div class="line">		a1.add(<span class="number">4</span>);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>上述几行代码在编译时没问题但是在运行时会报出类型转换的错误，也就是整形不能转换为String类型，那么如何能够在编译时就报出错误让开发人员知道呢？这里就用到了泛型。<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Collection/">Collection</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/Java8/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/Java7" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/Java7/" class="article-date">
-  	<time datetime="2016-10-05T03:33:25.000Z" itemprop="datePublished">2016-10-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/Java7/">Java7</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-StringBuffer"><a href="#1-StringBuffer" class="headerlink" title="1.StringBuffer"></a>1.StringBuffer</h3><ul>
-<li>字符串缓冲区：它是一个容器。长度是可以变化的，可以字节操作多个数据类型，最终会通过toString方法变成字符串。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringBufferDemo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line">		StringBuffer sb1 = sb.append(<span class="number">34</span>);</div><div class="line">		sop(<span class="string">"sb==sb1:"</span>+(sb==sb1));</div><div class="line">		sop(sb.toString());</div><div class="line">		sop(sb1.toString());</div><div class="line">		sb.append(<span class="string">"abc"</span>).append(<span class="keyword">true</span>);</div><div class="line">		sop(sb.toString());</div><div class="line">		sb.insert(<span class="number">1</span>,<span class="string">"qq"</span>);</div><div class="line">		sop(sb.toString());</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sop</span><span class="params">(String str)</span></span>&#123;</div><div class="line">		System.out.println(str);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Collection/">Collection</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/Java7/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/Machine Learning5" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/Machine Learning5/" class="article-date">
-  	<time datetime="2016-10-04T07:55:36.000Z" itemprop="datePublished">2016-10-04</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/Machine Learning5/">Machine Learning5</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>这次的学习周志华机器学习第七章贝叶斯分类器结合实战学习第四章朴素贝叶斯来加深对贝叶斯决策论的理解</strong></p>
-<p>###1.Bayesian decision theory<br>贝叶斯决策论是概率框架下实施决策的基本方法。对分类任务来说，在所有相关概率都已知的理想情形下，贝叶斯决策论考虑如何基于这些概率和误判损失来选择最优的类别标记。<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Bayesian/">Bayesian</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/Machine Learning5/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/决策树" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/决策树/" class="article-date">
-  	<time datetime="2016-09-30T09:00:00.000Z" itemprop="datePublished">2016-09-30</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/决策树/">决策树</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="决策树的一般流程"><a href="#决策树的一般流程" class="headerlink" title="决策树的一般流程"></a>决策树的一般流程</h3><p>(1)收集数据：可以使用任何方法<br>(2)准备数据：树构造算法只适用于标称型数据，因此数值型数据必须离散化。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/决策树/">决策树</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/决策树/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

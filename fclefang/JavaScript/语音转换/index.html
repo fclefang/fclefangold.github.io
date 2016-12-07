@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>语音转换 | fclefang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="语音识别系统需要研究它所要识别的每个单词的发音，文语转换系统需要研究该系统所说出的每个单词的发音。计算机音系学的一个重要部分就是研究模拟这些音位规则的计算机制，利用拼写规则转录机给音系学建模，讨论音位学习的计算机模型，研究机器学习算法自动推出音位规则。
+
+1. 音位规则与转录机[t]的发音在不同的上下文环境中是可能变化的。我们一般把这一类的发音变化称为一个抽象的类别-音位(phoneme)，这个音">
+<meta property="og:type" content="article">
+<meta property="og:title" content="语音转换">
+<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/语音转换/index.html">
+<meta property="og:site_name" content="fclefang">
+<meta property="og:description" content="语音识别系统需要研究它所要识别的每个单词的发音，文语转换系统需要研究该系统所说出的每个单词的发音。计算机音系学的一个重要部分就是研究模拟这些音位规则的计算机制，利用拼写规则转录机给音系学建模，讨论音位学习的计算机模型，研究机器学习算法自动推出音位规则。
+
+1. 音位规则与转录机[t]的发音在不同的上下文环境中是可能变化的。我们一般把这一类的发音变化称为一个抽象的类别-音位(phoneme)，这个音">
+<meta property="og:updated_time" content="2016-11-28T08:22:27.557Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="语音转换">
+<meta name="twitter:description" content="语音识别系统需要研究它所要识别的每个单词的发音，文语转换系统需要研究该系统所说出的每个单词的发音。计算机音系学的一个重要部分就是研究模拟这些音位规则的计算机制，利用拼写规则转录机给音系学建模，讨论音位学习的计算机模型，研究机器学习算法自动推出音位规则。
+
+1. 音位规则与转录机[t]的发音在不同的上下文环境中是可能变化的。我们一般把这一类的发音变化称为一个抽象的类别-音位(phoneme)，这个音">
+  
+    <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fclefang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">开心自由最重要</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories">分类</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/gossip/" style="font-size: 10px;">gossip</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">CIT（2012-2016）,GuiLin Elec(2016-2019).认真做好应该做的每一件事。衣不如新，人不如旧，旧衣穿着最舒服，新人也未必不是更好的选择...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Fclefang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fclefang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">开心自由最重要</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories">分类</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-JavaScript/语音转换" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/语音转换/" class="article-date">
+  	<time datetime="2016-11-26T03:24:01.000Z" itemprop="datePublished">2016-11-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      语音转换
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/computational-phonology/">computational-phonology</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>语音识别系统需要研究它所要识别的每个单词的发音，文语转换系统需要研究该系统所说出的每个单词的发音。计算机音系学的一个重要部分就是研究模拟这些音位规则的计算机制，利用拼写规则转录机给音系学建模，讨论音位学习的计算机模型，研究机器学习算法自动推出音位规则。</p>
+<hr>
+<h2 id="1-音位规则与转录机"><a href="#1-音位规则与转录机" class="headerlink" title="1. 音位规则与转录机"></a>1. 音位规则与转录机</h2><p>[t]的发音在不同的上下文环境中是可能变化的。我们一般把这一类的发音变化称为一个抽象的类别-音位(phoneme)，这个音位在不同上下文环境中实现为不同的音位变体。按照传统标音习惯，音位一般写在两个斜杠之间，比如/t/，把音位变体分别记为用[]表示的不同变体。所以音位是对不同实际语言的一种归纳或抽象。通常我们把音位和词汇放在一个层面上来处理，词表中的单词按照音位来标音，像这种不加上音位变体以及更多音位细节的标音形式称为宽式音标，当然也就有了对应的包含音位细节包括音位变体的严式音标。</p>
+<ul>
+<li>音位规则：音位和它的音位变体之间的关系通常可以写成音位规则，前面讲过拼写规则可以通过FST实现，音位规则同样可以由FST实现，其实不同的计算机音系模型都以不同的方式使用的FSA来实现音位规则。对于一个音标有多个音位规则，这些音位规则彼此之间会发生相互作用，我们使用FSA(FST)实现这些规则，通过多个FST进行层叠式连接，这样能表示规则之间的相互影响。另外需要注意多个规则必须是有序的也就是说FST必然有序，因为层叠太多层不容易运行，所以通常组合多个不同FST构成一个比较复杂的FST。然而在一种语法中绝大多数音位规则是彼此独立的，所以可以用双层规则的方法避免规则交互的情况。比如利用双层规则方法避免i-插入规则和z-清音化规则的排序问题，基本思路就是z-清音化规则把词汇的z-插入规则映射到表层s，而i-规则也只涉及到词汇z。我们可以用从规则到自动机的编译算法得到i插入规则和z清音化规则的FST，这俩个FST并行运行，不是之前说的排序串行运行，这就是双层方法。</li>
+<li>面对不同语言复杂的音位规则，我们通过各种音系学的知识来结合FSA进行建模表示，那么不难想到结合机器学习来推导模型的建立。比如用监督算法，已知数据集和对应数据正确的表层形式来学习模型；或者非监督算法单纯通过数据集来推导，虽然没有正确的表层形式但是可以给出这些语言词汇数据所蕴含的规则的性质或者所形成的模型的形式提示，比如模型的形式可能是自动机这样的提示，我们也称这种学习为学习偏爱。</li>
+</ul>
+<hr>
+<h2 id="2-发音词典"><a href="#2-发音词典" class="headerlink" title="2. 发音词典"></a>2. 发音词典</h2><p>当我们学习了某语言的基本情况并且知道怎样给其音位规则建立模型，那么下一步研究怎样把符合正词法的或书面的单词映射为它们的发音。</p>
+<ul>
+<li>发音词典pronunciation dictionary：发音词典既可以用于自动语音识别系统ASR，也可以用于文本语音转换系统TTS，当然会有所不同。发音词典几个重要的研究方向：拼写形式相同而发音不同的单词；专有名词的发音；发音词典中还没有很好的模型来处理虚词的发音，因为比如and和of发音变化的语音上下文环境很复杂，一般在语音词典中只包含一些简单的最基本的虚词发音规则。另外TTS和ASR最重要的一个区别就是TTS的发音词典不需要表示方言的变体比如在非常精确的ASR发音词典中需要表示either和tomato的不同发音，而在TTS的发音词典中只需选择一种发音就可以了。</li>
+<li>词典之外的查找：文本分析。在任何语言系统中，我们都不可能将所有的词通过语音词典表示出来。在语音合成和识别的过程中，我们都需要去猜测某个在发音词典中没有的词的发音。有三种重要的语言问题是不能依靠语言词典来处理的：专有名词；形态的能产性morphological-productivity和数字number。比如随便找一篇影评文章的一段然后与发音词典作比较，总会存在一定比例的单词发音没被语音词典覆盖，当然我们会发现专有名词问题相对而言更加重要。当然还有例如土耳其语这类形态能产性很高的语言，要表示它们的每个可能的词几乎不可能。英语比起土耳其语形态已经简单多了，但是在语音模型建模时形态知识仍然非常重要。最后数字发音问题主要是数字串的发音等等。</li>
+<li>基于FST的发音词典：<br>(1).表示每个单词的基本形式即单词未经曲折变化的形式。这种基本形式是按照他们符合正词法的形式存储在字典中，然后根据正确的词汇音位表示方法来扩充这些基本形式。<br>(2).模拟单词形态变化的有限状态机。比如名词复数后缀s，这里直接将处理单词复数的FSA基础上增加s作为后缀的发音规则等其他规则就行。不难发现这一部分加上第一部分结合起来比如处理屈折变化的FSA和处理词基本形式的FST结合产生一部处理曲折功能的既包括名词单数也包括复数的微型词典。<br>(3).这种微型词典已经包含了两层分别为底层和中间层，底层就是词汇层。接下来就是应用拼写规则和发音规则把中间层映射到表层就OK。和之前学到的三层模型一样，其中词汇层(包含单词的词干和形态特征)和中间层(表示语素的简单毗连)是通过词典FST来映射的。每个FST或者表示一个简单的拼写规则限制，或者表示一个简单的音位限制，这些FST并行运行，在中间层和表层之间进行映射。记住每层都有正词法表示和音位表示。</li>
+</ul>
+<hr>
+<h2 id="3-文本-语音转换中的韵律"><a href="#3-文本-语音转换中的韵律" class="headerlink" title="3. 文本-语音转换中的韵律"></a>3. 文本-语音转换中的韵律</h2><p>音律的研究有时又称为超音段现象，有三个主要的音系学性质：突显度prominence，结构structure和调tune。</p>
+<ul>
+<li>突显度：用于覆盖重音和重读的一个广义的术语。突显度是音节的一个性质，它的描述往往是相对的。词汇的结合会对重音模型造成影响，重音的结合也需要遵循一定的规则，当然规则也有例外。另外韵基rhythm的作用可以使重读音节稍微有所扩展。</li>
+<li>韵律结构：一个句子中某些词自然地倾向于结合在一起而某些词有明显的间隔或者彼此分开，通常用韵律短语来描述韵律结构，另外具有同样韵律短语结构的一段话应该具有同样的句法结构。韵律短语是可以继续分割成更小的中间短语。可以通过算法模型来将输入文本的句子自动分割为一些语调短语，比如根据单词词类特征，长度特征等建立统计模型来预测语调短语的边界。</li>
+<li>调tune：具有同样突显度和韵律结构的两段话可能由于具有不同的调而在韵律上有所不同，调就是话语的语调节律。语调可以分解成一些组成部分，其中最重要的是音高重音。音高重音出现在重读音节中，形成F0曲拱的一个特殊模式，根据模式的类型可以产生不同的效应。</li>
+</ul>
+<p>上述三个音位因素相互作用，并在不同的语音和声学现象中实现。突显的音节一般比非突显的音节读得重一些长一些；韵律的短语边界通常有停顿，边界之前的音节边长，有时边界处的音高变低；语调则表现为基频(F0)曲拱。<br><strong>TTS的主要任务：是生成韵律的适当语言表示，并且从这样的语言表示出发，生成适当的声学模型，而这样的声学模型将表现为输出语音的波形。</strong>也就是说TTS的输出(重读音节，韵律短语，语调等等)加上精确的语调曲拱F0曲拱作为语音波形合成的输入。现实中我们想从文本中抽取韵律重读音节，语调是非常难的，因此韵律模式通常都只是产生输入文本的中性的陈述句，不需要参照话语的历史或者现实世界的事件，就是一个默认值，所以TTS中语调总是显得有些呆板。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/fclefang/JavaScript/tree-regression/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          tree-regression
+        
+      </div>
+    </a>
+  
+  
+    <a href="/fclefang/JavaScript/16.11.24小记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">16.11.24小记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="JavaScript/语音转换" data-title="语音转换" data-url="http://www.fclef.me/fclefang/JavaScript/语音转换/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fclef"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Fclefang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

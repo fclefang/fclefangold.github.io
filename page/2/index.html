@@ -72,7 +72,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -111,7 +111,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a>
+						<a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/gossip/" style="font-size: 10px;">gossip</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a>
 					</div>
 				</section>
 				
@@ -180,6 +180,335 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-JavaScript/AdaBoost" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/AdaBoost/" class="article-date">
+  	<time datetime="2016-10-31T00:52:36.000Z" itemprop="datePublished">2016-10-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/AdaBoost/">AdaBoost</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>鉴于之前入门机器学习的两个月学习起来很吃力，很难写出相对系统有意义的博客，从今天起，这一学期的接下来两个月会好好写下自己的学习总结，清晰头脑中的知识结构。<br>任务：论文的阅读理解，机器学习知识的总结，机器学习实战代码的训练。</strong></p>
+<h3 id="1-AdaBoost起源介绍"><a href="#1-AdaBoost起源介绍" class="headerlink" title="1. AdaBoost起源介绍"></a>1. AdaBoost起源介绍</h3><p>集成学习(ensemble learning)通过构建并结合多个学习器来完成学习任务，有时也被称为多分类器系统。若多个分类器属于同种类型则这样的集成是同质的，否则称之为异质。
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/AdaBoost/">AdaBoost</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/fclefang/JavaScript/AdaBoost/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/Java8" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/Java8/" class="article-date">
+  	<time datetime="2016-10-13T02:16:25.000Z" itemprop="datePublished">2016-10-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/Java8/">Java8</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-泛型"><a href="#1-泛型" class="headerlink" title="1.泛型"></a>1.泛型</h3><ul>
+<li>JDK1.5版本以后出现的新特性，用于解决安全问题，是一个安全机制。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ArrayList a1 = <span class="keyword">new</span> ArrayList();</div><div class="line">		a1.add(<span class="string">"java01"</span>);</div><div class="line">		a1.add(<span class="string">"java02"</span>);</div><div class="line">		a1.add(<span class="string">"java01"</span>);</div><div class="line">		a1.add(<span class="number">4</span>);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上述几行代码在编译时没问题但是在运行时会报出类型转换的错误，也就是整形不能转换为String类型，那么如何能够在编译时就报出错误让开发人员知道呢？这里就用到了泛型。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Collection/">Collection</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/fclefang/JavaScript/Java8/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/Java7" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/Java7/" class="article-date">
+  	<time datetime="2016-10-05T03:33:25.000Z" itemprop="datePublished">2016-10-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/Java7/">Java7</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-StringBuffer"><a href="#1-StringBuffer" class="headerlink" title="1.StringBuffer"></a>1.StringBuffer</h3><ul>
+<li>字符串缓冲区：它是一个容器。长度是可以变化的，可以字节操作多个数据类型，最终会通过toString方法变成字符串。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringBufferDemo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line">		StringBuffer sb1 = sb.append(<span class="number">34</span>);</div><div class="line">		sop(<span class="string">"sb==sb1:"</span>+(sb==sb1));</div><div class="line">		sop(sb.toString());</div><div class="line">		sop(sb1.toString());</div><div class="line">		sb.append(<span class="string">"abc"</span>).append(<span class="keyword">true</span>);</div><div class="line">		sop(sb.toString());</div><div class="line">		sb.insert(<span class="number">1</span>,<span class="string">"qq"</span>);</div><div class="line">		sop(sb.toString());</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sop</span><span class="params">(String str)</span></span>&#123;</div><div class="line">		System.out.println(str);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Collection/">Collection</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/fclefang/JavaScript/Java7/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/Machine Learning5" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/Machine Learning5/" class="article-date">
+  	<time datetime="2016-10-04T07:55:36.000Z" itemprop="datePublished">2016-10-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/Machine Learning5/">Machine Learning5</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>这次的学习周志华机器学习第七章贝叶斯分类器结合实战学习第四章朴素贝叶斯来加深对贝叶斯决策论的理解</strong></p>
+<h3 id="1-Bayesian-decision-theory"><a href="#1-Bayesian-decision-theory" class="headerlink" title="1.Bayesian decision theory"></a>1.Bayesian decision theory</h3><p>贝叶斯决策论是概率框架下实施决策的基本方法。对分类任务来说，在所有相关概率都已知的理想情形下，贝叶斯决策论考虑如何基于这些概率和误判损失来选择最优的类别标记。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Bayesian/">Bayesian</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/fclefang/JavaScript/Machine Learning5/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/决策树" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/决策树/" class="article-date">
+  	<time datetime="2016-09-30T09:00:00.000Z" itemprop="datePublished">2016-09-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/决策树/">决策树</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="决策树的一般流程"><a href="#决策树的一般流程" class="headerlink" title="决策树的一般流程"></a>决策树的一般流程</h3><p>(1)收集数据：可以使用任何方法<br>(2)准备数据：树构造算法只适用于标称型数据，因此数值型数据必须离散化。
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/决策树/">决策树</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/fclefang/JavaScript/决策树/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-JavaScript/Java6" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -487,329 +816,6 @@
       
         <p class="article-more-link">
           <a  href="/fclefang/JavaScript/Java3/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/Java2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/Java2/" class="article-date">
-  	<time datetime="2016-09-11T04:12:12.000Z" itemprop="datePublished">2016-09-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/Java2/">Java2</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>每一个应用程序中都有共性的功能，可以将这些功能进行抽取独立封装以便复用。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/tool-readme/">tool-readme</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/Java2/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/Machine Learning3" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/Machine Learning3/" class="article-date">
-  	<time datetime="2016-09-10T05:42:36.000Z" itemprop="datePublished">2016-09-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/Machine Learning3/">Machine Learning3</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="2-3-3-ROC和AUC"><a href="#2-3-3-ROC和AUC" class="headerlink" title="2.3.3 ROC和AUC"></a>2.3.3 ROC和AUC</h3><p>对于二分类问题，可将样例根据其真实类别与学习器预测类别的组合划分为真正类(true positive)、假正例(false postive)、真反例(true negative)、假反例(false negative)四种情形。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/model-evaluation/">model evaluation</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/Machine Learning3/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/Java1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/Java1/" class="article-date">
-  	<time datetime="2016-09-09T07:58:36.000Z" itemprop="datePublished">2016-09-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/Java1/">Java1</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>环境变量：path以及classpath的配置，当配置可执行文件时用path，当配置java文件时用classpath.<br>path配置完成，操作系统先查找当前目录下然后再查找环境变量path配置的路径，而classpath配置后操作系统的查找顺序则相反。<br>当用set path进行临时配置时，结束后不会影响本机原有配置。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/java1/">java1</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/Java1/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/Machine Learning2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/Machine Learning2/" class="article-date">
-  	<time datetime="2016-09-05T11:42:36.000Z" itemprop="datePublished">2016-09-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/Machine Learning2/">Machine Learning2</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="2-1-经验误差与过拟合"><a href="#2-1-经验误差与过拟合" class="headerlink" title="2.1 经验误差与过拟合"></a>2.1 经验误差与过拟合</h3><ul>
-<li>error： 一般的，我们把学习器的实际预测输出与样本的真是输出之间的差异称之为误差。而学习器在训练集上的误差称为training error or empirical error.而在新样本上的误差称之为generalization error也就是泛化误差。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/model-evaluation/">model evaluation</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/Machine Learning2/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/JS深入浅出日记——Five" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/JS深入浅出日记——Five/" class="article-date">
-  	<time datetime="2016-08-02T04:25:36.000Z" itemprop="datePublished">2016-08-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/JS深入浅出日记——Five/">JS深入浅出日记——Five</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-JQuery"><a href="#1-JQuery" class="headerlink" title="1. JQuery"></a>1. JQuery</h3><p>jQuery is registered as a package on npm. You can install the latest version of jQuery with the command：<br><code>npm install jquery</code><br>This will install jQuery in the node_modules directory. Within <code>node_modules/jquery/dist/</code> you will find an uncompressed release, a compressed release, and a map file.<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/JQuery-AudioContext/">JQuery AudioContext</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/JS深入浅出日记——Five/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
