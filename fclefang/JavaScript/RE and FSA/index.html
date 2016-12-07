@@ -6,24 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>RE and FSA | fclefang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.正则表达式正则表达式regular expression简称RE是一种用于描述文本搜索符号串的语言。最初由Kleene开发是专用语言中用于描述符号串的简单类别公式，从形式上来说是用来刻画符号串集合的一个代数表述。可以用来描述搜索符号串，也可以用于以形式的方法定义一种语言。
-
-正则表达式是区分大小写的，表达式前后加斜线‘/’，内部有‘[]’的字符串表达式是表示字符的析取匹配，比如/[wW]ood">
+  <meta name="description" content="1.正则表达式正则表达式regular expression简称RE是一种用于描述文本搜索符号串的语言。最初由Kleene开发是专用语言中用于描述符号串的简单类别公式，从形式上来说是用来刻画符号串集合的一个代数表述。可以用来描述搜索符号串，也可以用于以形式的方法定义一种语言。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RE and FSA">
 <meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/RE and FSA/index.html">
 <meta property="og:site_name" content="fclefang">
-<meta property="og:description" content="1.正则表达式正则表达式regular expression简称RE是一种用于描述文本搜索符号串的语言。最初由Kleene开发是专用语言中用于描述符号串的简单类别公式，从形式上来说是用来刻画符号串集合的一个代数表述。可以用来描述搜索符号串，也可以用于以形式的方法定义一种语言。
-
-正则表达式是区分大小写的，表达式前后加斜线‘/’，内部有‘[]’的字符串表达式是表示字符的析取匹配，比如/[wW]ood">
+<meta property="og:description" content="1.正则表达式正则表达式regular expression简称RE是一种用于描述文本搜索符号串的语言。最初由Kleene开发是专用语言中用于描述符号串的简单类别公式，从形式上来说是用来刻画符号串集合的一个代数表述。可以用来描述搜索符号串，也可以用于以形式的方法定义一种语言。">
 <meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/blog/image/NFSA/%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95.pngNFSA%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95.png">
 <meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/blog/image/FST/FST.pngFST.png">
-<meta property="og:updated_time" content="2016-11-22T16:02:59.791Z">
+<meta property="og:updated_time" content="2016-12-07T16:03:14.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RE and FSA">
-<meta name="twitter:description" content="1.正则表达式正则表达式regular expression简称RE是一种用于描述文本搜索符号串的语言。最初由Kleene开发是专用语言中用于描述符号串的简单类别公式，从形式上来说是用来刻画符号串集合的一个代数表述。可以用来描述搜索符号串，也可以用于以形式的方法定义一种语言。
-
-正则表达式是区分大小写的，表达式前后加斜线‘/’，内部有‘[]’的字符串表达式是表示字符的析取匹配，比如/[wW]ood">
+<meta name="twitter:description" content="1.正则表达式正则表达式regular expression简称RE是一种用于描述文本搜索符号串的语言。最初由Kleene开发是专用语言中用于描述符号串的简单类别公式，从形式上来说是用来刻画符号串集合的一个代数表述。可以用来描述搜索符号串，也可以用于以形式的方法定义一种语言。">
 <meta name="twitter:image" content="http://ogy25dae4.bkt.clouddn.com/blog/image/NFSA/%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95.pngNFSA%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95.png">
   
     <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
@@ -230,7 +224,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-正则表达式"><a href="#1-正则表达式" class="headerlink" title="1.正则表达式"></a>1.正则表达式</h2><p>正则表达式regular expression简称RE是一种用于描述文本搜索符号串的语言。最初由Kleene开发是专用语言中用于描述符号串的简单类别公式，从形式上来说是用来刻画符号串集合的一个代数表述。可以用来描述搜索符号串，也可以用于以形式的方法定义一种语言。</p>
+        <h2 id="1-正则表达式"><a href="#1-正则表达式" class="headerlink" title="1.正则表达式"></a>1.正则表达式</h2><p>正则表达式regular expression简称RE是一种用于描述文本搜索符号串的语言。最初由Kleene开发是专用语言中用于描述符号串的简单类别公式，从形式上来说是用来刻画符号串集合的一个代数表述。可以用来描述搜索符号串，也可以用于以形式的方法定义一种语言。<br><a id="more"></a></p>
 <ul>
 <li>正则表达式是区分大小写的，表达式前后加斜线‘/’，内部有‘[]’的字符串表达式是表示字符的析取匹配，比如/[wW]oodchuck/则会匹配Woodchuck或者woodchuck。</li>
 <li>连字符‘-’可以用来表示一定范围内的任何字符，比如/[1-3]/则表示字符1,2,3中的任一个字符。</li>
