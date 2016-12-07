@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Clustering | fclefang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="12月份了，16年快要过去了。这个月有很多事要准备，下个礼拜的移动互联网考核，接下来还有英语6级，web知识工程以及组合数学的考核，机器学习的理论二轮学习总结进度估计会慢很多，不过慢慢来，不着急。另外在11月份末尾计划的算法导论学习也会继续下去目前第四章已经看到一半，习题也有跟着做下去，语言用的python或者java，刚好加强一下编程能力，另外也考虑要不要把算法导论的笔记和习题答案放到博客上，只">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Clustering">
+<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/Clustering/index.html">
+<meta property="og:site_name" content="fclefang">
+<meta property="og:description" content="12月份了，16年快要过去了。这个月有很多事要准备，下个礼拜的移动互联网考核，接下来还有英语6级，web知识工程以及组合数学的考核，机器学习的理论二轮学习总结进度估计会慢很多，不过慢慢来，不着急。另外在11月份末尾计划的算法导论学习也会继续下去目前第四章已经看到一半，习题也有跟着做下去，语言用的python或者java，刚好加强一下编程能力，另外也考虑要不要把算法导论的笔记和习题答案放到博客上，只">
+<meta property="og:updated_time" content="2016-12-07T15:55:20.515Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Clustering">
+<meta name="twitter:description" content="12月份了，16年快要过去了。这个月有很多事要准备，下个礼拜的移动互联网考核，接下来还有英语6级，web知识工程以及组合数学的考核，机器学习的理论二轮学习总结进度估计会慢很多，不过慢慢来，不着急。另外在11月份末尾计划的算法导论学习也会继续下去目前第四章已经看到一半，习题也有跟着做下去，语言用的python或者java，刚好加强一下编程能力，另外也考虑要不要把算法导论的笔记和习题答案放到博客上，只">
+  
+    <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fclefang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">开心自由最重要</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories">分类</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/gossip/" style="font-size: 10px;">gossip</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">CIT（2012-2016）,GuiLin Elec(2016-2019).认真做好应该做的每一件事。衣不如新，人不如旧，旧衣穿着最舒服，新人也未必不是更好的选择...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Fclefang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fclefang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">开心自由最重要</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories">分类</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-JavaScript/Clustering" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/Clustering/" class="article-date">
+  	<time datetime="2016-12-02T13:13:01.000Z" itemprop="datePublished">2016-12-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Clustering
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Clustering/">Clustering</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>12月份了，16年快要过去了。这个月有很多事要准备，下个礼拜的移动互联网考核，接下来还有英语6级，web知识工程以及组合数学的考核，机器学习的理论二轮学习总结进度估计会慢很多，不过慢慢来，不着急。<br>另外在11月份末尾计划的算法导论学习也会继续下去目前第四章已经看到一半，习题也有跟着做下去，语言用的python或者java，刚好加强一下编程能力，另外也考虑要不要把算法导论的笔记和习题答案放到博客上，只是感觉没那么多时间去整理。好了不bb了，开始总结聚类算法的知识。<br><a id="more"></a></p>
+<hr>
+<h2 id="A-聚类"><a href="#A-聚类" class="headerlink" title="A.聚类"></a>A.聚类</h2><p>在无监督学习中，训练样本的标记信息是未知的，聚类算法目标是通过对无标记训练样本的学习来揭示数据的内在性质及规律，为进一步的数据分析提供基础。</p>
+<h3 id="1-性能度量"><a href="#1-性能度量" class="headerlink" title="1.性能度量"></a>1.性能度量</h3><p>我们需要某种性能度量来评估聚类结果的好坏，比如我们希望聚类结果的“簇内相似度”高且“簇间相似度”低。聚类性能度量大致分为两类：一类是将聚类结果与某个“参考模型”(例如将领域专家给出的划分结果作为参考模型)进行比较，称之为“外部指标”；另一类是直接考察聚类结果而不利用任何参数模型，称之为“内部指标”。</p>
+<ul>
+<li>外部指标：对于数据集D={x1，x2，…,xm}，假定通过聚类给出的簇划分分为C={C1，C2，…，Ck}，参考模型给出的簇划分为$C^<em>={C^</em>_1,C^<em>_2,…,C^</em>_s}$。<br>我们可以定义在C中隶属于相同簇并且在$C^<em>$中也隶属于相同簇的样本对集合为SS，在C中隶属于相同簇但是在$C^</em>$中隶属于不同簇的样本对集合SD，同理得出集合DS和DD。基于这四个集合给出下面三个常用的聚类性能度量外部指标，<strong>下面的集合名称都表示集合的元素个数</strong>：<br>(1).Jaccard系数简称JC：$JC={SS \over {SS+SD+DS}}$.<br>(2).FM指标简称FMI：$FMI= \sqrt{SS \over {SS+SD}}*\sqrt{SS \over{SS+DS}}$.<br>(3).Band指数简称RI：$RI$ = ${2(SS+DD)} \over {m(m-1)}$.<br>上述性能指标均在[0,1]区间内，值越大越好。</li>
+<li>内部指标：基于聚类结果得到的簇划分C={C1,C2,…,Ck}.可以定义avg(C)表示簇C内样本间的平均距离，diam(C)表示簇C内样本间的最远距离，$d_{min}(C_i,C<em>j)$表示簇Ci与Cj最近样本间的距离，$d</em>{cen}(C_i,C_j)$表示簇Ci与Cj中心点的距离。基于这些距离简单距离计算有两个常用的聚类性能度量内部指标分别为DB指数和Dunn指数，具体公式就不写了百度就好，其中DBI越小越好而DI相反。</li>
+</ul>
+<h3 id="2-距离度量"><a href="#2-距离度量" class="headerlink" title="2.距离度量"></a>2.距离度量</h3><p>上面看到定义内部指标来刻画聚类性能时需要计算样本向量之间的距离，通常我们使用闽科夫斯基距离Minkowski distance，通过该距离公式又引申出欧氏距离和曼哈顿距离。另外再强调一点，以前总结过的关于样本向量距离计算时需要注意样本属性是否定义序关系更为重要，就是当定义域是{飞机，火车}这样的离散属性时，闽科夫斯基距离是没法计算距离的，因此需要对其序列化，或者VDM(Value Difference Metric)距离计算。当然还值得一提的就是在计算距离时对样本不同属性的重要程度加上权重。<strong>在现实任务中，有必要基于样本来确定合适的距离计算，这可以通过距离度量学习来实现</strong>。</p>
+<hr>
+<h2 id="B-K-Means-and-LVQ"><a href="#B-K-Means-and-LVQ" class="headerlink" title="B. K-Means and LVQ"></a>B. K-Means and LVQ</h2><p>k均值算法的核心思想是对聚类结果所得的簇划分最小化平方误差即每个簇类包含的所有样本与簇中心(质心)的欧式距离的平方和，然而求得最小化平方误差并不容易，需要考察所有可能的簇划分情况然后再对这些情况进行平方误差的比较，这是一个NP问题。所以K-Means采用贪心策略，通过迭代优化来得到近似解。<br><strong>算法伪代码如下</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">输入：样本集D和聚类的簇数k</div><div class="line">输出：簇划分C=&#123;C1,C2,...,Ck&#125;</div><div class="line">基于样本集D随机选择k可初始均值向量&#123;...&#125;</div><div class="line">repeat</div><div class="line">    质心是否改变的标记flag=false</div><div class="line">    令Ci为空集</div><div class="line">    <span class="keyword">for</span> j=<span class="number">1</span> to m</div><div class="line">        <span class="keyword">for</span> i=<span class="number">1</span> to k</div><div class="line">            计算样本xj与所有簇类均值向量即质心的距离</div><div class="line">            根据距离最近的质心确定样本xj从属于哪个质心</div><div class="line">            将样本划入相应的簇类</div><div class="line">    <span class="keyword">for</span> i=<span class="number">1</span> to k</div><div class="line">        计算新的均值向量即质心</div><div class="line">        <span class="keyword">if</span> 均值向量改变</div><div class="line">            更新质心</div><div class="line">            质心是否改变的标记flag为true</div><div class="line">        <span class="keyword">else</span></div><div class="line">            保持原质心不变</div><div class="line">until (标记flag)</div></pre></td></tr></table></figure></p>
+<p>具体的python代码：<br>其中的核心k-means代码块中falg改变是在有样本的簇标记发生改变的时候，这更加精确，不过作用一样。代码可以给出最后收敛情况下的均值向量集和样本簇标记和对应的误差值。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">(fileName)</span>:</span></div><div class="line">	dataMat= []</div><div class="line">	fr = open(fileName)</div><div class="line">	<span class="keyword">for</span> line <span class="keyword">in</span> fr.readlines():</div><div class="line">		curLine = line.strip().split(<span class="string">'\t'</span>)</div><div class="line">		fltLine = map(float,curLine)</div><div class="line">		dataMat.append(fltLine)</div><div class="line">	<span class="keyword">return</span> dataMat</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">distEclud</span><span class="params">(vecA, vecB)</span>:</span></div><div class="line">	<span class="keyword">return</span> sqrt(sum(power(vecA-vecB, <span class="number">2</span>)))</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">randCent</span><span class="params">(dataSet, k)</span>:</span></div><div class="line">	n = shape(dataSet)[<span class="number">1</span>]</div><div class="line">	centroids = mat(zeros((k,n)))</div><div class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> xrange(n):</div><div class="line">		minJ = min(dataSet[:,j])</div><div class="line">		rangeJ = float(max(dataSet[:,j])-minJ)</div><div class="line">		centroids[:,j] = minJ + rangeJ * random.rand(k,<span class="number">1</span>)</div><div class="line">	<span class="keyword">return</span> centroids</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">kMeans</span><span class="params">(dataSet, k, distMeas=distEclud, createCent=randCent)</span>:</span></div><div class="line">    m = shape(dataSet)[<span class="number">0</span>]</div><div class="line">    clusterAssment = mat(zeros((m,<span class="number">2</span>))</div><div class="line">    centroids = createCent(dataSet, k)</div><div class="line">    clusterChanged = <span class="keyword">True</span></div><div class="line">    <span class="keyword">while</span> clusterChanged:</div><div class="line">        clusterChanged = <span class="keyword">False</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</div><div class="line">            minDist = inf; minIndex = <span class="number">-1</span></div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(k):</div><div class="line">                distJI = distMeas(centroids[j,:],dataSet[i,:])</div><div class="line">                <span class="keyword">if</span> distJI &lt; minDist:</div><div class="line">                    minDist = distJI; minIndex = j</div><div class="line">            <span class="keyword">if</span> clusterAssment[i,<span class="number">0</span>] != minIndex: clusterChanged = <span class="keyword">True</span></div><div class="line">            clusterAssment[i,:] = minIndex,minDist**<span class="number">2</span></div><div class="line">        <span class="keyword">print</span> centroids</div><div class="line">        <span class="keyword">for</span> cent <span class="keyword">in</span> range(k):<span class="comment">#recalculate centroids</span></div><div class="line">            ptsInClust = dataSet[nonzero(clusterAssment[:,<span class="number">0</span>].A==cent)[<span class="number">0</span>]]</div><div class="line">            centroids[cent,:] = mean(ptsInClust, axis=<span class="number">0</span>) <span class="comment">#assign centroid to mean </span></div><div class="line">    <span class="keyword">return</span> centroids, clusterAssmen</div></pre></td></tr></table></figure></p>
+<ul>
+<li>为克服KMeans算法收敛局部最小值的问题，有一个聚类想过相对更好一点的更新-二分KMeans。其主要思想首先将所有点看成一个簇然后使用k=2的KMeans算法进行划分得到两个簇类。之后基于聚类性能度量选择其中一个簇类继续进行k=2的KMeans算法直到得到我们满意的簇类数目。<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">biKmeans</span><span class="params">(dataSet, k, distMeas=distEclud)</span>:</span></div><div class="line">    m = shape(dataSet)[<span class="number">0</span>]</div><div class="line">    clusterAssment = mat(zeros((m,<span class="number">2</span>)))</div><div class="line">    centroid0 = mean(dataSet, axis=<span class="number">0</span>).tolist()[<span class="number">0</span>]</div><div class="line">    centList =[centroid0] <span class="comment">#create a list with one centroid</span></div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(m):<span class="comment">#calc initial Error</span></div><div class="line">        clusterAssment[j,<span class="number">1</span>] = distMeas(mat(centroid0), dataSet[j,:])**<span class="number">2</span></div><div class="line">    <span class="keyword">while</span> (len(centList) &lt; k):</div><div class="line">        lowestSSE = inf</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(centList)):</div><div class="line">            ptsInCurrCluster = dataSet[nonzero(clusterAssment[:,<span class="number">0</span>].A==i)[<span class="number">0</span>],:]<span class="comment">#get the data points currently in cluster i</span></div><div class="line">            centroidMat, splitClustAss = kMeans(ptsInCurrCluster, <span class="number">2</span>, distMeas)</div><div class="line">            sseSplit = sum(splitClustAss[:,<span class="number">1</span>])<span class="comment">#compare the SSE to the currrent minimum</span></div><div class="line">            sseNotSplit = sum(clusterAssment[nonzero(clusterAssment[:,<span class="number">0</span>].A!=i)[<span class="number">0</span>],<span class="number">1</span>])</div><div class="line">            <span class="keyword">print</span> <span class="string">"sseSplit, and notSplit: "</span>,sseSplit,sseNotSplit</div><div class="line">            <span class="keyword">if</span> (sseSplit + sseNotSplit) &lt; lowestSSE:</div><div class="line">                bestCentToSplit = i</div><div class="line">                bestNewCents = centroidMat</div><div class="line">                bestClustAss = splitClustAss.copy()</div><div class="line">                lowestSSE = sseSplit + sseNotSplit</div><div class="line">        bestClustAss[nonzero(bestClustAss[:,<span class="number">0</span>].A == <span class="number">1</span>)[<span class="number">0</span>],<span class="number">0</span>] = len(centList) <span class="comment">#change 1 to 3,4, or whatever</span></div><div class="line">        bestClustAss[nonzero(bestClustAss[:,<span class="number">0</span>].A == <span class="number">0</span>)[<span class="number">0</span>],<span class="number">0</span>] = bestCentToSplit</div><div class="line">        <span class="keyword">print</span> <span class="string">'the bestCentToSplit is: '</span>,bestCentToSplit</div><div class="line">        <span class="keyword">print</span> <span class="string">'the len of bestClustAss is: '</span>, len(bestClustAss)</div><div class="line">        centList[bestCentToSplit] = bestNewCents[<span class="number">0</span>,:].tolist()[<span class="number">0</span>]<span class="comment">#replace a centroid with two best centroids </span></div><div class="line">        centList.append(bestNewCents[<span class="number">1</span>,:].tolist()[<span class="number">0</span>])</div><div class="line">        clusterAssment[nonzero(clusterAssment[:,<span class="number">0</span>].A == bestCentToSplit)[<span class="number">0</span>],:]= bestClustAss<span class="comment">#reassign new clusters, and SSE</span></div><div class="line">    <span class="keyword">return</span> mat(centList), clusterAssment</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>关于这里的代码我就说一点：在while循环中对簇进行循环划分直到得到理想的数目为止的过程中，会有簇选择。在这里就需要对现有的所有簇进行遍历然后计算划分前后的性能度量，从而选择那个最佳性能度量的簇来进行接下来的划分。说到这里应该想到决策树算法中的一些思想，知识的相互联系。</p>
+<ul>
+<li>LVQ：与KMeans类似，Learning Vector Quantization学习向量量化也是试图找一组原型向量(KMeans中找了一组均值向量)来刻画聚类结构，区别就在于LVQ假设样本带有类别标记，学习过程中利用这些监督信息来辅助聚类。<br><strong>LVQ伪代码：</strong><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">输入：样本集D=&#123;(x1,y1),(x2,y2),...(xm,ym)&#125;;</div><div class="line">      原型向量的个数q，初始化类别标记为&#123;t1,t2,...,tq&#125;;</div><div class="line">      学习率a属于(<span class="number">0</span>,<span class="number">1</span>)</div><div class="line">输出：原型向量&#123;p1,p2,...,pq&#125;</div><div class="line"><span class="comment">###########################</span></div><div class="line">初始化一组原型向量&#123;p1,p2,...,pq&#125;</div><div class="line">repeat</div><div class="line">    基于样本集随机选取一个样本(xj,yj)</div><div class="line">    <span class="keyword">for</span> j=<span class="number">1</span> to m</div><div class="line">        <span class="keyword">for</span> i=<span class="number">1</span> to q</div><div class="line">            计算xj与pi的距离：欧氏距离</div><div class="line">        得到距离最近的原型向量pi_</div><div class="line">        <span class="keyword">if</span> yj == ti_ <span class="comment">#这里ti_表示距离最近的原型向量pi_的类别标记</span></div><div class="line">            pnew = pi_ + a*(xj-pi_)</div><div class="line">        <span class="keyword">else</span></div><div class="line">            pnew = pi_ - a*(xj-pi_)</div><div class="line">        更新原型向量pi_=pnew</div><div class="line">until 满足停止条件</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这个算法最后得到一组原型向量，每个向量pi定义了一个区域Ri，Ri中的每个样本与Ri的距离都不大于该样本与其他原型向量的距离。这里还有两点稍微提一下：在神经网络那有个SOM算法时基于无标记样本的聚类算法，LVQ可以看成是其基于监督信息的扩展；这种聚类算法实现了用原型向量表示多个样本，实现的数据的“有损压缩”。</p>
+<hr>
+<h2 id="C-高斯混合聚类"><a href="#C-高斯混合聚类" class="headerlink" title="C.高斯混合聚类"></a>C.高斯混合聚类</h2><p>与KMeans还有LVQ用原型向量刻画聚类结构不同，Mixture-of-Gaussian聚类采用概率模型来表达聚类原型。<br>对n维样本空间X中的随机变量x，若x服从高斯分布，观察其概率密度函数，可以发现高斯分布完全由均值向量$\mu$和协方差矩阵$\Sigma$两个参数决定,为了显示样本服从高斯分布与这两个参数的依赖关系，将概率密度函数记为$p(x|\mu,\Sigma)$。高斯混合聚类的每个原型对应着一个概率密度函数，k个原型合起来就成了高斯混合分布$$PM(x)=\sum_{i=1}^{k}a_i*P(x| \mu_i, \Sigma_i)$$<br>其中$a<em>i&gt;0$为一个高斯分布原型相应的“混合系数”即第i个高斯原型的概率。<br>$\sum</em>{i=1}^{k}a_i=1$</p>
+<ul>
+<li>假设样本的生成过程由高斯混合分布给出：首先根据$a<em>i$定义的先验分布选择相应的高斯原型；然后再根据选择好的高斯原型的概率密度函数进行样本采样生成样本。假设样本集D={x1,x2,…,xm}由上述过程生成，其实就是有这么一个服从高斯混合分布的样本集。用zj表示生成样本xj的高斯原型，当然一共有k个这样的原型构成了整个的高斯混合分布。zj的先验概率P(zj=i)很好理解，其实就是高斯模型为i的概率也就是对应于ai。<br>根据贝叶斯定理：样本xj由第i个高斯原型生成的后验概率(简记为$\gamma</em>{ji}$)：<br>$PM(z_j=i| zx_j)$=<br>$${P(z_j=i)*PM(x_j|z_j=i)} \over {PM(x_j)}$$<br>在这个公式中，zj的先验概率P(zj=i)就是$a_i$，$PM(x_j|z_j=i)$就是样本xj服从第i个高斯模型的概率密度函数，分母PM(xj)就是样本xj的高斯混合分布。通过这样的后验概率计算来将样本划入PM最大的那个高斯原型簇内，于是每个样本都会有其对应的簇标记。</li>
+<li>得到了模型函数接下来就是要求解得到模型，之前也说模型由几个参数共同决定，所以可以想到用极大似然估计的方法来进行求解。这里不准备写上详细的数学推导过程，只是记下一点求解思路心得。我们知道求解概率模型，对决定该模型的参数进行估计可以用似然估计，因为乘法下溢现象加个对数转化成加法运算。基于训练集中样本独立同分布，参数对于训练集D的似然是$P(D| \theta)$，在这里的情况下，有三个参数：$a_i$即$P(zj=i|xj)$选择dii个高斯原型的概率；第i个高斯原型的均值向量和协方差矩阵。我们的目的就是找到这样的参数使得似然函数极大。概率模型的参数学习可以由EM算法实现，可以参考李航统计学习中的EM讲解先求得Q函数然后优化迭代，当然西瓜书中讲得也挺详细。</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/fclefang/JavaScript/发音拼写的概率模型/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">发音拼写的概率模型</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="JavaScript/Clustering" data-title="Clustering" data-url="http://www.fclef.me/fclefang/JavaScript/Clustering/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fclef"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Fclefang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
