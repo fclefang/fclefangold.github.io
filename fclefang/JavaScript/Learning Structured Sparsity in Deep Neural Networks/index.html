@@ -4,18 +4,21 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>JS深入浅出日记——One | fclefang</title>
+  <title>Learning Structured Sparsity in Deep Neural Networks | fclefang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数据类型objectnumberstringbooleannullundefined">
+  <meta name="description" content="这篇文章来自匹兹堡大学的研究人员。 文章的核心内容非常容易理解，那就是要引入Structured Sparsity到DNN来，使得最终的DNN有一个比较紧凑的表示，加快运算速度，同时能够得到硬件友善的表现形式，让硬件能够比较快的执行。
+虽然之前已经有了一些工作来对DNN进行压缩，但这篇文章的作者认为，这些压缩方法（比如直接使用L1 Regularization），可能会让网络得到一些随机（Rand">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS深入浅出日记——One">
-<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/JS深入浅出日记——One/index.html">
+<meta property="og:title" content="Learning Structured Sparsity in Deep Neural Networks">
+<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/Learning Structured Sparsity in Deep Neural Networks/index.html">
 <meta property="og:site_name" content="fclefang">
-<meta property="og:description" content="数据类型objectnumberstringbooleannullundefined">
-<meta property="og:updated_time" content="2016-09-08T05:12:09.097Z">
+<meta property="og:description" content="这篇文章来自匹兹堡大学的研究人员。 文章的核心内容非常容易理解，那就是要引入Structured Sparsity到DNN来，使得最终的DNN有一个比较紧凑的表示，加快运算速度，同时能够得到硬件友善的表现形式，让硬件能够比较快的执行。
+虽然之前已经有了一些工作来对DNN进行压缩，但这篇文章的作者认为，这些压缩方法（比如直接使用L1 Regularization），可能会让网络得到一些随机（Rand">
+<meta property="og:updated_time" content="2016-12-07T16:11:23.139Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS深入浅出日记——One">
-<meta name="twitter:description" content="数据类型objectnumberstringbooleannullundefined">
+<meta name="twitter:title" content="Learning Structured Sparsity in Deep Neural Networks">
+<meta name="twitter:description" content="这篇文章来自匹兹堡大学的研究人员。 文章的核心内容非常容易理解，那就是要引入Structured Sparsity到DNN来，使得最终的DNN有一个比较紧凑的表示，加快运算速度，同时能够得到硬件友善的表现形式，让硬件能够比较快的执行。
+虽然之前已经有了一些工作来对DNN进行压缩，但这篇文章的作者认为，这些压缩方法（比如直接使用L1 Regularization），可能会让网络得到一些随机（Rand">
   
     <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
   
@@ -180,11 +183,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-JavaScript/JS深入浅出日记——One" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-JavaScript/Learning Structured Sparsity in Deep Neural Networks" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/fclefang/JavaScript/JS深入浅出日记——One/" class="article-date">
-  	<time datetime="2016-07-23T12:38:16.000Z" itemprop="datePublished">2016-07-23</time>
+      <a href="/fclefang/JavaScript/Learning Structured Sparsity in Deep Neural Networks/" class="article-date">
+  	<time datetime="2016-11-24T14:15:01.000Z" itemprop="datePublished">2016-11-24</time>
 </a>
     </div>
   
@@ -197,7 +200,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      JS深入浅出日记——One
+      Learning Structured Sparsity in Deep Neural Networks
     </h1>
   
 
@@ -206,12 +209,12 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
 	</div>
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+	<a class="article-category-link" href="/categories/paper-review/">paper-review</a>
 	</div>
 
 
@@ -221,26 +224,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li><strong>数据类型</strong><br>object<br>number<br>string<br>boolean<br>null<br>undefined<a id="more"></a></li>
-<li><p><strong>巧用+/-号实现类型转换</strong><br>for instance:var num;<br>num-0 :将num转换成数字类型<br>num+” :将num转换成字符串型</p>
-</li>
-<li><p><strong>JS引擎关于基本类型当对象使用时：</strong><br>var str=”string”;<br>str.t=10;<br>这里JS引擎将基本字符串类型str转换成对象str，并给t属性赋值，然     后销毁对象str。<br><strong>问题：</strong> 这种智能化将基本类型转换成对象有什么实际意义？</p>
-</li>
-<li><strong>类型检测：</strong><br>typeof: 适合基本类型和函数对象，直接返回一个字符串，非常直观。<br>instanceof: 适合自定义对象，也可以用来检测原生对象，在不同的if     rame和window之间检测是无效的。因为生成的是不同的对象！<br>Object.prototype.toString<br>Constructor<br>duck type</li>
-<li><p><strong>将数组转为字符串：</strong><br>`Array.prototype.join:<br>function repeatString(n,str){</p>
-<pre><code>return new Array(n+1).join(str);
-</code></pre><p>}</p>
-<pre><code>repeatString(3,a);//&quot;aaa&quot;`
-</code></pre></li>
-<li><p><strong>排序：</strong><br><code>Array.prototype.sort:
-var arr=[13,24,51,3];
-arr.sort();//[13,24,3,51]，将数字看成字符串排序
-arr;//[13,24,3,51]，并不是新建一个数组排序，直接在原数组排序。</code><br><strong>那么如何将数组内的数字排序呢？</strong><br>添加一个比较函数：<br><code>arr.sort(function(a,b){
-return a-b;
-});</code></p>
-</li>
-</ol>
+        <p>这篇文章来自匹兹堡大学的研究人员。 文章的核心内容非常容易理解，那就是要引入Structured Sparsity到DNN来，使得最终的DNN有一个比较紧凑的表示，加快运算速度，同时能够得到硬件友善的表现形式，让硬件能够比较快的执行。</p>
+<p>虽然之前已经有了一些工作来对DNN进行压缩，但这篇文章的作者认为，这些压缩方法（比如直接使用L1 Regularization），可能会让网络得到一些随机（Random）的链接，使得内存访问变得不常规（Iregular）。那么在这样的情况下，新的模型，虽然表面上有很大的Sparsity，但是并没有加快运算速度，有时候甚至还有减少。另外一种最近的思路，那就是最近采用的Low-Rank Approximation的方法。简单说来这种方法就是先训练DNN，然后每层得到的Tensor被分解，并且被更小的Factor所替代逼近。 这种方法的好处是能够达到加速，但是坏处则是需要最终重新Fine-Tune模型的精度。显然，这篇文章就是要解决上述这些缺点。</p>
+<p>文章作者把前几年火热的Structured Sparisty Learning（SSL）和DNN相结合。具体说来，就是采用了Group Lasso的方法来让DNN的参数能够结构化置0。在这篇文章里，作者采用了下面三种方法：</p>
+<ul>
+<li>惩罚（Penalizing）不重要的Filter和Channel：也就是把一些Filter和Channel给置0。</li>
+<li>学习任意形状的Filter：也就是在2D空间上学习通过置0，达到学习任意形状的要求。</li>
+<li>缩短DNN的层数：也就是彻底移除整个层。这里通过增加Shortcut的方法来达到不产生断层的情况。</li>
+</ul>
+<p>文章并没有提供在SSL和DNN相结合的情况下的Learning算法。<br>实验部分非常详实，用LeNet在MNIST、ConvNet和ResNet在CIFAR-10以及AlexNet在ImageNet上都做了实验。有兴趣的朋友可以仔细读读实验的部分。总体的感觉是，在很多例子的情况下，更加Sparsity的DNN反而带来了精度的提高。​</p>
 
       
     </div>
@@ -250,15 +242,20 @@ return a-b;
     
 <nav id="article-nav">
   
-    <a href="/fclefang/JavaScript/JS深入浅出日记——Two/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/fclefang/JavaScript/语音转换/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          JS深入浅出日记——Two
+          语音转换
         
       </div>
     </a>
   
+  
+    <a href="/fclefang/JavaScript/16.11.24小记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">16.11.24小记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -291,7 +288,7 @@ return a-b;
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="JavaScript/JS深入浅出日记——One" data-title="JS深入浅出日记——One" data-url="http://www.fclef.me/fclefang/JavaScript/JS深入浅出日记——One/"></div>
+	<div class="ds-thread" data-thread-key="JavaScript/Learning Structured Sparsity in Deep Neural Networks" data-title="Learning Structured Sparsity in Deep Neural Networks" data-url="http://www.fclef.me/fclefang/JavaScript/Learning Structured Sparsity in Deep Neural Networks/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

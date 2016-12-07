@@ -4,18 +4,17 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>JS深入浅出日记——One | fclefang</title>
+  <title>Archives: 2016/11 | fclefang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数据类型objectnumberstringbooleannullundefined">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JS深入浅出日记——One">
-<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/JS深入浅出日记——One/index.html">
+  <meta name="description" content="学习">
+<meta property="og:type" content="website">
+<meta property="og:title" content="fclefang">
+<meta property="og:url" content="http://www.fclef.me/archives/2016/11/page/2/index.html">
 <meta property="og:site_name" content="fclefang">
-<meta property="og:description" content="数据类型objectnumberstringbooleannullundefined">
-<meta property="og:updated_time" content="2016-09-08T05:12:09.097Z">
+<meta property="og:description" content="学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS深入浅出日记——One">
-<meta name="twitter:description" content="数据类型objectnumberstringbooleannullundefined">
+<meta name="twitter:title" content="fclefang">
+<meta name="twitter:description" content="学习">
   
     <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
   
@@ -180,136 +179,61 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-JavaScript/JS深入浅出日记——One" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/JS深入浅出日记——One/" class="article-date">
-  	<time datetime="2016-07-23T12:38:16.000Z" itemprop="datePublished">2016-07-23</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/fclefang/JavaScript/SVM(1)/" class="archive-article-date">
+  	<time datetime="2016-11-02T13:37:36.000Z" itemprop="datePublished">11月 2</time>
 </a>
-    </div>
+        </div>
+    	 
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      JS深入浅出日记——One
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/fclefang/JavaScript/SVM(1)/">SVM(1)</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
 	</div>
 
-        
+          
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+	<a class="article-category-link" href="/categories/SVM/">SVM</a>
 	</div>
 
 
+        </div>
         <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><strong>数据类型</strong><br>object<br>number<br>string<br>boolean<br>null<br>undefined<a id="more"></a></li>
-<li><p><strong>巧用+/-号实现类型转换</strong><br>for instance:var num;<br>num-0 :将num转换成数字类型<br>num+” :将num转换成字符串型</p>
-</li>
-<li><p><strong>JS引擎关于基本类型当对象使用时：</strong><br>var str=”string”;<br>str.t=10;<br>这里JS引擎将基本字符串类型str转换成对象str，并给t属性赋值，然     后销毁对象str。<br><strong>问题：</strong> 这种智能化将基本类型转换成对象有什么实际意义？</p>
-</li>
-<li><strong>类型检测：</strong><br>typeof: 适合基本类型和函数对象，直接返回一个字符串，非常直观。<br>instanceof: 适合自定义对象，也可以用来检测原生对象，在不同的if     rame和window之间检测是无效的。因为生成的是不同的对象！<br>Object.prototype.toString<br>Constructor<br>duck type</li>
-<li><p><strong>将数组转为字符串：</strong><br>`Array.prototype.join:<br>function repeatString(n,str){</p>
-<pre><code>return new Array(n+1).join(str);
-</code></pre><p>}</p>
-<pre><code>repeatString(3,a);//&quot;aaa&quot;`
-</code></pre></li>
-<li><p><strong>排序：</strong><br><code>Array.prototype.sort:
-var arr=[13,24,51,3];
-arr.sort();//[13,24,3,51]，将数字看成字符串排序
-arr;//[13,24,3,51]，并不是新建一个数组排序，直接在原数组排序。</code><br><strong>那么如何将数组内的数字排序呢？</strong><br>添加一个比较函数：<br><code>arr.sort(function(a,b){
-return a-b;
-});</code></p>
-</li>
-</ol>
-
-      
-    </div>
-    
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/fclefang/JavaScript/JS深入浅出日记——Two/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          JS深入浅出日记——Two
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
-
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">Share to: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
-
-
-
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="JavaScript/JS深入浅出日记——One" data-title="JS深入浅出日记——One" data-url="http://www.fclef.me/fclefang/JavaScript/JS深入浅出日记——One/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"fclef"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/2016/11/">&laquo; Prev</a><a class="page-number" href="/archives/2016/11/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 
 </div>
       <footer id="footer">
@@ -335,8 +259,8 @@ return a-b;
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

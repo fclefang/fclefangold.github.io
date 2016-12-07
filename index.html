@@ -72,7 +72,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -441,6 +441,75 @@
 
 
   
+    <article id="post-JavaScript/Learning Structured Sparsity in Deep Neural Networks" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/Learning Structured Sparsity in Deep Neural Networks/" class="article-date">
+  	<time datetime="2016-11-24T14:15:01.000Z" itemprop="datePublished">2016-11-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fclefang/JavaScript/Learning Structured Sparsity in Deep Neural Networks/">Learning Structured Sparsity in Deep Neural Networks</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章来自匹兹堡大学的研究人员。 文章的核心内容非常容易理解，那就是要引入Structured Sparsity到DNN来，使得最终的DNN有一个比较紧凑的表示，加快运算速度，同时能够得到硬件友善的表现形式，让硬件能够比较快的执行。</p>
+<p>虽然之前已经有了一些工作来对DNN进行压缩，但这篇文章的作者认为，这些压缩方法（比如直接使用L1 Regularization），可能会让网络得到一些随机（Random）的链接，使得内存访问变得不常规（Iregular）。那么在这样的情况下，新的模型，虽然表面上有很大的Sparsity，但是并没有加快运算速度，有时候甚至还有减少。另外一种最近的思路，那就是最近采用的Low-Rank Approximation的方法。简单说来这种方法就是先训练DNN，然后每层得到的Tensor被分解，并且被更小的Factor所替代逼近。 这种方法的好处是能够达到加速，但是坏处则是需要最终重新Fine-Tune模型的精度。显然，这篇文章就是要解决上述这些缺点。</p>
+<p>文章作者把前几年火热的Structured Sparisty Learning（SSL）和DNN相结合。具体说来，就是采用了Group Lasso的方法来让DNN的参数能够结构化置0。在这篇文章里，作者采用了下面三种方法：</p>
+<ul>
+<li>惩罚（Penalizing）不重要的Filter和Channel：也就是把一些Filter和Channel给置0。</li>
+<li>学习任意形状的Filter：也就是在2D空间上学习通过置0，达到学习任意形状的要求。</li>
+<li>缩短DNN的层数：也就是彻底移除整个层。这里通过增加Shortcut的方法来达到不产生断层的情况。</li>
+</ul>
+<p>文章并没有提供在SSL和DNN相结合的情况下的Learning算法。<br>实验部分非常详实，用LeNet在MNIST、ConvNet和ResNet在CIFAR-10以及AlexNet在ImageNet上都做了实验。有兴趣的朋友可以仔细读读实验的部分。总体的感觉是，在很多例子的情况下，更加Sparsity的DNN反而带来了精度的提高。​</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/paper-review/">paper-review</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-JavaScript/16.11.24小记" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -745,72 +814,6 @@
       
         <p class="article-more-link">
           <a  href="/fclefang/JavaScript/SVM(3)/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript/SVM(2)" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/fclefang/JavaScript/SVM(2)/" class="article-date">
-  	<time datetime="2016-11-04T07:46:46.000Z" itemprop="datePublished">2016-11-04</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/fclefang/JavaScript/SVM(2)/">SVM(2)</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>接着上一篇关于SVM的总结，上一篇在学习实战的过程中还有好几点问题没解决，所以最后也将问题的思路大概写下来，接下来会花点时间解决这些问题。这一篇将会学习完整的SMO算法并且接触核函数的知识。</strong></p>
-<hr>
-<h3 id="1-Platt-SMO算法"><a href="#1-Platt-SMO算法" class="headerlink" title="1. Platt SMO算法"></a>1. Platt SMO算法</h3><p>上一篇博客中提到的简化版计算成本太大，这里讨论完整版的Platt SMO算法及其应用到的启发式方法。算法的原本思想不变，仍然是找一对alpha值，只是在找第二个alpha值的时候与之前简化版的不同。<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/SVM/">SVM</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/fclefang/JavaScript/SVM(2)/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
