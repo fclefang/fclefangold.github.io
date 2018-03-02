@@ -24,7 +24,7 @@
 安装tomcat
 下载geoserver-2.9.2-war.zip，解压该文件并将geoserver.war复制到/usr/local/tomcat/apache-tomcat-9.0.0.M11/webapps中去。
 重启tomcatsystemctl restart tomcat，浏览器输入http:">
-<meta property="og:updated_time" content="2018-03-02T12:48:28.285Z">
+<meta property="og:updated_time" content="2018-03-02T12:53:18.298Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OSM搭建地图服务安装配置Geoserver">
 <meta name="twitter:description" content="二. 安装配置Geoserver
@@ -130,7 +130,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/GIS/" style="font-size: 12.5px;">GIS</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/gossip/" style="font-size: 10px;">gossip</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a>
+						<a href="/tags/GIS/" style="font-size: 12.5px;">GIS</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/gossip/" style="font-size: 10px;">gossip</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/parking/" style="font-size: 10px;">parking</a>
 					</div>
 				</section>
 				
@@ -247,7 +247,9 @@
 <li>下载geoserver-2.9.2-war.zip，解压该文件并将geoserver.war复制到/usr/local/tomcat/apache-tomcat-9.0.0.M11/webapps中去。</li>
 <li>重启tomcat<code>systemctl restart tomcat</code>，浏览器输入<code>http://服务器ip:8080/geoserver</code>应该就能打开GeoServer了。默认用户名<code>admin</code>和<code>geoserver</code>密码登入就可以见到主界面。</li>
 <li>当然也可以不通过tomcat来启动geoserver服务，完全可以直接<code>sh startup.sh</code>，启动文件在bin目录下，所以tomcat是可选可不选的。</li>
-<li>更多的geserver配置可以注意web.xml和init文件，我们可以通过这两个文件修改端口以及登入账号密码等等。</li>
+<li><p>更多的geserver配置可以注意web.xml和init文件，我们可以通过这两个文件修改端口以及登入账号密码等等。</p>
+<a id="more"></a>
+</li>
 </ul>
 <h2 id="2-导入osm地图数据"><a href="#2-导入osm地图数据" class="headerlink" title="2. 导入osm地图数据"></a>2. 导入osm地图数据</h2><ul>
 <li><a href="http://download.geofabrik.de/asia.html" target="_blank" rel="external">openstreetmap中国数据下载地址</a></li>

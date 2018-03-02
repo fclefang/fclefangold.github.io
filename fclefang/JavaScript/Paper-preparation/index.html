@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Paper-preparation | fclefang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="基于小波－ＥＬＭ 神经网络的短期停车泊位预测
+论文整体思路：采用小波变换与极限学习机(ELM)相结合的方法对短时空余停车泊位进行预测．首先，通过小波函数对有效停车泊位时间序列进行小波分解和重构;然后用ELM对分解后所得的各时间序列进行预测;最后对各神经网络的预测结果进行合成，得到最终的预测结果。预测实例结果表明,该方法缩短了训练时间,提高了预测结果.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Paper-preparation">
+<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/Paper-preparation/index.html">
+<meta property="og:site_name" content="fclefang">
+<meta property="og:description" content="基于小波－ＥＬＭ 神经网络的短期停车泊位预测
+论文整体思路：采用小波变换与极限学习机(ELM)相结合的方法对短时空余停车泊位进行预测．首先，通过小波函数对有效停车泊位时间序列进行小波分解和重构;然后用ELM对分解后所得的各时间序列进行预测;最后对各神经网络的预测结果进行合成，得到最终的预测结果。预测实例结果表明,该方法缩短了训练时间,提高了预测结果.">
+<meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/blog/image/rainstorm1.pngrainstorm.png">
+<meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/image/jpg/representation.jpgrepresentationlearning.png">
+<meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/image/jpg/htsr.jpgHTSR.png">
+<meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/image/jpg/rdbn.jpgr-DBN.png">
+<meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/image/jpg/rlstm.jpgr-lstm.png">
+<meta property="og:updated_time" content="2018-03-02T12:56:56.469Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Paper-preparation">
+<meta name="twitter:description" content="基于小波－ＥＬＭ 神经网络的短期停车泊位预测
+论文整体思路：采用小波变换与极限学习机(ELM)相结合的方法对短时空余停车泊位进行预测．首先，通过小波函数对有效停车泊位时间序列进行小波分解和重构;然后用ELM对分解后所得的各时间序列进行预测;最后对各神经网络的预测结果进行合成，得到最终的预测结果。预测实例结果表明,该方法缩短了训练时间,提高了预测结果.">
+<meta name="twitter:image" content="http://ogy25dae4.bkt.clouddn.com/blog/image/rainstorm1.pngrainstorm.png">
+  
+    <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fclefang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">开心自由最重要</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories">分类</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/GIS/" style="font-size: 12.5px;">GIS</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/gossip/" style="font-size: 10px;">gossip</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/parking/" style="font-size: 10px;">parking</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">CIT（2012-2016）,GuiLin Elec(2016-2019).认真做好应该做的每一件事。衣不如新，人不如旧，旧衣穿着最舒服，新人也未必不是更好的选择...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Fclefang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/fxy.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fclefang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">开心自由最重要</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories">分类</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-JavaScript/Paper-preparation" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/Paper-preparation/" class="article-date">
+  	<time datetime="2017-08-18T07:16:46.000Z" itemprop="datePublished">2017-08-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Paper-preparation
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/parking/">parking</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/paper/">paper</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="基于小波－ELM-神经网络的短期停车泊位预测"><a href="#基于小波－ELM-神经网络的短期停车泊位预测" class="headerlink" title="基于小波－ＥＬＭ 神经网络的短期停车泊位预测"></a>基于小波－ＥＬＭ 神经网络的短期停车泊位预测</h1><hr>
+<p><strong>论文整体思路：</strong><br>采用小波变换与极限学习机(ELM)相结合的方法对短时空余停车泊位进行预测．首先，通过小波函数对有效停车泊位时间序列进行小波分解和重构;然后用ELM对分解后所得的各时间序列进行预测;最后对各神经网络的预测结果进行合成，得到最终的预测结果。预测实例结果表明,该方法缩短了训练时间,提高了预测结果.</p>
+<a id="more"></a>
+<p><strong>方法概括：</strong></p>
+<ul>
+<li>训练数据预处理：得到每个时刻与前一时刻的变化量，将结果作为训练的数据，并通过快速二进正交小波变换Mallat算法<a href="http://ogy25dae4.bkt.clouddn.com/blog/image/rainstorm1.pngrainstorm.png" target="_blank" rel="external">1</a>对新的数据进行n次分解，得到子序列数据，这些子序列数据可以看成原数据中内含着的不同的影响成分。其中，停车泊位序列是非平稳时间序列，小波变换是处理非平稳数值信号的有效工具，在非平稳时间序列的分析和预测中都有较好的应用．因此，本文采用Mallat算法对训练数据进行小波分解和重构。</li>
+<li>网络模型训练：利用得到的序列数据对ELM神经网络进行训练。采用相空间重构方法确定神经网络输入，m称为嵌入维数，τ称为延时常数．本文采用G-P算法确认m，利用自相关函数法确定τ。采用该方法确定神经网络输入值可从单一序列中研究系统的动力学特性，从而更好地对空闲停车泊位做出预测。</li>
+<li>实验测试：对预测点前段时间的实时数据进行小波变换，得到子序列，然后将子序列输入到训练好的ELM模型进行预测从而得到结果。其中，ELM神经网络是一种单隐藏层前馈神经网络（SLFN），具有训练速度快、泛化性能良好、网络结构灵活等特点。</li>
+</ul>
+<hr>
+<h2 id="Car-traffic-forecasting-A-representation-learning-approach"><a href="#Car-traffic-forecasting-A-representation-learning-approach" class="headerlink" title="Car-traffic forecasting: A representation learning approach"></a>Car-traffic forecasting: A representation learning approach</h2><p><strong>论文整体思路：</strong><br>本文是一个交通流预测文章，文章中提出的模型在解决预测问题的同时解决了另一个重要的问题：我们的训练数据存在大量缺失值。作者发现目前大多数研究都是通过两个模型来分别解决缺失值和预测问题，而本文则利用特征学习的知识，将时间数据都在一个潜在的向量空间中表示，每个时间步长的序列都可以看成这样一个向量空间内的某个点。模型RAINSTORM利用序列数据进行训练模型，不仅可以利用空间相关信息等填补缺失值也能对下一时刻的时间序列进行准确的预测。</p>
+<p><strong>方法概括：</strong></p>
+<ol>
+<li>Notations and Tasks：首先有这么一个时间序列集合{$x_1,…x_n$},其中${x_i}=（{x_i^{(1)}},…{x_i^{(T)}}）$,${x_i^{(t)}}$则表示X空间域中第i个序列在时刻t的值。另外定义标记${m_i^{(t)}}$,如果${x<em>i^{(t)}}$的值缺失则为0，否则为1。当标记为0的时候也就意味着我们的模型需要对缺失值进行预测从而填补缺失值。另外模型也考虑了空间信息的影响，时间序列之间存在着关联信息，一个明显的外在表现就是不同的时间序列所表征的那条路线是否相连接，这里我们可以通过图结构{$e</em>{i,j}$}来表示这样的一个空间连接关系。当${x_i}$和${x<em>j}$相连接时$e</em>{i,j}$等于1，否则为0。</li>
+<li>Model：模型名称是The RepresentAtIoN-baSed TempOral Relational Model(RAINSTORM)。模型的损失函数是$L(\theta,\gamma,z)$:<br><img src="http://ogy25dae4.bkt.clouddn.com/blog/image/rainstorm1.pngrainstorm.png" alt="损失函数"><br>函数表达式中的O是指所有观测到的值的数目，即m标记为1的数目。<br>下面对损失函数中的三个子项进行简单介绍：<blockquote>
+<p>第一项：主要学习向量<strong>z</strong>和解码函数$f<em>{\theta}$，解码函数可以将z向量映射到x向量值.<br>第二项：发现向量<strong>z</strong>和学习动态函数$h</em>{\gamma}$，h函数可以通过t时刻下一时刻的值。<br>第三项：基于图结构使模型学习相关的时间序列的表征。</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>心得：这篇论文看完之后我想到的就是当我的数据中存在一定比例缺失值的时候，可以参考作者的思想：借助空间等相关信息预测缺失值，再利用填补缺失值之后的新数据来进行模型的训练。损失函数中的第一项和第三项也许以后能够用到。另外有一点疑问就是看完我并不清楚具体的模型结构。</strong></p>
+<hr>
+<h2 id="Joint-Prediction-of-Road-Traffic-and-Parking-Occupancy-Over-a-City-With-Representation-Learning"><a href="#Joint-Prediction-of-Road-Traffic-and-Parking-Occupancy-Over-a-City-With-Representation-Learning" class="headerlink" title="Joint Prediction of Road-Traffic and Parking Occupancy Over a City With Representation Learning"></a>Joint Prediction of Road-Traffic and Parking Occupancy Over a City With Representation Learning</h2><p><strong>论文整体思路：</strong></p>
+<p>当司机寻找停车场的时候，必然会选择一个停车场然后按照路线开过去，但是如果那个停车场没有停车位了，那么司机就不得不寻找另一个停车场地点，这个过程中面临着时间和能源的浪费、废气的排耗以及交通的拥堵。作者在前一篇论文思想的基础上提出了异质时间序列结合预测的方案：根据交通流与停车位的相关性，结合交通和停车这两条不同的时间序列进行交叉预测会取得更好的预测性能。总结下来就两点：第一点是时间序列预测的表征学习模型，第二点就是这样的模型可以结合不同性质的时间序列进行交叉预测。</p>
+<p><strong>方法概括：</strong><br>学习的模型HTSR (Heterogeneous Time-Series Representation)必须能够获取数据的信息：时间、空间和异质序列的相关性（维度空间向量表示）。大概思想和前一篇论文类似，不同点在于损失函数的第一项加了个异质序列的求和式。<br><img src="http://ogy25dae4.bkt.clouddn.com/image/jpg/representation.jpgrepresentationlearning.png" alt="此处输入图片的描述"></p>
+<blockquote>
+<p>Note that series of different types are projected in the same space, which will allow us to capture the correlation between heterogeneous information sources at it has been for example proposed in[18] for static data.</p>
+</blockquote>
+<p><strong>实验结果和心得：</strong></p>
+<blockquote>
+<p>In this section, we use linear functions for dm and a multilayer perceptron with 150 hidden units for h.<br><img src="http://ogy25dae4.bkt.clouddn.com/image/jpg/htsr.jpgHTSR.png" alt="此处输入图片的描述"></p>
+</blockquote>
+<p>作者提出的HTSR模型和自回归模型(VAR)、ARIMA: (Autoregressive Integrated Moving Average)、NN模型进行对比发现HTSR性能更好。</p>
+<p><strong>从这篇论文中，我学习到将观测值、序列数据动态性以及相关性等信息映射到一个向量空间中表示，另外这样的模型可以处理异质时间序列，比如将交通流和停车位交叉预测。有一点问题是关于向量空间的表示如何理解，也就是如何将多信息映射到向量空间中呢？</strong></p>
+<hr>
+<h2 id="Traffic-Flow-Prediction-with-Rainfall-Impact-Using-a-Deep-Learning-Method"><a href="#Traffic-Flow-Prediction-with-Rainfall-Impact-Using-a-Deep-Learning-Method" class="headerlink" title="Traffic Flow Prediction with Rainfall Impact Using a Deep Learning Method"></a>Traffic Flow Prediction with Rainfall Impact Using a Deep Learning Method</h2><p><strong>论文整体思路：</strong><br>这是一篇预测交通流的文章，因为交通流的随机性以及非线性等特征，一些参数模型很难克服这些困难。于是神经网络等非参模型越来越流行解决这些问题，比如：NN、BPNN、DBN、SAE等等。而在解决时间序列的问题上，RNN模型越来越受到重视，而其中最著名的就是LSTM模型。本文就是采用LSTM模型并结合考虑环境因素对预测结果的影响比如降雨量的影响。文章对四个模型进行实验分析分别为：DBN和LSTM；R-DBN和R-LSTM。</p>
+<p><strong>方法概括：</strong></p>
+<ul>
+<li>R-DBN：<img src="http://ogy25dae4.bkt.clouddn.com/image/jpg/rdbn.jpgr-DBN.png" alt="此处输入图片的描述"></li>
+<li>R-LSTM：<img src="http://ogy25dae4.bkt.clouddn.com/image/jpg/rlstm.jpgr-lstm.png" alt="此处输入图片的描述"></li>
+</ul>
+<p><strong>心得：</strong><br>实验结果显示LSTM模型更优，并且结合降雨量的R-LSTM模型能够改善性能。我学习到LSTM模型比起其它神经网络模型（利用记忆单元来记忆长短期时间特征信息）更适合获取时间序列的特征信息，并且在模型输入数据准备过程中，加入相关性较高的不同数据源能够改善最终的预测结果。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/fclefang/JavaScript/OSM+Postgresql+Postgis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          OSM搭建地图服务安装配置Postgresql+Postgis
+        
+      </div>
+    </a>
+  
+  
+    <a href="/fclefang/JavaScript/Clustering/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Clustering</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="JavaScript/Paper-preparation" data-title="Paper-preparation" data-url="http://www.fclef.me/fclefang/JavaScript/Paper-preparation/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fclef"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Fclefang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
