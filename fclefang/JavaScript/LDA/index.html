@@ -14,7 +14,7 @@
 <meta property="og:description" content="今天先对线性判别分析(LDA)做一个总结。LDA应用非常广泛，但也要注意今天理解的LDA和NLP领域的LDA(隐含狄利克雷分布Latent Dirichlet Allocation)是不一样的，它是一种处理文档的主题模型。本文根据网络上其他同学关于LDA的理解，整合成符合自己理解方式的推导思路。">
 <meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/LDA%E6%8A%95%E5%BD%B1.png">
 <meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/LDA_image2.png">
-<meta property="og:updated_time" content="2018-07-08T12:48:08.000Z">
+<meta property="og:updated_time" content="2018-07-08T12:52:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PCA and LDA">
 <meta name="twitter:description" content="今天先对线性判别分析(LDA)做一个总结。LDA应用非常广泛，但也要注意今天理解的LDA和NLP领域的LDA(隐含狄利克雷分布Latent Dirichlet Allocation)是不一样的，它是一种处理文档的主题模型。本文根据网络上其他同学关于LDA的理解，整合成符合自己理解方式的推导思路。">
@@ -227,9 +227,13 @@
         <p>今天先对线性判别分析(LDA)做一个总结。LDA应用非常广泛，但也要注意今天理解的LDA和NLP领域的LDA(隐含狄利克雷分布Latent Dirichlet Allocation)是不一样的，它是一种处理文档的主题模型。本文根据网络上其他同学关于LDA的理解，整合成符合自己理解方式的推导思路。</p>
 <a id="more"></a>
 <hr>
-<h2 id="1-LDA的概念"><a href="#1-LDA的概念" class="headerlink" title="1. LDA的概念"></a>1. LDA的概念</h2><p>LDA是一种监督学习的降维技术，这里和PCA不同的一个关键点在于，同为降维技术，PCA属于无监督学习降维，因为PCA不考虑样本的类别，而LDA是要确定样本类别标签的。LDA的核心思想一句话概括：<strong>投影后类内方差最小，类间方差最大</strong>。也就是说，我们将数据在低维度上投影，投影效果使得每一种类别数据的投影点尽可能接近，而不同类别的数据的类别中心点之间距离尽可能的大。<img src="http://ogy25dae4.bkt.clouddn.com/LDA%E6%8A%95%E5%BD%B1.png" alt="LDA投影"></p>
-<p>举个简单的例子，如上图所示有两类数据，分别为红色和蓝色，可以看大这些红蓝点是二维坐标点，可以理解为每个点有两个特征维度，LDA目的就是找到这样一条一维直线，当所有二维点投影到这样一条直线上，每一种类别在直线上的投影尽可能接近，二不同类别即红蓝中心点的距离尽可能远。从图上就能看到右边的投影方式更好一点。当然实际情况的数据点不一定是二维的，也可能三维、四维等等，那么LDA的目标对应的就是找到更低维度的超平面。</p>
-<h2 id="2-LDA原理-以两个类别为例"><a href="#2-LDA原理-以两个类别为例" class="headerlink" title="2. LDA原理(以两个类别为例)"></a>2. LDA原理(以两个类别为例)</h2><p>这一段内容将以两类数据为例，严谨推导LDA的原理。</p>
+<h2 id="1-LDA的概念"><a href="#1-LDA的概念" class="headerlink" title="1. LDA的概念"></a>1. LDA的概念</h2><ul>
+<li>LDA是一种监督学习的降维技术，这里和PCA不同的一个关键点在于，同为降维技术，PCA属于无监督学习降维，因为PCA不考虑样本的类别，而LDA是要确定样本类别标签的。LDA的核心思想一句话概括：<strong>投影后类内方差最小，类间方差最大</strong>。也就是说，我们将数据在低维度上投影，投影效果使得每一种类别数据的投影点尽可能接近，而不同类别的数据的类别中心点之间距离尽可能的大。<img src="http://ogy25dae4.bkt.clouddn.com/LDA%E6%8A%95%E5%BD%B1.png" alt="LDA投影"></li>
+</ul>
+<ul>
+<li>举个简单的例子，如上图所示有两类数据，分别为红色和蓝色，可以看大这些红蓝点是二维坐标点，可以理解为每个点有两个特征维度，LDA目的就是找到这样一条一维直线，当所有二维点投影到这样一条直线上，每一种类别在直线上的投影尽可能接近，二不同类别即红蓝中心点的距离尽可能远。从图上就能看到右边的投影方式更好一点。当然实际情况的数据点不一定是二维的，也可能三维、四维等等，那么LDA的目标对应的就是找到更低维度的超平面。</li>
+</ul>
+<h2 id="2-LDA原理-以两个类别为例"><a href="#2-LDA原理-以两个类别为例" class="headerlink" title="2. LDA原理(以两个类别为例)"></a>2. LDA原理(以两个类别为例)</h2><p>&#8194;这一段内容将以两类数据为例，严谨推导LDA的原理。</p>
 <p>已知数据集${(x_1,y_1),(x_2,y_2),…,(x_m,y_m)}$，其中任意样本$x_i$为n维向量，$y_i \in {0,1}$。我们定义$N_j(j=0,1)$为第j类样本的个数，$X_j(j=0,1)$为第j类样本的集合，而$\mu_j(j=0,1)$为第j类样本的均值向量，定义$\Sigma_j(j=0,1)$为第j类样本的协方差矩阵(严格来说是缺少分母部分的协方差矩阵)。</p>
 <p>$\mu_j$的表达式：<br>$$<br>\mu_j=\frac{1}{N<em>j}\sum</em>{x\in X_j}x<br>$$</p>
 <p>$\Sigma_j$的表达式:<br>$$<br>\Sigma<em>j = \sum</em>{x\in X_j}(x-\mu_j)(x-\mu_j)^T ,(j=0,1)<br>$$</p>
