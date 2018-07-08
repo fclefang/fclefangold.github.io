@@ -14,7 +14,7 @@
 <meta property="og:description" content="&amp;emsp;&amp;emsp;今天先对线性判别分析(LDA)做一个总结。LDA应用非常广泛，但也要注意今天理解的LDA和NLP领域的LDA(隐含狄利克雷分布Latent Dirichlet Allocation)是不一样的，它是一种处理文档的主题模型。本文根据网络上其他同学关于LDA的理解，整合成符合自己理解方式的推导思路。">
 <meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/LDA%E6%8A%95%E5%BD%B1.png">
 <meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/LDA_image2.png">
-<meta property="og:updated_time" content="2018-07-08T15:28:11.000Z">
+<meta property="og:updated_time" content="2018-07-08T15:33:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PCA and LDA">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;今天先对线性判别分析(LDA)做一个总结。LDA应用非常广泛，但也要注意今天理解的LDA和NLP领域的LDA(隐含狄利克雷分布Latent Dirichlet Allocation)是不一样的，它是一种处理文档的主题模型。本文根据网络上其他同学关于LDA的理解，整合成符合自己理解方式的推导思路。">
@@ -261,7 +261,11 @@
 <li>LDA作为有监督学习降维，在寻找超平面过程中，是选择分类性能最好的方向，而LDA分类主要依赖的是均值而不是方差（PCA主要依赖的是方差），所以可以根据样本分类特性作出选择，当样本点依靠均值信息进行分类的时候，LDA比起PCA效果更优，当样本点依靠方差信息进行分类而不是均值信息时，LDA则不能进行有效分类因为LDA过度依赖均值信息，这个时候可以考虑PCA降维方法。</li>
 <li>可以联系瑞利商和广义瑞利商的知识，加深对LDA和协方差矩阵的的理解。</li>
 </ul>
-<h2 id="5-参考文献"><a href="#5-参考文献" class="headerlink" title="5. 参考文献"></a>5. 参考文献</h2>
+<h2 id="5-参考文献"><a href="#5-参考文献" class="headerlink" title="5. 参考文献"></a>5. 参考文献</h2><ul>
+<li><a href="https://www.cnblogs.com/engineerLF/p/5393119.html" target="_blank" rel="external">https://www.cnblogs.com/engineerLF/p/5393119.html</a>   攻城狮凌风：线性判别分析LDA详解</li>
+<li><a href="https://www.cnblogs.com/pinard/p/6244265.html" target="_blank" rel="external">https://www.cnblogs.com/pinard/p/6244265.html</a>           刘建平：线性判别分析LDA原理总结</li>
+</ul>
+
       
     </div>
     
