@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>GBDT | fclefang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;emsp;&amp;emsp;这段时间整理一下GBDT(Gradient Boosting Decison Tree)的知识，总结一下boosting算法思想以及决策树的应用，GB(梯度提升)不作概念阐述，默认已经理解。GBDT有很多简称，有GBT（Gradient Boosting Tree）, GTB（Gradient Tree Boosting ）， GBRT（Gradient Boosting">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GBDT">
+<meta property="og:url" content="http://www.fclef.me/fclefang/JavaScript/GBDT/index.html">
+<meta property="og:site_name" content="fclefang">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;这段时间整理一下GBDT(Gradient Boosting Decison Tree)的知识，总结一下boosting算法思想以及决策树的应用，GB(梯度提升)不作概念阐述，默认已经理解。GBDT有很多简称，有GBT（Gradient Boosting Tree）, GTB（Gradient Tree Boosting ）， GBRT（Gradient Boosting">
+<meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/GBDT%E6%A1%86%E6%9E%B6.png">
+<meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/DT%E6%8B%9F%E5%90%88%E6%95%88%E6%9E%9C.png">
+<meta property="og:image" content="http://ogy25dae4.bkt.clouddn.com/GBDT%E6%8B%9F%E5%90%88%E6%95%88%E6%9E%9C.png">
+<meta property="og:updated_time" content="2018-07-27T06:43:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GBDT">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;这段时间整理一下GBDT(Gradient Boosting Decison Tree)的知识，总结一下boosting算法思想以及决策树的应用，GB(梯度提升)不作概念阐述，默认已经理解。GBDT有很多简称，有GBT（Gradient Boosting Tree）, GTB（Gradient Tree Boosting ）， GBRT（Gradient Boosting">
+<meta name="twitter:image" content="http://ogy25dae4.bkt.clouddn.com/GBDT%E6%A1%86%E6%9E%B6.png">
+  
+    <link rel="alternative" href="/atom.xml" title="fclefang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/timg.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/timg.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fclefang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">开心自由最重要</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories">分类</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/GIS/" style="font-size: 12.5px;">GIS</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MachineLearning/" style="font-size: 20px;">MachineLearning</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/gossip/" style="font-size: 10px;">gossip</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/parking/" style="font-size: 10px;">parking</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">CIT（2012-2016）,GuiLin Elec(2016-2019).认真做好应该做的每一件事。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Fclefang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/timg.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fclefang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">开心自由最重要</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories">分类</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MR-Fclef" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/fang-xiang-yan" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-JavaScript/GBDT" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/fclefang/JavaScript/GBDT/" class="article-date">
+  	<time datetime="2018-07-10T13:25:41.000Z" itemprop="datePublished">2018-07-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      GBDT
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MachineLearning/">MachineLearning</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/GBDT/">GBDT</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;这段时间整理一下GBDT(Gradient Boosting Decison Tree)的知识，总结一下boosting算法思想以及决策树的应用，GB(梯度提升)不作概念阐述，默认已经理解。GBDT有很多简称，有GBT（Gradient Boosting Tree）, GTB（Gradient Tree Boosting ）， GBRT（Gradient Boosting Regression Tree）, MART(Multiple Additive Regression Tree)，其实都是指的同一种算法，本文统一简称GBDT。个人认为学习GBDT可以和之前的学习过ID3、CART决策树以及Adaboost算法联系起来加深自己的理解。</p>
+<a id="more"></a>
+<hr>
+<h2 id="1-GBDT概述"><a href="#1-GBDT概述" class="headerlink" title="1. GBDT概述"></a>1. GBDT概述</h2><p>&emsp;&emsp;GBDT是集成学习Boosting家族的成员，但是却和传统的Adaboost有很大的不同。回顾下Adaboost，我们是利用前一轮迭代弱学习器的误差率来更新训练集的权重，这样一轮轮的迭代下去。GBDT也是迭代，使用了前向分布算法，但是弱学习器限定了只能使用CART回归树模型，同时迭代思路和Adaboost也有所不同。<img src="http://ogy25dae4.bkt.clouddn.com/GBDT%E6%A1%86%E6%9E%B6.png" alt="GBDT"></p>
+<ul>
+<li><p>GBDT通过多轮迭代,每轮迭代产生一个弱分类器，每个分类器在上一轮分类器的<strong>残差</strong>基础上进行训练。对弱分类器的要求一般是足够简单，并且是低方差和高偏差的。因为训练的过程是通过降低偏差来不断提高最终分类器的精度，弱分类器一般会选择为CART（也就是分类回归树）。由于上述高偏差和简单的要求，因此每个分类回归树的深度不会很深。最终的总分类器是将每轮训练得到的弱分类器加权求和得到的（也就是加法模型）。</p>
+</li>
+<li><p>其实，本质上Gradient Boosting和其它Boosting算法一样，都是通过将表现一般的数个模型（通常是深度固定的决策树）组合在一起来集成一个表现较好的模型。抽象地说，模型的训练过程是对一任意可导目标函数的优化过程。通过反复地选择一个指向负梯度方向的函数，该算法可被看做在函数空间里对目标函数进行优化。因此可以说Gradient Boosting= Gradient Descent + Boosting。</p>
+</li>
+<li>以Boosting算法家族的代表AdaBoost为例，和AdaBoost相同点在于，Gradient Boosting也是重复选择一个表现一般的模型并且每次基于先前模型的表现进行调整。不同的是，AdaBoost是通过提升错分数据点的权重来定位模型的不足而Gradient Boosting是通过算梯度（gradient）来定位模型的不足。因此相比AdaBoost，Gradient Boosting可以使用更多种类的目标函数。</li>
+</ul>
+<p>&emsp;&emsp;在GBDT的迭代过程中，假设模型一共训练M轮，模型可以描述为：<br>$$<br>F<em>m(x)=\sum^M</em>{m=1}f(x;\theta_m)<br>$$<br>&emsp;&emsp;本轮将产生一个弱学习器$f(x;\theta<em>m)$，前一轮迭代得到的强学习器是$F</em>{m-1}(x)$，该弱学习器对应的损失函数为$L(y,F_{m-1}(x))$。我们本轮迭代的目标就是找到一个CART弱学习器$f(x;\theta<em>m)$，使得本轮的损失函数$L(y,F</em>{m-1}(x)+f(x;\theta_m))$最小。那么问题就来了：</p>
+<ul>
+<li>为什么梯度提升方法倾向于选择决策树作为基学习器呢？(也就是 GB 为什么要和 DT 结合，形成 GBDT) ;</li>
+<li>如何从函数空间中找到这样的弱学习器使得损失函数最小呢？</li>
+</ul>
+<h2 id="2-DBDT的负梯度拟合"><a href="#2-DBDT的负梯度拟合" class="headerlink" title="2. DBDT的负梯度拟合"></a>2. DBDT的负梯度拟合</h2><p>&emsp;&emsp;决策树可以认为是 if-then 规则的集合，易于理解，可解释性强，预测速度快。同时，决策树算法相比于其他的算法需要更少的特征工程，比如可以不用做特征标准化，可以很好的处理字段缺失的数据，也可以不用关心特征间是否相互依赖等。决策树能够自动组合多个特征。</p>
+<p>&emsp;&emsp;不过，单独使用决策树算法时，有容易过拟合缺点。所幸的是，通过各种方法，抑制决策树的复杂性，降低单颗决策树的拟合能力，再通过梯度提升的方法集成多个决策树，最终能够很好的解决过拟合的问题。由此可见，梯度提升方法和决策树学习算法可以互相取长补短，是一对完美的搭档。</p>
+<p>&emsp;&emsp;下面两个图分别表示 DT 和 由 100 棵树组合成的 GB 在树的深度为 0，3，6 时的效果，0 时就是要拟合的函数的图像，可以看到 GB 可以在有限的深度就能得到比较光滑的的拟合：</p>
+<p><img src="http://ogy25dae4.bkt.clouddn.com/DT%E6%8B%9F%E5%90%88%E6%95%88%E6%9E%9C.png" alt="DT"></p>
+<p>&emsp;&emsp;<img src="http://ogy25dae4.bkt.clouddn.com/GBDT%E6%8B%9F%E5%90%88%E6%95%88%E6%9E%9C.png" alt="GBDT拟合效果"></p>
+<p>&emsp;&emsp;Freidman提出了用损失函数的负梯度来拟合本轮损失的近似值，进而拟合一个CART回归树。第m轮的第i个样本的损失函数的负梯度表示为：<br>$$<br>r_{mi}=-[\frac{\partial L(y_i,F(x_i))}{\partial F(x<em>i)}]</em>{F(x)=F_{m-1}(x)}<br>$$<br>&emsp;&emsp;求得负梯度，利用$(x<em>i,r</em>{mi})(i=1,2,..,m)$，我们可以拟合出一个CART，得到第m个回归树，其对应的叶子节点$R_{mj},j=1,2,…,J$。其中J为叶子节点的个数。</p>
+<p>&emsp;&emsp;接下来针对每个叶子节点里的样本，求出使得损失函数最小，即拟合叶子节点最好的预测输出值$c<em>{mj}$如下：<br>$$<br>c</em>{mj}=arg min<em>c\sum</em>{x<em>i\in R</em>{mj}}L(y<em>i,F</em>{m-1}(x_i)+c)<br>$$<br>&emsp;&emsp;这里提一下计算上式预测值的方法，可以通过Newton-Raphson迭代公式求得。这样我们就得到了本轮的决策树拟合函数：<br>$$<br>f(x;\theta<em>m)=\sum</em>{j=1}^Jc<em>{mj}I(x\in R</em>{mj})<br>$$<br>&emsp;&emsp;其中，$I$表示为所有被划分到叶子节点j的训练样本的集合。最终本轮得到的强学习器为：<br>$$<br>F<em>m(x)=F</em>{m-1}(x)+\sum^J<em>{j=1}c</em>{mj}I(x\in R_{mj})<br>$$<br>&emsp;&emsp;推导至此，我们就通过函数的负梯度拟合了损失函数，当然这里损失函数的具体定义可以有多种选择，不影响推导思路。</p>
+<h2 id="3-代码实战"><a href="#3-代码实战" class="headerlink" title="3. 代码实战"></a>3. 代码实战</h2><ul>
+<li><a href="https://github.com/MR-Fclef/ml_practice/tree/master/GBDT" target="_blank" rel="external">https://github.com/MR-Fclef/ml_practice/tree/master/GBDT</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li><a href="https://blog.csdn.net/yangxudong/article/details/53872141#gbdt算法" target="_blank" rel="external">杨旭东的专栏：GBDT算法原理深入解析</a></li>
+<li><a href="https://blog.csdn.net/yangxudong/article/details/53872141#gbdt算法" target="_blank" rel="external">刘建平Pinard：HBDT原理小结</a></li>
+<li><a href="https://www.jianshu.com/p/d55f7aaac4a7" target="_blank" rel="external">不会停的蜗牛：浅谈GBDT</a></li>
+<li><a href="https://blog.csdn.net/google19890102/article/details/51746402/" target="_blank" rel="external">简单易学的机器学习算法——梯度提升决策树GBDT</a></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/fclefang/JavaScript/LDA/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">PCA and LDA</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="JavaScript/GBDT" data-title="GBDT" data-url="http://www.fclef.me/fclefang/JavaScript/GBDT/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fclef"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Fclefang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
